@@ -1,0 +1,47 @@
+@use "src/styles/utils" as *;
+
+.Searchbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  background-color: #ffff;
+  border-radius: 3px;
+  width: 90%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.396);
+  }
+
+  &__glass {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    height: 35px;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 6px;
+    border: none;
+    background-color: #ffff;
+  }
+
+  &__input {
+    width: 95%;
+    border-radius: 5px;
+    height: 35px;
+    border: none;
+    margin: 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .cross {
+    padding-right: 10px;
+    border: none;
+    background-color: #ffff;
+  }
+}

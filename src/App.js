@@ -1,12 +1,11 @@
-import Menu from "./components/Menu/Menu";
-
+import React from 'react'
+import Router from './routes/Router'
 
 function App() {
   return (
     <div className="App">
-    <Menu/>
-    {/* Router */}
-    {/* Footer */}
+      <Router/>
+      {/* Footer */}
     </div>
   );
 }

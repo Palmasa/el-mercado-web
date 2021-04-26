@@ -1,0 +1,14 @@
+@use "src/styles/utils" as *;
+
+.Navbar-xs {
+  width: 100%;
+  background-color: $c-primary;
+  color: $c-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  .logo {
+    @include logo
+  }
+}
