@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import Searchbar from "./Searchbar/Searchbar"
-import CartButton from "./CartButton/CartButton"
 import useOffSet from '../../hooks/useOffSet'
 import useWindowDimensions from '../../hooks/useWindow'
 import HamburgerMenu from 'react-hamburger-menu'
+import Searchbar from "../Searchbar/Searchbar"
+import CartButton from "../CartButton/CartButton"
+import ZipBar from '../ZipBar/ZipBar'
+import Menu from '../Menu/Menu'
 import logo from '../../images/logos/DARK.png'
+import { Link } from 'react-router-dom'
 import './Navbar.scss'
-import ZipBar from '../Zip/ZipBar/ZipBar'
-import Menu from './Menu/Menu'
 
 const Navbar = () => {
   const { width } = useWindowDimensions()
@@ -17,6 +18,7 @@ const Navbar = () => {
   const handleHamClick = () => {
     setOpenHam(!openHam);
   }
+  
   return (
     <>
     {
@@ -29,7 +31,7 @@ const Navbar = () => {
             <HamburgerMenu isOpen={openHam} menuClicked={handleHamClick.bind(this)}
               width={16} height={12}
             />
-            <img className="logo" src={logo} alt="El Mercado"/>
+            <Link to="/"><img className="logo" src={logo} alt="El Mercado"/></Link>
             <CartButton />
           </div>
           <div className="Navbar-bot-xs">
@@ -39,20 +41,24 @@ const Navbar = () => {
         </div>
         </>
       ) : (
-        <>
-          <div className="Navbar-moves">
-            <img className="logo" src={logo} alt="El Mercado"/>
-            <div className="bar-moves">
+        <div>
+          <div className="Navbar-fixed">
+            <Link to="/"><img className="logo" src={logo} alt="El Mercado"/></Link>
+            <div className="bar-fixed">
               <Searchbar />
             </div>
-            <CartButton />
+            <div className="cart-fixed">
+              <CartButton />
+            </div>
           </div>
-          <div className={`${ offset > 78 ? "ghostMenu" : ""}`}></div>
-          <div className={`Navbar-fixed ${ offset > 78 ? "fix" : ""}`}> {/* 78 antes de que desaparezca y 155 después */}
+          <div className="ghostMenu"></div>
+          <div className="Navbar-moves">
             <Menu />
-            <ZipBar />
+            <div className={`${ offset > 45 ? "fix" : ""}`}>
+              <ZipBar />
+            </div>
           </div>
-        </>
+        </div>
       )
     
     }

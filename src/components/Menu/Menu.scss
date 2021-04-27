@@ -8,12 +8,19 @@
   align-items: center;
   padding: {
     top: 10px;
-    left: 40px;
+    left: 15px;
     right: 40px;
     bottom: 8px;
   };
   margin: 0px;
   height: 35px;
+
+  .Navlinks {
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   .changeMe > button {
     border: none;
@@ -21,6 +28,5 @@
     font-family: 'Archivo Narrow', sans-serif;
     font-size: 17px;
     font-weight: 400;
-    margin-right: 15px;
   }
 }

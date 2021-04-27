@@ -28,35 +28,44 @@
 
 /* DESKTOP =========================== */
 .ghostMenu {
-  height: 76px;
+  height: 78px;
 }
 
 .Navbar-moves {
+
+  .fix {
+    background-color: $c-light;
+    position: fixed;
+    top: 80px;
+    z-index: 9999;
+    width: 100%;
+    padding-top: 10px;
+  }
+}
+
+.Navbar-fixed {
+  position: fixed;
+  top: 0;
+  z-index: 9999;
   background-color: $c-light;
   color: $c-dark;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 40px 8px;
-  transition: all .3s;
+  width: 100%;
+  padding-top: 20px;
 
-  .bar-moves {
-    width: 65%;
-    justify-self: flex-start;
+  .bar-fixed {
+    width: 75%;
   }
+
+  .cart-fixed {
+    padding-right: 60px;
+  } 
 
   .logo {
-    width: 150px;
+    width: 120px;
+    padding-bottom: 10px;
+    padding-left: 40px;
   }
-}
-
-.Navbar-fixed {
-  transition: all .9s;
-}
-
-.fix {
-  position: fixed;
-  top: 0;
-  z-index: 9999;
-  width: 100%;
 }

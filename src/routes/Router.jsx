@@ -1,4 +1,4 @@
-import { Route, BrowserRouter, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import Error from '../screens/Error'
 import Home from '../screens/Home.screen';
 import Products from '../screens/Products.screen';
@@ -8,7 +8,7 @@ import SupplierDetail from '../screens/SupplierDetail.screen';
 
 const Router = () => {
   return (
-    <BrowserRouter>
+    <>
       {/* contextos */}
         <Switch>
           <Route exact path="/" component={Home}/>
@@ -25,7 +25,7 @@ const Router = () => {
           <Redirect to="/" />
         </Switch>
       {/* /contextos */}
-    </BrowserRouter>
+    </>
   )
 }
 

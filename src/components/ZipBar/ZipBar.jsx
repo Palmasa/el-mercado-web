@@ -2,6 +2,7 @@ import React from 'react'
 import { GrLocation } from 'react-icons/gr'
 import { BiChevronDown } from 'react-icons/bi'
 import './ZipBar.scss'
+
 const ZipBar = () => {
   return (
     <button className="ZipBar">
