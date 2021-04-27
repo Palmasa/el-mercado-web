@@ -1,13 +1,14 @@
 import './CartButton.scss'
-import cart from '../../../images/utils/cart.png'
 import { BsBag } from 'react-icons/bs'
+import { IconContext } from "react-icons"
 
 const CartButton = () => {
   return (
-    <div className="CartButton">
-      {/* <img src={cart} alt="Bolsa de la compra"/> */}
-      <p><BsBag/></p>
-    </div>
+    <IconContext.Provider value={{ size: "1.1em" }}>
+      <div className="CartButton">
+        <p><BsBag style={{sixe: '2em'}}/></p>
+      </div>
+    </IconContext.Provider>
   )
 }
 

@@ -28,6 +28,7 @@ const Searchbar = () => {
   } */
 
   return (
+    <>
     <div className="Searchbar">
       <label className="Searchbar__glass" htmlFor="search">
         <AiOutlineSearch />
@@ -46,6 +47,7 @@ const Searchbar = () => {
       <button onClick={() => setRedirect(true)}></button>
       */}
     </div>
+    </>
   )
 }
 

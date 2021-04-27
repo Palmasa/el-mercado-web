@@ -1,0 +1,26 @@
+@use "src/styles/utils" as *;
+
+.Menu {
+  background-color: $c-light;
+  color: $c-dark;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: {
+    top: 10px;
+    left: 40px;
+    right: 40px;
+    bottom: 8px;
+  };
+  margin: 0px;
+  height: 35px;
+
+  .changeMe > button {
+    border: none;
+    background-color: $c-light;
+    font-family: 'Archivo Narrow', sans-serif;
+    font-size: 17px;
+    font-weight: 400;
+    margin-right: 15px;
+  }
+}

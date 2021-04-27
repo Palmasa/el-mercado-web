@@ -8,6 +8,8 @@
   background-color: #ffff;
   border-radius: 3px;
   width: 90%;
+  margin: auto;
+  margin-bottom: 8px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   border: {
     style: solid;
@@ -19,7 +21,7 @@
     display: flex;
     align-items: center;
     margin: 0;
-    height: 35px;
+    height: 30px;
     border-radius: 5px;
     padding-left: 8px;
     padding-right: 6px;
@@ -30,9 +32,11 @@
   &__input {
     width: 95%;
     border-radius: 5px;
-    height: 35px;
+    height: 30px;
     border: none;
     margin: 0;
+    /* font-family: 'Archivo Narrow', sans-serif; */
+    font-family: 'Fira Sans', sans-serif;
 
     &:focus {
       outline: none;
