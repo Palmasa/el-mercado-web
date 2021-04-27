@@ -1,0 +1,11 @@
+@use "src/styles/utils" as *;
+
+.navlink {
+  padding: 8px 30px;
+  text-decoration: none;
+  color: $c-dark;
+  font-size: 17px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+}

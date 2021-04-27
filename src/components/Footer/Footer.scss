@@ -1,1 +1,6 @@
 @use "src/styles/utils" as *;
+
+.Footer {
+  background-color: $c-dark;
+  color: $c-light;
+}

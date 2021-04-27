@@ -4,7 +4,7 @@ import { IconContext } from "react-icons"
 
 const CartButton = () => {
   return (
-    <IconContext.Provider value={{ size: "1.1em" }}>
+    <IconContext.Provider value={{ size: "1.2em" }}>
       <div className="CartButton">
         <p><BsBag style={{sixe: '2em'}}/></p>
       </div>
