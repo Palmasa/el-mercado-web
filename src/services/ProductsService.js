@@ -14,6 +14,10 @@ export const getMainCategs = () => {
   return http.get('/main-categs')
 }
 
+export const getAllProducts = () => {
+  return http.get('/products')
+}
+
 /* export const getProducts = (category) => {
   return http.get("/products", { params: { category: category } });
 };

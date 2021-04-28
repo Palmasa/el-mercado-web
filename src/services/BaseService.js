@@ -1,21 +1,36 @@
 import axios from "axios";
-import { getAccessToken, logout } from "../store/AccessTokenStore";
+import { getAccessToken, logout } from '../store/accessTokenStore'
+import { getCart } from "../store/cartStore";
+import { getZip } from "../store/zipStore";
 
-export const create = (opts = {}) => {
+export const create = (opts = () => {}) => {
   const http = axios.create({
     baseURL: `${process.env.REACT_APP_API_HOST}/api`,
-    ...opts,
+    ...opts
   });
 
-  http.interceptors.request.use((request) => {
+  http.interceptors.request.use(req => {
+
     if (opts.useAccessToken !== false) {
-      request.headers.common.Authorization = `Bearer ${getAccessToken()}`;
+      req.headers.common.Authorization = `Bearer ${getAccessToken()}`
     } else {
-      delete request.headers.common.Authorization;
+      delete req.headers.common.Authorization
     }
 
-    return request;
-  });
+    if (localStorage.getItem('zip') !== null) {
+      req.headers.common.zip = getZip()
+    } else {
+      delete req.headers.common.zip
+    }
+
+    if (opts.useCart !== false) {
+      req.headers.common.cart = getCart()
+    } else {
+      delete req.headers.common.cart
+    }
+
+    return req
+  })
 
   http.interceptors.response.use(
     (response) => response.data,
@@ -32,5 +47,5 @@ export const create = (opts = {}) => {
     }
   );
 
-  return http;
-};
+  return http
+}

@@ -1,10 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
-import { BiChevronDown, BiChevronLeft } from 'react-icons/bi'
-import MenuHover from '../MenuHover/MenuHover'
-import './MenuItem.scss'
+import { BsPerson } from 'react-icons/bs'
+import AreaHover from '../AreaHover/AreaHover'
+import './AreaItem.scss'
 
-const MenuItem = ({ route, categs, children}) => {
+const AreaItem = ({ route, children, name }) => {
   const [ hover, setHover ] = useState(false)
 
   const toggleOut = () => {
@@ -17,21 +17,21 @@ const MenuItem = ({ route, categs, children}) => {
 
   return (
     <>
-    <NavLink 
-    className="navlink"
+    <NavLink
+    className="AreaItem"
     style={ hover ? {color: '#e15d45'} : {} }
     activeClassName="navselect"
     to={route}
     onMouseEnter={toggleIn}
     onMouseLeave={toggleOut}
     >
+    <BsPerson />
     {children}
-    { hover ? <BiChevronLeft /> : <BiChevronDown /> }
     </NavLink>
 
-    { hover && <MenuHover toggle={setHover} categs={categs} /> }
+    { hover && <AreaHover toggle={setHover} name={name}/> }
     </>
   )
 }
 
-export default MenuItem
+export default AreaItem

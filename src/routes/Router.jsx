@@ -1,30 +1,31 @@
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Error from '../screens/Error'
-import Home from '../screens/Home.screen';
-import Products from '../screens/Products.screen';
-import ProductDetail from '../screens/ProductDetail.screen';
-import Suppliers from '../screens/Suppliers.screen';
-import SupplierDetail from '../screens/SupplierDetail.screen';
+import HomeScreen from '../screens/HomeScreen';
+import ProductsScreen from '../screens/ProductsScreen';
+import ProductDetailScreen from '../screens/ProductDetailScreen';
+import SuppliersScreen from '../screens/SuppliersScreen';
+import SupplierDetailScreen from '../screens/SupplierDetailScreen';
+import LoginScreen from '../screens/LoginScreen'
 
 const Router = () => {
   return (
     <>
-      {/* contextos */}
-        <Switch>
-          <Route exact path="/" component={Home}/>
+      <Switch>
+        <Route exact path="/" component={HomeScreen}/>
 
-          <Route exact path="/productos" component={Products}/>
-          <Route exact path="/productos/:slug" component={ProductDetail}/>
+        <Route exact path="/productos" component={ProductsScreen}/>
+        <Route exact path="/productos/:slug" component={ProductDetailScreen}/>
 
-          <Route exact path="/puestos" component={Suppliers}/>
-          <Route exact path="/puestos/:slug" component={SupplierDetail}/>
+        <Route exact path="/puestos" component={SuppliersScreen}/>
+        <Route exact path="/puestos/:slug" component={SupplierDetailScreen}/>
 
-          <Route exact path="/404" component={() => <Error code={404} />} />
-          <Route exact path="/403" component={() => <Error code={403} />} />
+        <Route exact path="/acceso-usuarios" component={LoginScreen}/>
 
-          <Redirect to="/" />
-        </Switch>
-      {/* /contextos */}
+        <Route exact path="/404" component={() => <Error code={404} />} />
+        <Route exact path="/403" component={() => <Error code={403} />} />
+
+        <Redirect to="/" />
+      </Switch>
     </>
   )
 }

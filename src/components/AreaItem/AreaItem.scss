@@ -1,0 +1,11 @@
+@use "src/styles/utils" as *;
+
+.AreaItem {
+    padding: 10px 10px;
+    text-decoration: none;
+    color: $c-dark;
+    font-size: 14px;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+}

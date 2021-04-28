@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import useOffSet from '../../hooks/useOffSet'
 import useWindowDimensions from '../../hooks/useWindow'
 import HamburgerMenu from 'react-hamburger-menu'
-import Searchbar from "../Searchbar/Searchbar"
-import CartButton from "../CartButton/CartButton"
-import ZipBar from '../ZipBar/ZipBar'
-import Menu from '../Menu/Menu'
+import Searchbar from "../../components/Searchbar/Searchbar"
+import CartButton from "../../components/CartButton/CartButton"
+import ZipBar from '../../components/ZipBar/ZipBar'
+import Menu from '../../components/Menu/Menu'
 import logo from '../../images/logos/DARK.png'
 import { Link } from 'react-router-dom'
 import './Navbar.scss'

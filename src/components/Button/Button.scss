@@ -1,0 +1,9 @@
+@use "src/styles/utils" as *;
+
+.Button {
+  background-color: $c-orange;
+  color: $c-dark;
+  padding: 8px 15px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 3px;
+}
