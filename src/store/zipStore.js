@@ -1,12 +1,13 @@
-let zipCode = window.localStorage.getItem('zDcde') || null
+let zip = window.localStorage.getItem('zip')
 
-export const getZip = () => zipCode
+export const getZip = () => zip
 
-export const setZip = zip => {
-  window.localStorage.setItem('zDcde', zip)
-  zipCode = zip
+export const setZip = (prov) => {
+  window.localStorage.setItem('zip', prov)
+  zip = prov
 }
 
-export const outZip = () => {
-  window.localStorage.removeItem('zDde')
+
+export const removeZip = () => {
+  window.localStorage.removeItem('zip')
 }

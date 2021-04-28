@@ -1,6 +1,6 @@
-import './Categs.scss'
+import './MenuHover.scss'
 
-const Categs = ({ toggle }) => {
+const MenuHover = ({ toggle, categs }) => {
   
   const toggleOut = () => {
     toggle(false)
@@ -16,9 +16,9 @@ const Categs = ({ toggle }) => {
     onMouseEnter={toggleIn}
     onMouseLeave={toggleOut}
     >
-    
+    { categs.map((cat, i) => <small>{cat}</small>)}
     </div>
   )
 }
 
-export default Categs
+export default MenuHover

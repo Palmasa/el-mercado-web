@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SupplierDetail = () => {
+const SupplierDetailScreen = () => {
   return (
     <div className="SupplierDetail">
       <h1>supplier page</h1>
@@ -8,4 +8,4 @@ const SupplierDetail = () => {
   )
 }
 
-export default SupplierDetail
+export default SupplierDetailScreen
