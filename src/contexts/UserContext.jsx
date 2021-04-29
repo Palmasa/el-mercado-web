@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from 'react'
 import { getUserInfo } from '../services/UsersService'
-import { getAccessToken } from '../store/accessTokenStore'
+import { getAccessToken } from '../store/AccessTokenStore.js'
 
 export const UserContext = createContext()
 

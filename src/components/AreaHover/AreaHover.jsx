@@ -1,4 +1,4 @@
-import { logout } from '../../store/accessTokenStore'
+import { logout } from '../../store/AccessTokenStore.js'
 import { removeZip } from '../../store/zipStore'
 import './AreaHover.scss'
 

@@ -5,13 +5,16 @@ import './index.scss';
 import App from './App';
 import { UserContextProvider } from './contexts/UserContext';
 import { ZipContextProvider } from './contexts/ZipContext';
+import { CartContextProvider } from './contexts/CartContext';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <UserContextProvider>
         <ZipContextProvider>
-          <App />
+          <CartContextProvider>
+            <App />
+          </CartContextProvider>
         </ZipContextProvider>
       </UserContextProvider>
     </BrowserRouter>

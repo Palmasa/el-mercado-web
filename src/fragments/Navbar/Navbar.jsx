@@ -25,7 +25,6 @@ const Navbar = () => {
       width < 640
       ? (
         <>
-        <div className="ghostMenu-xs"></div>
         <div className="Navbar-xs">
           <div className="Navbar-top-xs">
             <HamburgerMenu isOpen={openHam} menuClicked={handleHamClick.bind(this)}
@@ -39,6 +38,7 @@ const Navbar = () => {
             <ZipBar />
           </div>
         </div>
+        <div className="ghostMenu-xs"></div>
         </>
       ) : (
         <div>

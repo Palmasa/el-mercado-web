@@ -1,4 +1,4 @@
-let cart = window.localStorage.getItem('cart') || null
+let cart = window.localStorage.getItem('cart') || null
 
 export const getCart = () => cart
 
