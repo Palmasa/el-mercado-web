@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken, logout } from '../store/accessTokenStore'
+import { getAccessToken, logout } from '../store/AccessTokenStore'
 import { getCart } from "../store/cartStore";
 import { getZip } from "../store/zipStore";
 

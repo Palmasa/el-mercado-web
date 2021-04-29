@@ -16,7 +16,7 @@ const MenuHover = ({ toggle, categs }) => {
     onMouseEnter={toggleIn}
     onMouseLeave={toggleOut}
     >
-    { categs.map((cat, i) => <small>{cat}</small>)}
+    { categs.map((cat, i) => <small key={i}>{cat}</small>)}
     </div>
   )
 }

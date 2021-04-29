@@ -1,12 +1,8 @@
-import { useState, useContext } from 'react'
-import Input from '../../components/Input/Input'
-import { login } from '../../services/AuthService';
-import { setAccessToken } from '../../store/AccessTokenStore.js'
-import { setZip } from '../../store/zipStore'
-import { setCart } from '../../store/cartStore'
-import { UserContext } from '../../contexts/UserContext';
-import { ZipContext } from '../../contexts/ZipContext';
+import { useState } from 'react'
+import Input from '../../components/Input/Input';
+import { register } from '../../services/AuthService';
 import './AuthForm.scss'
+
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -25,28 +21,29 @@ const validators = {
     if (!value) {
       message = 'Es necesario introducir la contraseña'
     } else if (value.length < 6) {
-      message = 'La contraseña introducida es demasiado corta'
+      message = 'La contraseña introducida debete tener mínimo 6 caracteres'
     }
     return message
   }
 }
 
-/* Component Login ------------------------------------------------------- */
-const Login = () => {
-  const { getUser } = useContext(UserContext)
-  const { getCurrentZip } = useContext(ZipContext)
+/* Component Register ------------------------------------------------------- */
+
+const Register = () => {
   const [ state, setState ] = useState ({
     fields: {
       email: '',
-      password: ''
+      password: '',
+      name: ''
     },
     errors: {
       email: validators.email,
-      password: validators.password
+      password: validators.password,
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
   const [touched, setTouched ] = useState({})
+  const [ done, setDone ] = useState(false)
 
   const isValid = () => {
     const { errors } = state
@@ -55,25 +52,18 @@ const Login = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-    if (isValid()) {
-      login(state.fields)
-      .then((response => {
-          setAccessToken(response.access_token)
-          response.zip && setZip(response.zip)
-          response.cart && setCart(response.cart)
-          getUser().then(() => {
-            console.log('loged in')
-          })
-  
-          getCurrentZip() // no hay then porque no es una petición al back
 
+    if (isValid()) {
+      register(state.fields)
+      .then((response => {
+        console.log(response)
+        setDone(true)
       }))
       .catch((error) => {
         setResError({ error: true, info: error.response.data.errors.email })
       })
     }
   }
-
   const onChange = (e) => {
     const { name, value } = e.target
 
@@ -90,6 +80,7 @@ const Login = () => {
       }
     }))
   }
+
   const onFocus = (e) => {
     const { name } = e.target
 
@@ -110,30 +101,46 @@ const Login = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <h1>Register</h1>
+      {
+        done
+        ? (
+          <p>Mira tu email</p>
+        ) : (
+        <form onSubmit={onSubmit}>
 
-        <Input 
-          label="Email" name="email" type="email"
-          value={state.fields.email}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.email && touched.email ? state.errors.email : ""}
-        />
+          <Input 
+            label="Nombre" name="name" type="text"
+            value={state.fields.name}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={false}
+          />
 
-        <Input 
-          label="Contraseña" name="password" type="password"
-          value={state.fields.password}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.password  && touched.password ? state.errors.password : ""}
-        />
+          <Input 
+            label="Email" name="email" type="email"
+            value={state.fields.email}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.email && touched.email ? state.errors.email : ""}
+          />
+
+          <Input 
+            label="Contraseña" name="password" type="password"
+            value={state.fields.password}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.password  && touched.password ? state.errors.password : ""}
+          />
+
         <div>
           {resError.error ? resError.info : ""}
         </div>
 
-      <button type="submit">Acceder</button>
-      </form>
+        <button type="submit">Acceder</button>
+        </form>
+        )
+      }
+
     </div>
   )
 }
 
-
-export default Login
+export default Register

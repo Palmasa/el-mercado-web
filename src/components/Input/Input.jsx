@@ -15,7 +15,7 @@ const Input = (
       </label>
 
       <input
-        className={` ${error  && "is-invalid"} `}
+        className={`${error  && "is-invalid"} `}
         name={name}
         type={type}
         placeholder={placeholder}
