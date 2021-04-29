@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getAllProducts } from '../../services/ProductsService'
-import ProductDetail from './ProductDetail'
+import ProductCard from './ProductCard'
 import Pagination from './Pagination'
 import './Products.scss'
 
@@ -8,7 +8,7 @@ const Products = () => {
   const [ products, setProducts ] = useState({})
   const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage, setprodPerPage ] = useState(2) //num
+  const [ prodPerPage ] = useState(2) //num
 
   const getProducts = async () => {
     setLoading(true)
@@ -25,7 +25,8 @@ const Products = () => {
   const indexOfLastProduct = currentPage * prodPerPage
   const indexOfFirstProduct = indexOfLastProduct - prodPerPage
   const currentProducts = products.listProducts?.slice(indexOfFirstProduct, indexOfLastProduct)
-
+  
+  
   const paginate = (n) => {
     setCurrentPage(n)
   }
@@ -38,7 +39,7 @@ const Products = () => {
         ? (
           <>
           {currentProducts?.map((product) => (
-            <ProductDetail
+            <ProductCard
             key={product.id}
             product= {product}
             />
@@ -52,7 +53,12 @@ const Products = () => {
           <>
           <h1>YES SEND</h1>
             {
-              products.yesSend?.map((p) => <p>{p.name}</p>)
+              products.yesSend?.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product= {product}
+                />
+              ))
             }
             <h1>NO SEND</h1>
             {

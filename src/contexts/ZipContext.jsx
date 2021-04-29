@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect } from 'react'
-import { getZip, setZip } from '../store/zipStore'
+import { getZip } from '../store/zipStore'
 
 export const ZipContext = createContext()
 
@@ -9,12 +9,6 @@ export function ZipContextProvider({ children }) {
   const getCurrentZip = () => {
     setStateZip(getZip())
   }
-  
-  /* const changeCurrentZip = () => {
-    setStateZip((prevZip) => {
-      if (prevZip !== )
-    })
-  } */
 
   useEffect(() => {
     getCurrentZip()

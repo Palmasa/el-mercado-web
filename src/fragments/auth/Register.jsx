@@ -101,7 +101,6 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
       {
         done
         ? (
@@ -115,7 +114,7 @@ const Register = () => {
             onChange={onChange} onBlur={onBlur} onFocus={onFocus}
             error={false}
           />
-
+          
           <Input 
             label="Email" name="email" type="email"
             value={state.fields.email}

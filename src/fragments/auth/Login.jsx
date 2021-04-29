@@ -7,6 +7,7 @@ import { setCart } from '../../store/cartStore'
 import { UserContext } from '../../contexts/UserContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import './AuthForm.scss'
+import { CartContext } from '../../contexts/CartContext';
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -35,6 +36,7 @@ const validators = {
 const Login = () => {
   const { getUser } = useContext(UserContext)
   const { getCurrentZip } = useContext(ZipContext)
+  const { getCurrentCart } = useContext(CartContext)
   const [ state, setState ] = useState ({
     fields: {
       email: '',
@@ -59,13 +61,18 @@ const Login = () => {
       login(state.fields)
       .then((response => {
           setAccessToken(response.access_token)
-          response.zip && setZip(response.zip)
-          response.cart && setCart(response.cart)
+          if (localStorage.getItem('zip') === null) {
+            response.zip && setZip(response.zip)
+          }
+          if (localStorage.getItem('cart') === null) {
+            response.cart && setCart(response.cart)
+          }
           getUser().then(() => {
             console.log('loged in')
           })
   
-          getCurrentZip() // no hay then porque no es una petición al back
+          getCurrentZip()
+          getCurrentCart()
 
       }))
       .catch((error) => {

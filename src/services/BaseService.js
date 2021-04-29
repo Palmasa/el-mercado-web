@@ -10,7 +10,7 @@ export const create = (opts = () => {}) => {
   });
 
   http.interceptors.request.use(req => {
-
+    /* el problema esq me llega al back como null si no tengo token, si tengo token, funciona */
     if (opts.useAccessToken !== false) {
       req.headers.common.Authorization = `Bearer ${getAccessToken()}`
     } else {
@@ -23,11 +23,11 @@ export const create = (opts = () => {}) => {
       delete req.headers.common.zip
     }
 
-    if (opts.useCart !== false) {
+    if (localStorage.getItem('cart') !== null) {
       req.headers.common.cart = getCart()
     } else {
       delete req.headers.common.cart
-    }
+    } 
 
     return req
   })
