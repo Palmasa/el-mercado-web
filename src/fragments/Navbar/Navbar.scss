@@ -6,12 +6,12 @@
 }
 
 .Navbar-xs {
-  background-color: $c-light;
   position: fixed;
   top: 0;
   z-index: 9999;
   width: 100%;
   display: inline-block;
+  background-color: $c-light;
 
   .Navbar-top-xs {
     display: flex;
@@ -28,15 +28,15 @@
 
 /* DESKTOP =========================== */
 .ghostMenu {
-  height: 78px;
+  height: 64px;
+  margin: 0;
 }
 
 .Navbar-moves {
-
   .fix {
     background-color: $c-light;
     position: fixed;
-    top: 80px;
+    top: 64px;
     z-index: 9999;
     width: 100%;
     padding-top: 10px;
