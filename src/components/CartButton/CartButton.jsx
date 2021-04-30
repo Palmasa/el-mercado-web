@@ -29,7 +29,7 @@ const CartButton = () => {
             <small className="circleCart"></small>
             <small className="numCart">{stateCart.products?.length}</small>
             {
-              showCart && (<CartPopUp closeCart={closeCart}/>)
+              showCart && (<CartPopUp closeCart={closeCart} productsQuantity={stateCart.products?.length}/>)
             }
             </>
           ) }

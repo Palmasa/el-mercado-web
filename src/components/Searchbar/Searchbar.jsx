@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
-import { Redirect } from 'react-router'
+/* import { Redirect } from 'react-router' */
 import './Searchbar.scss'
 
 const Searchbar = () => {

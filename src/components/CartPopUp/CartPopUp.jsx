@@ -4,8 +4,10 @@ import { MdClose } from 'react-icons/md'
 import useWindowDimensions from '../../hooks/useWindow'
 import { removeDuplicates } from '../../helpers/removeDuplicates'
 import './CartPopUp.scss'
+import CartCart from '../CartCart/CartCart'
+import { Link } from 'react-router-dom'
 
-const CartPopUp = ({ closeCart }) => {
+const CartPopUp = ({ closeCart, productsQuantity }) => {
   const { stateCart } = useContext(CartContext)
   const { width } = useWindowDimensions()
 
@@ -18,25 +20,13 @@ const CartPopUp = ({ closeCart }) => {
       const carts = []
       for (let i = 0; i < suppliers.length; i++) {
         let eachCart = stateCart.products.filter((product) => (product.supplierId).toString() ===  (suppliers[i]).toString())
-        /* console.log(eachCart) */
-        carts.push(<div style={{ border: "1px solid blue"}}>
-          {
-            eachCart.map((cart) => (
-            (
-            <div>
-            <p>{cart.name}</p>
-            <p>{cart.price}€</p>
-            <p>x0{cart.quantity}</p>
-            </div>
-            )
-          ))
-          }
-            <p>send price{eachCart[0].sendPrice}</p>
+        
+        carts.push( <CartCart eachCart={eachCart} key={i}/> )
 
-        </div>)
       }
-      console.log(stateCart)
-      return <>{carts}<p>{stateCart.total}€</p></>
+
+      return <>{carts}<p>Total: {stateCart.total}€</p></>
+
     }, [stateCart],
   )
 
@@ -46,22 +36,24 @@ const CartPopUp = ({ closeCart }) => {
 
 
   return (
-    <button onClick={() => closeCart()} className="overlay">
+    <button className="overlay">
       <div className="popUp">
         <div className="buttonContainerCart">
-          <button onClick={() => closeCart()}><MdClose /></button>
+          <button onClick={() => closeCart()}> <MdClose /></button>
+          <p>Bolsa ({productsQuantity})</p>
         </div>
-        <div>
+        <>
           {width < 640
           ? (
             <p>xs</p>
           ) : (
             <>
-              <p>{paintCarts()}</p>
+              {paintCarts()}
             </>
           )
           }
-        </div>
+        </>
+        <Link to="/">Tramitar pedido</Link>
       </div>
     </button>
   )
