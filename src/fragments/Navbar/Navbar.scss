@@ -8,7 +8,7 @@
 .Navbar-xs {
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 9998;
   width: 100%;
   display: inline-block;
   background-color: $c-light;
@@ -37,7 +37,7 @@
     background-color: $c-light;
     position: fixed;
     top: 64px;
-    z-index: 9999;
+    z-index: 1;
     width: 100%;
     padding-top: 10px;
   }
@@ -46,7 +46,7 @@
 .Navbar-fixed {
   position: fixed;
   top: 0;
-  z-index: 9999;
+  z-index: 9998;
   background-color: $c-light;
   color: $c-dark;
   display: flex;

@@ -3,7 +3,7 @@ import { create } from "./BaseService";
 const http = create();
 
 export const getCartfromBack = () => {
-  return http.get(`/carrito/me}`)
+  return http.get(`/carrito/me`)
 }
 
 export const createAddCart = (productId) => {

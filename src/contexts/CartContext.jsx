@@ -11,11 +11,6 @@ export function CartContextProvider({children}) {
     const cart = await getCartfromBack()
     setStateCart(cart)
   }
-  useEffect(() => {
-    if (getCart()) {
-      getCurrentCart()
-    }
-  }, [])
 
   const addItemToCart = (productId) => {
     createAddCart(productId) // petición al back
@@ -37,6 +32,14 @@ export function CartContextProvider({children}) {
       setStateCart(cart)
     }
   }
+
+  // ----------------------peticion con cada render
+  useEffect(() => {
+    if (getCart()) {
+      getCurrentCart()
+    }
+  }, [])
+
 
   const value = { stateCart, getCurrentCart, addItemToCart, removeItem }
 
