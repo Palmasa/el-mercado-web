@@ -14,7 +14,6 @@ const AreaHover = ({ toggle, name }) => {
   const eraseUser = () => {
     logout()
     removeZip()
-    // Borrar cart
   }
 
   return (
@@ -23,9 +22,8 @@ const AreaHover = ({ toggle, name }) => {
     onMouseEnter={toggleIn}
     onMouseLeave={toggleOut}
     >
-    <p>{name}</p>
+    <p>¡Hola {name}!</p>
     <p>Mis pedidos</p>
-    <p>Volver a comprar</p>
     <p>Mi cuenta</p>
     <button onClick={eraseUser}>Salir</button>
     </div>

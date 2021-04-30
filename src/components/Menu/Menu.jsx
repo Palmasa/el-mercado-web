@@ -43,7 +43,7 @@ const Menu = () => {
           user 
           ? (
             <>
-            <AreaItem route="/acceso-usuarios" name={user.name}>Mi área</AreaItem>
+            <AreaItem route="/area-privada-usuarios" name={user.name ? user.name : ""}>Mi área</AreaItem>
             </>
           ) : (
             <>

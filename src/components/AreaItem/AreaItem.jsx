@@ -1,7 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 import { BsPerson } from 'react-icons/bs'
-import AreaHover from '../AreaHover/AreaHover'
 import './AreaItem.scss'
 
 const AreaItem = ({ route, children, name }) => {
@@ -28,8 +27,6 @@ const AreaItem = ({ route, children, name }) => {
     <BsPerson />
     {children}
     </NavLink>
-
-    { hover && <AreaHover toggle={setHover} name={name}/> }
     </>
   )
 }

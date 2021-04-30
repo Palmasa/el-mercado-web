@@ -7,6 +7,7 @@ import SuppliersScreen from '../screens/SuppliersScreen';
 import SupplierDetailScreen from '../screens/SupplierDetailScreen';
 import AuthScreen from '../screens/AuthScreen'
 import Activate from '../fragments/auth/Activate'
+import AreaUsersScreen from '../screens/AreaUsersScreen';
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
 
         <Route exact path="/acceso-usuarios" component={AuthScreen}/>
         <Route exact path="/activar-usuarios/:token" component={Activate}/>
+        <Route exact path="/area-privada-usuarios" component={AreaUsersScreen}/>
 
         <Route exact path="/404" component={() => <Error code={404} />} />
         <Route exact path="/403" component={() => <Error code={403} />} />

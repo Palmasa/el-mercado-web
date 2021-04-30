@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import Login from './Login'
-import Register from './Register'
-import './Auth.scss'
+import MyProfile from './MyProfile'
+import Orders from './Orders'
+import { logout } from '../../store/AccessTokenStore.js'
+import { removeZip } from '../../store/zipStore'
+import { GrLogout } from 'react-icons/gr'
 
-const Auth = () => {
+const AreaUsers = () => {
   const [opt, setOpt] = useState(true)
 
   const goRegister = () => {
@@ -14,6 +16,11 @@ const Auth = () => {
     setOpt(true)
   }
 
+  const eraseUser = () => {
+    logout()
+    removeZip()
+  }
+
   return (
     <div className="Auth container">
       <div className="authMenu">
@@ -21,22 +28,23 @@ const Auth = () => {
           onClick={goLogin}
           className={`${opt ? "optTrue" : "" }` }
         >
-        Ya tengo cuenta
+        Mi cuenta
         </button>
         <button 
           onClick={goRegister}
           className={`${opt ? "" : "optTrue" }` }
         >
-        Registrarme
+        Mis pedidos
         </button>
       </div>
       {
         opt
-        ? <Login />
-        : <Register /> 
+        ? <MyProfile />
+        : <Orders /> 
       }
+      <button onClick={eraseUser}><GrLogout /> Cerrar sesión</button>
     </div>
   )
 }
 
-export default Auth
+export default AreaUsers
