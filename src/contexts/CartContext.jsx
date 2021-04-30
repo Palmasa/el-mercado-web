@@ -8,14 +8,11 @@ export function CartContextProvider({children}) {
   const [ stateCart, setStateCart ] = useState(null)
 
   const getCurrentCart = async () => {
-    const cart = await getCartfromBack()
-    setStateCart(cart)
+    try {
+      const cart = await getCartfromBack()
+      setStateCart(cart)
+    } catch(e) { console.log(e.response?.data) }
   }
-  useEffect(() => {
-    if (getCart()) {
-      getCurrentCart()
-    }
-  }, [])
 
   const addItemToCart = (productId) => {
     createAddCart(productId) // petición al back
@@ -25,49 +22,52 @@ export function CartContextProvider({children}) {
       }
       setStateCart(cart.cart) // el carrito entero y tengo acceso a el desde cualquier parte
     })
-    .catch((error) => console.log(`FROOOONT productCart. error -> ${error.response?.data.errors.zip}`))
+    .catch((error) => console.log(`FROOOONT productCart. error -> ${error.response?.data}`))
   }
 
   const removeItem = async (productId) => {
-    const cart = await removeEntireItem(productId)
-    if (cart === 'Carrito eliminado') {
-      removeCart()
-      setStateCart(null)
-    } else {
-      setStateCart(cart)
-    }
-  }
-
-  const value = { stateCart, getCurrentCart, addItemToCart, removeItem }
-
-  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
-}
-
-
-
-
-/* const removeItem = async (productId) => {
-    const cart = await removeEntireItem(productId)
-    if (cart === 'Carrito eliminado') {
-      removeCart()
-      setStateCart(null)
-    } else {
-      setStateCart(cart)
-    }
+    try {
+      const cart = await removeEntireItem(productId)
+      if (cart === 'Carrito eliminado') {
+        removeCart()
+        setStateCart(null)
+      } else {
+        setStateCart(cart)
+      }
+    } catch(e) { console.log(`Cartcontext remove Item. error -> ${e.response?.data.errors.zip}`) }
   }
 
   const sumQ = async (productId) => {
-    const cart = await sumQuantity(productId)
-    setStateCart(cart)
+    try {
+      const cart = await sumQuantity(productId)
+      setStateCart(cart)
+    } catch(e) { console.log(e.response.data)}
   }
 
   const substractQ = async (productId) => {
-    const cart = await substractQuantity(productId)
-    setStateCart(cart)
+    try {
+      const cart = await substractQuantity(productId)
+      setStateCart(cart)
+    } catch(e) { console.log(e.response.data)}
   }
 
   const removeAllCart = async () => {
-    deletCart() // back
-    removeCart() // front
-    setStateCart(null)
-  } */
+    try {
+      deletCart() // back
+      removeCart() // front
+      setStateCart(null)
+    } catch(e) { console.log(e.response.data)}
+  }
+
+  // ---------------------- peticion con cada render
+  useEffect(() => {
+    if (getCart()) {
+      getCurrentCart()
+    }
+  }, [])
+
+
+  const value = { stateCart, getCurrentCart, addItemToCart, removeItem, sumQ,  substractQ, removeAllCart }
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>
+}

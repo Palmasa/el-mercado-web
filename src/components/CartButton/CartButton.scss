@@ -1,1 +1,35 @@
 @use "src/styles/utils" as *;
+
+.CartButton {
+  position: relative;
+  border: none;
+  background-color: $c-light;
+
+  &:focus {
+    border: none;
+    outline: none;
+  }
+
+}
+.numOfItems {
+
+  .circleCart {
+    position: fixed;
+    top: 37px;
+    right: 75px;
+    background-color: $c-orange;
+    text-align: center;
+    border-radius: 50%;
+    height: 17px;
+    width: 17px;
+  }
+
+  .numCart {
+    position: fixed;
+    color: $c-light;
+    top: 36px;
+    right: 81px;
+    z-index: 9999;
+    font-weight: 500;
+  }
+}

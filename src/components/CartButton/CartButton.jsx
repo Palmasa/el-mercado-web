@@ -1,18 +1,40 @@
-import './CartButton.scss'
+import { useContext, useState } from 'react'
 import { BsBag } from 'react-icons/bs'
 import { IconContext } from "react-icons"
-import { useEffect, useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
+import './CartButton.scss'
+import CartPopUp from '../CartPopUp/CartPopUp'
 
 const CartButton = () => {
   const { stateCart } = useContext(CartContext)
+  const [ showCart, setShowCart ] = useState(false)
+
+  const openCart = () => {
+    setShowCart(true)
+  }
+
+  const closeCart = () => {
+    setShowCart(false)
+  }
 
   return (
     <IconContext.Provider value={{ size: "1.2em" }}>
-      <div className="CartButton">
+    <>
+      <button onClick={openCart} className="CartButton">
         <p><BsBag style={{sixe: '2em'}}/></p>
-        { stateCart ? (<small style={{ margin: 0, padding: 0 }}>{stateCart.products?.length}</small>) : (<small style={{ margin: 0, padding: 0 }}>0</small>) }
-      </div>
+      </button>
+        <div className="numOfItems">
+          { stateCart && (
+            <>
+            <small className="circleCart"></small>
+            <small className="numCart">{stateCart.products?.length}</small>
+            {
+              showCart && (<CartPopUp closeCart={closeCart} productsQuantity={stateCart.products?.length}/>)
+            }
+            </>
+          ) }
+        </div>
+    </>
     </IconContext.Provider>
   )
 }
