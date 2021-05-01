@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import Login from './Login'
-import Register from './Register'
-import './Auth.scss'
+import LoginSupp from './LoginSupp'
+import RegisterSupp from './RegisterSupp'
+import './AuthSupp.scss'
 
-const Auth = () => {
+
+const AuthSupp = () => {
   const [opt, setOpt] = useState(true)
 
   const goRegister = () => {
@@ -16,6 +17,7 @@ const Auth = () => {
 
   return (
     <div className="Auth container">
+    <h1>PUESTOS</h1>
       <div className="authMenu">
         <button 
           onClick={goLogin}
@@ -27,16 +29,16 @@ const Auth = () => {
           onClick={goRegister}
           className={`${opt ? "" : "optTrue" }` }
         >
-        Registrarme
+        Registrar un puesto
         </button>
       </div>
       {
         opt
-        ? <Login />
-        : <Register /> 
+        ? <LoginSupp />
+        : <RegisterSupp /> 
       }
     </div>
   )
 }
 
-export default Auth
+export default AuthSupp

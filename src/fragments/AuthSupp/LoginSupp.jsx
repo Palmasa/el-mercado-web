@@ -1,13 +1,8 @@
 import { useState, useContext } from 'react'
 import Input from '../../components/Input/Input'
-import { login } from '../../services/AuthService';
+import { SuppContext } from '../../contexts/SuppContext';
+import { suppLogin } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
-import { setZip } from '../../store/zipStore'
-import { setCart } from '../../store/cartStore'
-import { UserContext } from '../../contexts/UserContext';
-import { ZipContext } from '../../contexts/ZipContext';
-import { CartContext } from '../../contexts/CartContext';
-import './AuthForm.scss'
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -32,11 +27,9 @@ const validators = {
   }
 }
 
-/* Component Login ------------------------------------------------------- */
-const Login = () => {
-  const { getUser } = useContext(UserContext)
-  const { getCurrentZip } = useContext(ZipContext)
-  const { getCurrentCart } = useContext(CartContext)
+const LoginSupp = () => {
+  const { getSupp } = useContext(SuppContext)
+
   const [ state, setState ] = useState ({
     fields: {
       email: '',
@@ -58,25 +51,12 @@ const Login = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     if (isValid()) {
-      login(state.fields)
-      .then((response => {
-          setAccessToken(response.access_token)
-          if (localStorage.getItem('zip') === null) {
-            response.zip && setZip(response.zip)
-          }
-          if (localStorage.getItem('cart') === null) {
-            response.cart && setCart(response.cart)
-          }
-          getUser().then(() => {
-            console.log('loged in')
-          })
-  
-          getCurrentZip()
-          getCurrentCart()
-
-      }))
-      .catch((error) => {
-        setResError({ error: true, info: error.response.data.errors.email })
+      suppLogin(state.fields)
+      .then((response) => {
+        setAccessToken(response.access_token)
+        getSupp().then(() => {
+          console.log('loged in VENDOR')
+        })
       })
     }
   }
@@ -114,7 +94,6 @@ const Login = () => {
       [name]: true
     }))
   }
-
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -142,5 +121,4 @@ const Login = () => {
   )
 }
 
-
-export default Login
+export default LoginSupp

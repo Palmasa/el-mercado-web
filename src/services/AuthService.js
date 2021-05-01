@@ -15,3 +15,17 @@ export const register = (body) => {
 export const activate = (token) => {
   return http.get(`/activate/${token}`)
 }
+
+// -------------------------------------------------
+
+export const suppLogin = (body) => {
+  return http.post('/vendors/login', body)
+}
+
+export const suppRegister = (body) => {
+  return http.post('/vendors/registration', body)
+}
+
+export const suppActivate = (token) => {
+  return http.get(`/vendors/activate/${token}`)
+}

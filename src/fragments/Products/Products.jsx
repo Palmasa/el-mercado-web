@@ -24,8 +24,18 @@ const Products = () => {
   // Get current
   const indexOfLastProduct = currentPage * prodPerPage
   const indexOfFirstProduct = indexOfLastProduct - prodPerPage
-  const currentProducts = products.listProducts?.slice(indexOfFirstProduct, indexOfLastProduct)
-  
+  let currentProducts = products.listProducts?.slice(indexOfFirstProduct, indexOfLastProduct)
+  let productsLenght = products.listProducts?.length
+
+  if (!products.listProducts) {
+    if (products.yesSend && products.noSend) {
+      let allP = products.noSend?.map((p) => ({ ...p, noSend: true }))
+      allP = [ ...products.yesSend, ...allP ]
+      productsLenght = allP.length
+      currentProducts = allP?.slice(indexOfFirstProduct, indexOfLastProduct)
+    }
+  }
+
   
   const paginate = (n) => {
     setCurrentPage(n)
@@ -34,38 +44,24 @@ const Products = () => {
   return (
     <div className="Products container">
      {
-       loading ? <p>Loading...</p> : (
-       products.listProducts
-        ? (
-          <>
-          {currentProducts?.map((product) => (
+       loading
+       ? <p>Loading...</p> 
+       : (
+         <>
+         {
+          currentProducts?.map((product) => (
             <ProductCard
             key={product.id}
             product= {product}
             />
-          ))}
+          ))
+         }
           <Pagination 
-          prodPerPage={prodPerPage}
-          totalProd={products.listProducts?.length} 
-          paginate={paginate} />
+            prodPerPage={prodPerPage}
+            totalProd={productsLenght} 
+            paginate={paginate}
+          />
           </>
-        ) : (
-          <>
-          <h1>YES SEND</h1>
-            {
-              products.yesSend?.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product= {product}
-                />
-              ))
-            }
-            <h1>NO SEND</h1>
-            {
-              products.noSend?.map((p) => <p>{p.name}</p>)
-            }
-          </>
-        )
        )
       }
     </div>
