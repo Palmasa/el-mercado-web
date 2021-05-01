@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import './Footer.scss'
 
 const Footer = () => {
@@ -5,7 +6,7 @@ const Footer = () => {
     <div className="Footer">
       <p>Atención al cliente</p>
       <p>Devoluciones</p>
-      <p>¿Eres un vendedor?</p>
+      <Link to="/acceso-puestos">¿Eres un vendedor?</Link>
       <p>Política de privacidad</p>
       <p>Cookies</p>
       <small>Copyright 2021 El Mercado</small>

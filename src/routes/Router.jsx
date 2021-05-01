@@ -8,6 +8,10 @@ import SupplierDetailScreen from '../screens/SupplierDetailScreen';
 import AuthScreen from '../screens/AuthScreen'
 import Activate from '../fragments/auth/Activate'
 import AreaUsersScreen from '../screens/AreaUsersScreen';
+import AuthSuppScreen from '../screens/AuthSuppScreen';
+import CreateShippScreen from '../screens/CreateShippScreen';
+import CreateProductScreen from '../screens/CreateProductScreen';
+import AreaSuppScreen from '../screens/AreaSuppScreen';
 
 const Router = () => {
   return (
@@ -24,6 +28,11 @@ const Router = () => {
         <Route exact path="/acceso-usuarios" component={AuthScreen}/>
         <Route exact path="/activar-usuarios/:token" component={Activate}/>
         <Route exact path="/area-privada-usuarios" component={AreaUsersScreen}/>
+
+        <Route exact path="/acceso-puestos" component={AuthSuppScreen} />
+        <Route exact path="/area-privada-puestos/crear-modelo-envio" component={CreateShippScreen} />
+        <Route exact path="/area-privada-puestos/crear-producto" component={CreateProductScreen} />
+        <Route exact path="/area-privada-puestos" component={AreaSuppScreen} />
 
         <Route exact path="/404" component={() => <Error code={404} />} />
         <Route exact path="/403" component={() => <Error code={403} />} />

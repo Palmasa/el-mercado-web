@@ -20,6 +20,7 @@ const validators = {
 }
 
 const MyProfile = () => {
+
   const { user, editUser, getUser } = useContext(UserContext)
   const [ state, setState ] = useState ({
     fields: {
@@ -43,7 +44,9 @@ const MyProfile = () => {
   }
 
   const onSubmit = (e) => {
+    e.preventDefault()
     if (isValid()) {
+      console.log('hola')
       editUser(state.fields)
       .then(() => {
         getUser()
@@ -52,14 +55,24 @@ const MyProfile = () => {
         setResError({ error: true, info: error.response.data.errors.email })
       })
     }
+    
   }
 
   const onChange = (e) => {
+    const { name, value } = e.target
+
     setResError({ error: false})
-    setState((old) => {
-      let value = e.target.value;
-      return { ...old, [e.target.name]: value };
-    });
+
+    setState((prevState) => ({
+      fields: {
+        ...prevState.fields,
+        [name]: value
+      },
+      errors: {
+        ...prevState.errors,
+        [name]: validators[name] && validators[name](value)
+      }
+    }))
   }
 
   const onFocus = (e) => {
@@ -78,11 +91,10 @@ const MyProfile = () => {
     }))
   }
 
-
   return (
-    <div>
+    <div className="w-100">
      {user?.name}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="w-100">
 
         <Input 
           label="Ciudad" name="city" type="text"
@@ -125,15 +137,6 @@ const MyProfile = () => {
 
       <button type="submit">Editar dirección de entrega</button>
     </form>
-      <p>
-      {user?.email}
-      {user?.address.country}
-      {user?.underAge && 'Mayor de edad'}
-      =====
-        name
-        underAge
-        zip
-      </p>
     </div>
   )
 }

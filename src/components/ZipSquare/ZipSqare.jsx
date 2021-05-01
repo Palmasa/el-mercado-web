@@ -1,8 +1,13 @@
 import { useState, useContext } from 'react'
+import { CartContext } from '../../contexts/CartContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import { sendZipBack } from '../../services/ZipService';
+import { setCart } from '../../store/cartStore';
 import { setZip } from '../../store/zipStore';
+import toast, { Toaster } from 'react-hot-toast';
 import './ZipSqare.scss'
+
+const notify = (value) => toast(value);
 const NUMBERS_MATCH = /^[0-9]*$/
 
 const validators = {
@@ -19,6 +24,7 @@ const validators = {
 // Component ZipSquare ------------------------------------------------------
 const ZipSqare = ({ closeSquare }) => {
   const { getCurrentZip } = useContext(ZipContext)
+  const { getCurrentCart, removeAllCart } = useContext(CartContext)
   const [ state, setState ] = useState ({
     fields: {
       zip: '',
@@ -40,6 +46,20 @@ const ZipSqare = ({ closeSquare }) => {
       .then((response) => {
         setZip(response.zDec)
         getCurrentZip()
+        if (response.cartUpdated) {
+          // JFK -> CUANDO TENGAS PRODUCTOS PROBAR - NOT TESTED
+          // MIRAR EN EL BACK EN ZIP CONTROLER LINEA 20 y 50
+          setCart(response.cartUpdated)
+          getCurrentCart()
+          console.log(response.deletedItems)
+        } else if (response.message) {
+          if (response.message === "Su cesta ha sido eliminada") {
+            removeAllCart()
+            notify('Su bolsa se ha eliminado')
+          } else {
+            notify('Todos los productos de su bolsa llegan a su destino')
+          }
+        }
       })
       .catch((error) => {
         setResError({ error: true, info: error.response.data.message })
@@ -77,6 +97,7 @@ const ZipSqare = ({ closeSquare }) => {
         </div>
         <button type="submit">send zip</button>
       </form>
+      <Toaster />
     </div>
   )
 }

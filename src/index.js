@@ -6,6 +6,7 @@ import App from './App';
 import { UserContextProvider } from './contexts/UserContext';
 import { ZipContextProvider } from './contexts/ZipContext';
 import { CartContextProvider } from './contexts/CartContext';
+import { SuppContextProvider } from './contexts/SuppContext';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -13,7 +14,9 @@ ReactDOM.render(
       <UserContextProvider>
         <ZipContextProvider>
           <CartContextProvider>
-            <App />
+            <SuppContextProvider>
+              <App />
+            </SuppContextProvider>
           </CartContextProvider>
         </ZipContextProvider>
       </UserContextProvider>

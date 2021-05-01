@@ -2,7 +2,7 @@ import './Input.scss'
 
 const Input = (
   { 
-    label, name, type, placeholder,
+    label, name, type, value ,placeholder,
     onChange, onBlur, onFocus,
     error
   }
@@ -18,6 +18,7 @@ const Input = (
         className={`${error  && "is-invalid"} `}
         name={name}
         type={type}
+        value={value}
         placeholder={placeholder}
         onChange={onChange}
         onBlur={onBlur}

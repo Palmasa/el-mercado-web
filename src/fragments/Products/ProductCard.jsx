@@ -15,9 +15,13 @@ const ProductDetail = ({ product }) => {
 
   return (
     <div>
-      <img src={product.img[0]} alt={product.name} />
+      <img src={product.img[0]} alt={product.name} className={`${product.noSend ? "bw" : ''}`}/>
       <p>{product.name}</p>
-      <button onClick={addItem}>Añadir al carrito</button>
+      {
+        product.noSend
+        ? <button disabled={true}>Añadir al carrito</button>
+        : <button onClick={addItem}>Añadir al carrito</button>
+      }
       <button>Vista rápida</button>
       <Toaster />
     </div>
