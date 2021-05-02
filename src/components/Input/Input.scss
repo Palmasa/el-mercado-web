@@ -1,11 +1,21 @@
 @use "src/styles/utils" as *;
 
 .Input {
-  > label {
-
-  }
-
   > input {
-    
+    border-radius: 3px;
+    border: {
+      style: solid;
+      width: 1px;
+      color: rgba(0, 0, 0, 0.396);
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+    &:active {
+      border: none;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
   }
 }

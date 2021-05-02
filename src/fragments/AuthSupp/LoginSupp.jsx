@@ -3,6 +3,7 @@ import Input from '../../components/Input/Input'
 import { SuppContext } from '../../contexts/SuppContext';
 import { suppLogin } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
+import { useHistory } from 'react-router';
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -29,6 +30,7 @@ const validators = {
 
 const LoginSupp = () => {
   const { getSupp } = useContext(SuppContext)
+  const { push } = useHistory();
 
   const [ state, setState ] = useState ({
     fields: {
@@ -36,8 +38,8 @@ const LoginSupp = () => {
       password: ''
     },
     errors: {
-      email: validators.email,
-      password: validators.password
+      email: validators.email(),
+      password: validators.password()
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
@@ -55,7 +57,7 @@ const LoginSupp = () => {
       .then((response) => {
         setAccessToken(response.access_token)
         getSupp().then(() => {
-          console.log('loged in VENDOR')
+          push("/area-tiendas")
         })
       })
     }
@@ -95,7 +97,7 @@ const LoginSupp = () => {
     }))
   }
   return (
-    <div>
+    <div className="AuthSuppliers LoginSuppliers container">
       <form onSubmit={onSubmit}>
 
         <Input 

@@ -1,1 +1,16 @@
 @use "src/styles/utils" as *;
+
+.SuppNavbar {
+  background-color: $c-dark;
+  color: $c-light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+
+  .suppLinks {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+  }
+}

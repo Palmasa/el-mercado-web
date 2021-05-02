@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="Footer">
       <p>Atención al cliente</p>
       <p>Devoluciones</p>
-      <Link to="/acceso-puestos">¿Eres un vendedor?</Link>
+      <Link to="/area-tiendas">¿Eres un vendedor?</Link>
       <p>Política de privacidad</p>
       <p>Cookies</p>
       <small>Copyright 2021 El Mercado</small>

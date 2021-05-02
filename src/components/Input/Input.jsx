@@ -1,12 +1,10 @@
 import './Input.scss'
 
-const Input = (
-  { 
+const Input = ({ 
     label, name, type, value ,placeholder,
-    onChange, onBlur, onFocus,
+    onChange, onBlur, onFocus, autocomplete,
     error
-  }
-  ) => {
+  }) => {
 
   return (
     <div className="Input">
@@ -23,9 +21,10 @@ const Input = (
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
+        autoComplete={autocomplete}
       />
-        <div className="invalid-feedback">
-          {error}
+        <div>
+          <small>{error}</small>
         </div>
     </div>
   )
