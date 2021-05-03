@@ -18,6 +18,14 @@ export const getAllProducts = () => {
   return http.get('/products')
 }
 
+export const createProduct = (body) => {
+  return http.post('/product/create', body)
+}
+
+export const getProductPerSupp = () => {
+  return http.get('/products-suppliers')
+}
+
 /* export const getProducts = (category) => {
   return http.get("/products", { params: { category: category } });
 };

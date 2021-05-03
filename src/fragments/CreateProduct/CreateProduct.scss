@@ -1,0 +1,29 @@
+@use "src/styles/utils" as *;
+
+.putIn {
+  border: none;
+  border-radius: 3px;
+  background-color: $c-light;
+  margin-bottom: 10px;
+  padding: 6px;
+  border: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.396);
+  }
+  box-shadow: rgba(255, 255, 255, 0) 0px 1px 4px;
+  width: 250px;
+
+  &:focus {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  &:active {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+}
+
+.ButtonCreateP {
+  @include buttonAction
+}

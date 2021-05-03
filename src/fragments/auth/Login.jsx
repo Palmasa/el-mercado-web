@@ -43,8 +43,8 @@ const Login = () => {
       password: ''
     },
     errors: {
-      email: validators.email,
-      password: validators.password
+      email: validators.email(),
+      password: validators.password()
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
@@ -52,11 +52,12 @@ const Login = () => {
 
   const isValid = () => {
     const { errors } = state
-    return !Object.keys(errors).some(e => errors[e])
+    return !Object.keys(errors).some(error => errors[error])
   }
 
   const onSubmit = (e) => {
     e.preventDefault()
+    
     if (isValid()) {
       login(state.fields)
       .then((response => {
@@ -130,7 +131,7 @@ const Login = () => {
           label="Contraseña" name="password" type="password"
           value={state.fields.password}
           onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.password  && touched.password ? state.errors.password : ""}
+          error={state.errors.password && touched.password ? state.errors.password : ""}
         />
         <div>
           {resError.error ? resError.info : ""}

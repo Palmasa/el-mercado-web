@@ -1,0 +1,16 @@
+@use "src/styles/utils" as *;
+
+.SuppHome {
+  height: 300px;
+  font-family: 'Fira Sans', sans-serif; 
+  font-weight: 300;
+  background-image: url('../../images/bg-market.jpeg');
+  background-size: cover;
+  background-position: center center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: $c-dark;
+
+}

@@ -3,6 +3,8 @@ import Input from '../../components/Input/Input'
 import { SuppContext } from '../../contexts/SuppContext';
 import { suppLogin } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
+import { useHistory } from 'react-router';
+import './LoginSupp.scss'
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -29,6 +31,7 @@ const validators = {
 
 const LoginSupp = () => {
   const { getSupp } = useContext(SuppContext)
+  const { push } = useHistory();
 
   const [ state, setState ] = useState ({
     fields: {
@@ -36,8 +39,8 @@ const LoginSupp = () => {
       password: ''
     },
     errors: {
-      email: validators.email,
-      password: validators.password
+      email: validators.email(),
+      password: validators.password()
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
@@ -55,7 +58,7 @@ const LoginSupp = () => {
       .then((response) => {
         setAccessToken(response.access_token)
         getSupp().then(() => {
-          console.log('loged in VENDOR')
+          push("/area-tiendas")
         })
       })
     }
@@ -95,28 +98,31 @@ const LoginSupp = () => {
     }))
   }
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="AuthSuppliers LoginSuppliers container">
+      <div className="row justify-content-center">
+        <h2>Acceso a tu tienda</h2>
+      </div>
+      <div className="container p-4" style={{width: 600}}>
+        <form onSubmit={onSubmit}>
+          <Input 
+            label="Email" name="email" type="email"
+            value={state.fields.email}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.email && touched.email ? state.errors.email : ""}
+          />
+          <Input 
+            label="Contraseña" name="password" type="password"
+            value={state.fields.password}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.password  && touched.password ? state.errors.password : ""}
+          />
+          <div className="errorsRegister">
+            <small>{resError.error ? resError.info : ""}</small>
+          </div>
 
-        <Input 
-          label="Email" name="email" type="email"
-          value={state.fields.email}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.email && touched.email ? state.errors.email : ""}
-        />
-
-        <Input 
-          label="Contraseña" name="password" type="password"
-          value={state.fields.password}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.password  && touched.password ? state.errors.password : ""}
-        />
-        <div>
-          {resError.error ? resError.info : ""}
-        </div>
-
-      <button type="submit">Acceder</button>
-      </form>
+          <button type="submit">Acceder</button>
+        </form>
+      </div>
     </div>
   )
 }

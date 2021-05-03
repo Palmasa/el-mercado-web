@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CreateProductScreen = () => {
+const Ccaa = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const CreateProductScreen = () => {
   )
 }
 
-export default CreateProductScreen
+export default Ccaa

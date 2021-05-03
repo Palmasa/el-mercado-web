@@ -52,11 +52,9 @@ const Register = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
     if (isValid()) {
       register(state.fields)
       .then((response => {
-        console.log(response)
         setDone(true)
       }))
       .catch((error) => {
@@ -133,7 +131,7 @@ const Register = () => {
           {resError.error ? resError.info : ""}
         </div>
 
-        <button type="submit">Acceder</button>
+        <button type="submit">Registrarse</button>
         </form>
         )
       }

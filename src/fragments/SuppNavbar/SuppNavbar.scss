@@ -1,1 +1,37 @@
 @use "src/styles/utils" as *;
+
+.SuppNavbar {
+  background-color: $c-dark;
+  color: $c-light;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 50px;
+
+  .suppLinks {
+    width: 40%;
+    display: flex;
+    justify-content: space-around;
+
+    .navLinkSupp {
+      text-decoration: none;
+      color: $c-light;
+      font-size: 1.1rem;
+      padding: 2px 12px;
+      border: {
+        style: solid;
+        width: 1px;
+        color: $c-dark;
+      }
+    }
+    .navLinkSuppSelected {
+      border-radius: 3px;
+      padding: 2px 12px;
+      border-bottom: {
+        style: solid;
+        width: 1px;
+        color: rgba(247, 219, 219, 0.149);
+      }
+    }
+  }
+}
