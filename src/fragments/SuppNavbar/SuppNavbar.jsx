@@ -14,14 +14,39 @@ const SuppNavbar = () => {
       {supp 
       ? (
         <div className="suppLinks">
-          <NavLink to="/administrador-tiendas">Administrador</NavLink>
-          <NavLink to="/productos-tiendas">Productos</NavLink>
-          <NavLink to="/envios-tiendas">Modelos de envío</NavLink>
+          <NavLink to="/administrador-tiendas"
+            activeClassName="navLinkSuppSelected"
+            className="navLinkSupp"
+          >
+            Administrador
+          </NavLink>
+          <NavLink to="/productos-tiendas"
+            activeClassName="navLinkSuppSelected"
+            className="navLinkSupp"
+          >
+            Productos
+          </NavLink>
+          <NavLink to="/envios-tiendas"
+            activeClassName="navLinkSuppSelected"
+            className="navLinkSupp"
+          >
+            Modelos de envío
+          </NavLink>
         </div>
       ) : ( 
         <div className="suppLinks">
-          <NavLink to="/registro-tiendas">Registro</NavLink>
-          <NavLink to="/acceso-tiendas">Acceso</NavLink>
+          <NavLink to="/registro-tiendas" 
+            activeClassName="navLinkSuppSelected"
+            className="navLinkSupp">
+            Registro
+          </NavLink>
+
+          <NavLink to="/acceso-tiendas"
+            activeClassName="navLinkSuppSelected"
+            className="navLinkSupp"
+          >
+            Acceso
+          </NavLink>
         </div>
       )
       }

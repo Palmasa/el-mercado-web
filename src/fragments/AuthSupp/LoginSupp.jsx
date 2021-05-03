@@ -4,6 +4,7 @@ import { SuppContext } from '../../contexts/SuppContext';
 import { suppLogin } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
 import { useHistory } from 'react-router';
+import './LoginSupp.scss'
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -98,27 +99,30 @@ const LoginSupp = () => {
   }
   return (
     <div className="AuthSuppliers LoginSuppliers container">
-      <form onSubmit={onSubmit}>
+      <div className="row justify-content-center">
+        <h2>Acceso a tu tienda</h2>
+      </div>
+      <div className="container p-4" style={{width: 600}}>
+        <form onSubmit={onSubmit}>
+          <Input 
+            label="Email" name="email" type="email"
+            value={state.fields.email}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.email && touched.email ? state.errors.email : ""}
+          />
+          <Input 
+            label="Contraseña" name="password" type="password"
+            value={state.fields.password}
+            onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+            error={state.errors.password  && touched.password ? state.errors.password : ""}
+          />
+          <div className="errorsRegister">
+            <small>{resError.error ? resError.info : ""}</small>
+          </div>
 
-        <Input 
-          label="Email" name="email" type="email"
-          value={state.fields.email}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.email && touched.email ? state.errors.email : ""}
-        />
-
-        <Input 
-          label="Contraseña" name="password" type="password"
-          value={state.fields.password}
-          onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-          error={state.errors.password  && touched.password ? state.errors.password : ""}
-        />
-        <div>
-          {resError.error ? resError.info : ""}
-        </div>
-
-      <button type="submit">Acceder</button>
-      </form>
+          <button type="submit">Acceder</button>
+        </form>
+      </div>
     </div>
   )
 }

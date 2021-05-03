@@ -16,6 +16,8 @@ import LoginSuppScreen from '../screens/Suppliers/LoginSuppScreen';
 import RegisterSuppScreen from '../screens/Suppliers/RegisterSuppScreen';
 import ProductScreen from '../screens/Suppliers/ProductScreen';
 import ShippScreen from '../screens/Suppliers/ShippScreen';
+import Four from '../fragments/CreateShipp/Four';
+import Provinces from '../fragments/CreateShipp/Provinces';
 
 const Router = () => {
   return (
@@ -42,6 +44,9 @@ const Router = () => {
         <Route exact path="/administrador-tiendas" component={AdminSuppScreen} />
 
         <Route exact path="/envios-tiendas/crear-modelo-envio" component={CreateShippScreen} />
+        <Route exact path="/envios-tiendas/crear-modelo-envio/provincias" component={Provinces} />
+        <Route exact path="/envios-tiendas/crear-modelo-envio/ccaa" component={Provinces} />
+        <Route exact path="/envios-tiendas/crear-modelo-envio/:option" component={Four} />
         <Route exact path="/envios-tiendas" component={ShippScreen} />
 
         <Route exact path="/productos-tiendas/crear-producto" component={CreateProductScreen} />

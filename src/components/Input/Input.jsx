@@ -2,30 +2,37 @@ import './Input.scss'
 
 const Input = ({ 
     label, name, type, value ,placeholder,
-    onChange, onBlur, onFocus, autocomplete,
+    onChange, onBlur, onFocus, autoComplete,
     error
   }) => {
 
   return (
-    <div className="Input">
-      <label htmlFor={name} >
-        {label}
-      </label>
+    <div className="container">
+    <div className="row">
 
-      <input
-        className={`${error  && "is-invalid"} `}
-        name={name}
-        type={type}
-        value={value}
-        placeholder={placeholder}
-        onChange={onChange}
-        onBlur={onBlur}
-        onFocus={onFocus}
-        autoComplete={autocomplete}
-      />
-        <div>
-          <small>{error}</small>
-        </div>
+      <div className="col">
+        <label htmlFor={name} >
+          {label}
+        </label>
+      </div>
+
+      <div className="col Input" >
+        <input
+          className={`${error  && "is-invalid"} `}
+          name={name}
+          type={type}
+          value={value}
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
+          onFocus={onFocus}
+          autoComplete={autoComplete}
+        />
+          <div>
+            <small>{error}</small>
+          </div>
+      </div>
+    </div>
     </div>
   )
 }

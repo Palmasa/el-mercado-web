@@ -1,0 +1,44 @@
+@use "src/styles/utils" as *;
+
+.buttonShipping {
+  @include buttonAction;
+  margin: 10px;
+}
+.buttonShipping-S {
+  @include buttonAction;
+  font-size: 0.8rem;
+}
+
+.exceptions {
+  margin-bottom: 5px;
+  padding-top: 10px;
+  border-top: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.396);
+  }
+}
+
+.puttIn {
+  border: none;
+  border-radius: 3px;
+  background-color: $c-light;
+  margin-bottom: 15px;
+  padding: 6px;
+  border: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.396);
+  }
+  box-shadow: rgba(255, 255, 255, 0) 0px 1px 4px;
+  width: 300px;
+
+  &:focus {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  &:active {
+    outline: none;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+}
