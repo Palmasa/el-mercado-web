@@ -53,7 +53,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
           )
           }
         </>
-        <Link to="/">Tramitar pedido</Link>
+        <Link to="/tramitar-pedido">Tramitar pedido</Link>
       </div>
     </button>
   )

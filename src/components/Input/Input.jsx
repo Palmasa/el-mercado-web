@@ -8,31 +8,30 @@ const Input = ({
 
   return (
     <div className="container">
-    <div className="row">
+      <div className="row justify-content-center align-items-center">
+        <div className="col-4">
+          <label htmlFor={name} >
+            {label}
+          </label>
+        </div>
 
-      <div className="col">
-        <label htmlFor={name} >
-          {label}
-        </label>
+        <div className="col-8 Input" >
+          <input
+            className={`${error  && "is-invalid"} `}
+            name={name}
+            type={type}
+            value={value}
+            placeholder={placeholder}
+            onChange={onChange}
+            onBlur={onBlur}
+            onFocus={onFocus}
+            autoComplete={autoComplete}
+          />
+            <div>
+              <small>{error}</small>
+            </div>
+        </div>
       </div>
-
-      <div className="col Input" >
-        <input
-          className={`${error  && "is-invalid"} `}
-          name={name}
-          type={type}
-          value={value}
-          placeholder={placeholder}
-          onChange={onChange}
-          onBlur={onBlur}
-          onFocus={onFocus}
-          autoComplete={autoComplete}
-        />
-          <div>
-            <small>{error}</small>
-          </div>
-      </div>
-    </div>
     </div>
   )
 }

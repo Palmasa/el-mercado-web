@@ -12,7 +12,7 @@ const MEASURES = ["Kg", "Unidad", "Pack"];
 
 const CreateProduct = () => {
   const { push } = useHistory();
-  const [shippings, setShippings] = useState([]);
+  const [ shippings, setShippings ] = useState([])
   const [state, setState] = useState({
     fields: {
       shippingName: "",
@@ -21,20 +21,21 @@ const CreateProduct = () => {
       categ: "",
       price: 0,
       measure: "",
+      img: [],
       ifPack: 0,
-      img: '',
       stock: 0,
     },
   });
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault()
+
     let formData = new FormData();
     Object.entries(state.fields).forEach(([key, value]) => {
-      key !== "img" && formData.append(key, value);
-    });
+      key !== 'img' && formData.append(key, value);
+    })
     for (let i = 0; i < state.fields.img.length; i++) {
-      formData.append("img", state.fields.img[i]);
+      formData.append("img", state.fields.img[i])
     }
 
     createProduct(formData)
@@ -51,19 +52,17 @@ const CreateProduct = () => {
       setState((prevState) => ({
         fields: {
           ...prevState.fields,
-          [e.target.name]: e.currentTarget?.files
-        }
+          [e.target.name]: e.target.files,
+        },
+      }))
+    } else {
+      setState((prevState) => ({
+        fields: {
+          ...prevState.fields,
+          [e.target.name]: e.target.value,
+        },
       }))
     }
-    console.log(e.currentTarget?.files)
-    console.log(state.fields.img)
-
-    setState((prevState) => ({
-      fields: {
-        ...prevState.fields,
-        [e.target.name]: e.target.value,
-      },
-    }))
   }
 
   const getShippName = () => {
@@ -85,6 +84,7 @@ const CreateProduct = () => {
       <h2>Crear producto</h2>
     </div>
       <div className="container" style={{width: 600}}>
+      
       <form onSubmit={onSubmit}>
 
         <div className="row mt-3">
@@ -133,7 +133,6 @@ const CreateProduct = () => {
           </div>
         </div>
 
-
         <div className="row mt-3">
           <div className="col">
             <label htmlFor="measure">Medida*</label>
@@ -155,7 +154,6 @@ const CreateProduct = () => {
             autoComplete="off"
           />
         </div>
-
 
         <div className="row mt-3">
           <div className="col">
@@ -184,8 +182,6 @@ const CreateProduct = () => {
           <input
             type="file"
             name="img"
-            id={state.fields.img}
-            value={state.fields.img}
             onChange={onChange}
             multiple
           />

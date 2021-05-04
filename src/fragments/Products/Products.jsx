@@ -1,14 +1,16 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { ZipContext } from '../../contexts/ZipContext';
 import { getAllProducts } from '../../services/ProductsService'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
 import './Products.scss'
 
 const Products = () => {
+  const { stateZip } = useContext(ZipContext)
   const [ products, setProducts ] = useState({})
   const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage ] = useState(2) //num
+  const [ prodPerPage ] = useState(10) //num
 
   const getProducts = async () => {
     setLoading(true)
@@ -19,7 +21,7 @@ const Products = () => {
 
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [stateZip])
 
   // Get current
   const indexOfLastProduct = currentPage * prodPerPage

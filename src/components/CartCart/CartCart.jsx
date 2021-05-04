@@ -24,11 +24,11 @@ const CartCart = ({ eachCart }) => {
   return (
     <div className="CartCart">
     <p>{eachCart[0].supplier}</p>
-    {/* añadir al carrito la medida de cada producto y si hay descuento por envío */}
       {
         eachCart.map((product) => (
         <div className="eachProduct" key={product.id}>
           <img src={product.img} alt={product.name} />
+          <small>{product.sendTime}</small>
           <p>{product.name}</p>
 
           <button onClick={() => less(product.product)}><VscDash /></button>

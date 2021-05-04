@@ -2,21 +2,41 @@
 
 
 .AuthSuppliers {
-  padding: 30px;
-  
+  margin: 20px;
+  padding: 20px;
+  background-color: $c-light;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   > form {
-    > button {
-      background-color: $c-primary;
-      padding: 5px 15px;
-      border-radius: 3px;
-      border: none;
+      @include inputFile;
 
-      &:focus {
-        outline: none;
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    .select-input {
+      > select {
+        @include regular-input
       }
-      &:hover {
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    }
+
+    .text-area-input {
+      > textarea {
+        @include textarea-input;
+      }
+    }
+    >.action-button {
+      >button {
+        font-size: 1.2rem;
+        background-color: $c-dark;
+        color: $c-light;
+        padding: 5px 15px;
+        border-radius: 3px;
+        border: none;
+  
+        &:focus {
+          outline: none;
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
+        &:hover {
+          box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        }
       }
     }
   }

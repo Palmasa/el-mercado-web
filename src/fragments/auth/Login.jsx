@@ -70,6 +70,7 @@ const Login = () => {
           }
           getUser().then(() => {
             console.log('loged in')
+            // no push para cuando pagas
           })
   
           getCurrentZip()

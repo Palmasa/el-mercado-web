@@ -18,6 +18,8 @@ import ProductScreen from '../screens/Suppliers/ProductScreen';
 import ShippScreen from '../screens/Suppliers/ShippScreen';
 import Four from '../fragments/CreateShipp/Four';
 import Provinces from '../fragments/CreateShipp/Provinces';
+import { CreateSaleScreen } from '../screens/CreateSaleScreen';
+import StripeTest from '../fragments/SaleCreate/StripeTest';
 
 const Router = () => {
   return (
@@ -34,6 +36,8 @@ const Router = () => {
         <Route exact path="/acceso-usuarios" component={AuthScreen}/>
         <Route exact path="/activar-usuarios/:token" component={Activate}/>
         <Route exact path="/area-privada-usuarios" component={AreaUsersScreen}/>
+        <Route exact path="/tramitar-pedido" component={CreateSaleScreen}/>
+        <Route exact path="/text-stripe" component={StripeTest}/>
 
 {/* Suppliers ---------------------------------------------------------------------------------------- */}
         <Route exact path="/area-tiendas" component={HomeSuppScreen} />
@@ -53,8 +57,8 @@ const Router = () => {
         <Route exact path="/productos-tiendas" component={ProductScreen} />
 
 {/* Errores ---------------------------------------------------------------------------------------- */}
-        <Route exact path="/404" component={() => <Error code={404} />} />
-        <Route exact path="/403" component={() => <Error code={403} />} />
+        {/* <Route exact path="/404" component={() => <Error code={404} />} />
+        <Route exact path="/403" component={() => <Error code={403} />} /> */}
 
         <Redirect to="/" />
       </Switch>

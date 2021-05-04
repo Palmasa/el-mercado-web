@@ -5,6 +5,7 @@ import { sendZipBack } from '../../services/ZipService';
 import { setCart } from '../../store/cartStore';
 import { setZip } from '../../store/zipStore';
 import toast, { Toaster } from 'react-hot-toast';
+import { useHistory } from 'react-router';
 import './ZipSqare.scss'
 
 const notify = (value) => toast(value);
@@ -23,6 +24,7 @@ const validators = {
 }
 // Component ZipSquare ------------------------------------------------------
 const ZipSqare = ({ closeSquare }) => {
+  const { push } = useHistory()
   const { getCurrentZip } = useContext(ZipContext)
   const { getCurrentCart, removeAllCart } = useContext(CartContext)
   const [ state, setState ] = useState ({
@@ -39,6 +41,7 @@ const ZipSqare = ({ closeSquare }) => {
     const { errors } = state
     return !Object.keys(errors).some(e => errors[e])
   }
+
   const onSubmit = (e) => {
     e.preventDefault()
     if (isValid()) {
@@ -60,6 +63,7 @@ const ZipSqare = ({ closeSquare }) => {
             notify('Todos los productos de su bolsa llegan a su destino')
           }
         }
+        push('/productos')
       })
       .catch((error) => {
         setResError({ error: true, info: error.response.data.message })
