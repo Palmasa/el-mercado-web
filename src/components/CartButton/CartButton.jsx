@@ -26,8 +26,8 @@ const CartButton = () => {
         <div className="numOfItems">
           { stateCart && (
             <>
-            <small className="circleCart"></small>
-            <small className="numCart">{stateCart.products?.length}</small>
+            <small className="circleCart" onClick={openCart}></small>
+            <small className="numCart" onClick={openCart}>{stateCart.products?.length}</small>
             {
               showCart && (<CartPopUp closeCart={closeCart} productsQuantity={stateCart.products?.length}/>)
             }

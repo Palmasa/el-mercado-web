@@ -7,19 +7,19 @@ const Orders = () => {
   const getSales = async () => {
     try {
       const allSales = await getUserSales()
-      return (allSales)
+      setSales(allSales)
     } catch(e) { console.log(e.response.data)}
   }
 
   useEffect(() => {
-    setSales(getSales())
+    getSales()
   }, [])
 
   return (
     <div>
       {
         sales?.map((sale) => (
-          <p>{sale}</p>
+          <p>{sale.state}</p>
         ))
       }
     </div>
