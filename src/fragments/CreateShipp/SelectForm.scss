@@ -1,0 +1,15 @@
+@use "src/styles/utils" as *;
+
+.shipping-models {
+  > li {
+    list-style: none;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+
+    > .link-shipp-model {
+      color: $c-dark;
+
+    }
+
+  }
+}

@@ -9,12 +9,12 @@ const customStyles = {
   control: (base, state) => ({
     ...base,
     border: '1px solid rgba(0, 0, 0, 0.396);',
-    background: '#f9f8f6',
+    background: '#fff',
     boxShadow: 'none',
     '&:hover': {
         border: '1px solid rgba(0, 0, 0, 0.396);',
     },
-    width: '300px'
+    width: '330px'
   })
 }
 

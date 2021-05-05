@@ -1,0 +1,11 @@
+@use "src/styles/utils" as *;
+
+.acco-but {
+  @include buttonAction;
+  box-shadow: rgba(0, 0, 0, 0.163) 0px 1px 4px;
+  color: $c-dark;
+  &:hover {
+    color: $c-dark;
+    text-decoration: none;
+  }
+}

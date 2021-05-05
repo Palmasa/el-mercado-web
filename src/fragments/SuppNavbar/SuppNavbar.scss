@@ -8,8 +8,20 @@
   align-items: center;
   padding: 20px 50px;
 
+  .container-logo-together {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    > h6 {
+      padding: 0;
+      margin: 0;
+      margin-top: 8px;
+    }
+  }
+
   .suppLinks {
-    width: 40%;
     display: flex;
     justify-content: space-around;
 
@@ -31,6 +43,15 @@
         style: solid;
         width: 1px;
         color: rgba(247, 219, 219, 0.149);
+      }
+    }
+    .logoutSuppNavbar {
+      background-color: $c-dark;
+      border: none;
+
+      &:focus {
+        outline: none;
+        border: none;
       }
     }
   }

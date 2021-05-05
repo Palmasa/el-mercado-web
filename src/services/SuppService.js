@@ -9,3 +9,7 @@ export const getSuppInfo = () => {
 export const getAllShippings = () => {
   return http.get('/get-all-shippings')
 }
+
+export const deleteShipping = (shippId) => {
+  return http.delete(`/delete-shipping/${shippId}`)
+}
