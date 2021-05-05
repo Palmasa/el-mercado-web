@@ -48,7 +48,7 @@ function Four() {
     const send = { ...state.fields, different: inputList }
     console.log(send)
     createShipping(send)
-    .then(res => {
+    .then(() => {
       push("/envios-tiendas")
     })
   }

@@ -23,6 +23,23 @@
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   }
 }
+.select-input {
+  > select {
+    @include regular-input;
+    background-color: #fff;
+  }
+}
+
+.form-createProduct {
+  @include inputFile;
+}
+
+.text-area-input {
+  > textarea {
+    @include textarea-input;
+    background-color: #fff;
+  }
+}
 
 .ButtonCreateP {
   @include buttonAction

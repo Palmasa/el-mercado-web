@@ -36,7 +36,7 @@ const RegisterSupp = () => {
     })
     
     suppRegister(formData)
-      .then(res => {
+      .then(() => {
         push("/acceso-tiendas")
         notify('¡Tienda registrada!')
       })

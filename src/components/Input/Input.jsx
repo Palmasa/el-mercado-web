@@ -1,7 +1,7 @@
 import './Input.scss'
 
 const Input = ({ 
-    label, name, type, value ,placeholder,
+    label, name, type, value ,placeholder, min,
     onChange, onBlur, onFocus, autoComplete,
     error
   }) => {
@@ -21,6 +21,7 @@ const Input = ({
             name={name}
             type={type}
             value={value}
+            min={min}
             placeholder={placeholder}
             onChange={onChange}
             onBlur={onBlur}
