@@ -22,7 +22,7 @@ export const getAllProducts = () => {
 }
 /* BY CATEG */
 export const getProductsbyCateg = (category) => {
-  return http.get("/products", { params: { category: category } });
+  return http.get("/products", { params: { categ: category } });
 };
 
 /*  by search */

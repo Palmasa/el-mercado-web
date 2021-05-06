@@ -130,7 +130,7 @@ const CreateProduct = () => {
                   <label htmlFor="shippingName">Modelo de envío*</label>
                 </div>
             <div className="col-8 select-input">
-                <select name="shippingName" onChange={onChange} value={state.fields.shippingName} className="putIn">
+                <select name="shippingName" onChange={onChange} value={shippings[0]} className="putIn">
                   {shippings.map((c, i) => (
                     <option key={i} value={c}>{c}</option>
                   ))}

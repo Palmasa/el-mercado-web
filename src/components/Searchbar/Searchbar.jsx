@@ -3,8 +3,6 @@ import { AiOutlineSearch } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
 import { Redirect } from 'react-router'
 import { getAllProducts } from '../../services/ProductsService'
-import Results from './Results'
-/* import { Redirect } from 'react-router' */
 import './Searchbar.scss'
 
 const Searchbar = () => {
@@ -16,6 +14,9 @@ const Searchbar = () => {
   const [ searchResult, setSearchResult ] = useState(false)
 
   const [ loading, setLoading] = useState(false)
+
+  const [param, setParam] = useState('')
+  const [redirect, setRedirect] = useState(false)
 
   // Call api and set the list of products
   const getProducts = async () => {
@@ -34,8 +35,6 @@ const Searchbar = () => {
     setLoading(false)
   }
 
-  const [param, setParam] = useState('')
-  const [redirect, setRedirect] = useState(false)
 
   // Get the typing and call the filter function
   const handleChange = (event) => {
@@ -64,6 +63,7 @@ const Searchbar = () => {
     if (event.key === 'Enter') {
       setParam(event.target.value)
       setRedirect(true)
+      clearInput()
     }
   }
 
@@ -85,10 +85,6 @@ const Searchbar = () => {
       { closeCross && <button className="cross" onClick={clearInput}><VscClose/></button> }
       { searchResult && products.map((p) => (p.name))}
       { redirect && (<Redirect to={`/productos?filter=${param}`}/>)}
-      {/*   
-      <input onChange={(e) => setParam(e.target.value)}></input>
-      <button onClick={() => setRedirect(true)}></button>
-      */}
     </div>
     </>
   )
