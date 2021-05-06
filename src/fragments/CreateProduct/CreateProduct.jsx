@@ -38,6 +38,7 @@ const CreateProduct = () => {
   const onSubmit = (e) => {
     e.preventDefault()
 
+    console.log(state.fields)
     let formData = new FormData();
     Object.entries(state.fields).forEach(([key, value]) => {
       key !== 'img' && formData.append(key, value);

@@ -6,15 +6,17 @@ export const UserContext = createContext()
 
 export function UserContextProvider({children}) {
   const [ user, setUser ] = useState()
-
-  const getUser = () => { // hace la petición a users/me
-    return getUserInfo().then((res) => setUser(res))
-  }
   
+  const getUser = () => { 
+    return getUserInfo() // -> hace la petición a users/me
+    .then((res) => setUser(res))
+  }
   const editUser = async (addressAndPromo) => {
     try {
       await editUsers(addressAndPromo)
-    } catch(e) { console.log(e.response.data)}
+    } catch(e) { 
+      console.log(e.response.data)
+    }
   }
 
   useEffect(() => {

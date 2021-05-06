@@ -1,5 +1,14 @@
 @use "src/styles/utils" as *;
 
+@keyframes openCart {
+  0%   {
+    width: 0;
+  }
+  100% {
+    width: 45%;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -28,7 +37,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  /* transition: all 5s ease-in-out; */
+  animation: openCart 0.15s;
 
   .buttonContainerCart {
     display: flex;

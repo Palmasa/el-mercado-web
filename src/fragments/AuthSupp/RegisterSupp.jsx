@@ -8,11 +8,21 @@ import './RegisterSupp.scss'
 
 const notify = (value) => toast(value);
 
-function PreviewImage(uploadImage, uploadPreview) {
+/* function PreviewImage(uploadImage, uploadPreview) {
   var oFReader = new FileReader()
   oFReader.readAsDataURL(document.getElementById(uploadImage).files[0])
   oFReader.onload = function (oFREvent) {
       document.getElementById(uploadPreview).src = oFREvent.target.result
+  }
+} */
+
+function PreviewImage(uploadImage, uploadpreview, imgsArr) {
+  for (let i = 0; i < imgsArr.length; i++) {
+    var oFReader = new FileReader()
+    oFReader.readAsDataURL(document.getElementById(uploadImage).files[0])
+    oFReader.onload = function (oFREvent) {
+        document.getElementById(uploadpreview).src = oFREvent.target.result
+    }
   }
 }
 
@@ -53,14 +63,14 @@ const RegisterSupp = () => {
           [e.target.name]: e.target.files[0]
         }
       }))
+    } else {
+      setState((prevState) => ({
+        fields: {
+          ...prevState.fields,
+          [e.target.name]: e.target.value
+        }
+      }))
     }
-
-    setState((prevState) => ({
-      fields: {
-        ...prevState.fields,
-        [e.target.name]: e.target.value
-      }
-    }))
   }
 
   return (
@@ -152,12 +162,11 @@ const RegisterSupp = () => {
                 className="file-input-hidden"
                 name="logo"
                 onChange={onChange}
-                value={state.fields.logo}
                 id="uploadImageLogo"
               />
               <label className="file-input-label" htmlFor="logo">Seleccionar el logo de la tienda</label>
-              {state.fields.logo && PreviewImage("uploadImageLogo", "uploadPreviewLogo") }
-              {state.fields.logo &&  <img alt="img" id="uploadPreviewLogo" style={{width: 100}}/>}
+              {state.fields.logo.length !== 0 && PreviewImage("uploadImageLogo", "uploadPreview", state.fields.logo)}
+              {state.fields.logo.length !== 0 && (<img alt="img" id="uploadPreview" style={{width: 130}}/>)}
             </div>
             
             <div className="row px-4 justify-content-around  align-items-center mt-3">
@@ -167,12 +176,11 @@ const RegisterSupp = () => {
                 name="imgs"
                 className="file-input-hidden"
                 onChange={onChange}
-                value={state.fields.imgs}
-                id="uploadImage"
+                id="uploadImageIMGS"
               />
               <label className="file-input-label" htmlFor="imgs">Selecciona una imagen de tu tienda</label>
-              {state.fields.imgs && PreviewImage("uploadImage", "uploadPreview") }
-              {state.fields.imgs &&  <img alt="img" id="uploadPreview" style={{width: 150}}/>}
+              {state.fields.logo.length !== 0 && PreviewImage("uploadImageIMGS", "uploadPreviewImgs", state.fields.imgs)}
+              {state.fields.logo.length !== 0 && (<img alt="img" id="uploadPreviewImgs" style={{width: 130}}/>)}
             </div>
             </div>
             
@@ -237,15 +245,15 @@ const RegisterSupp = () => {
                   className="file-input-hidden"
                   name="ownerImg"
                   onChange={onChange}
-                  value={state.fields.ownerImg}
                   id="uploadImageownerImg"
                 />
                 <label className="file-input-label" htmlFor="ownerImg">Selecciona una imagen</label>
-                {state.fields.ownerImg && PreviewImage("uploadImageownerImg", "uploadPreviewOwnerImg") }
-                {state.fields.ownerImg &&  <img alt="img" id="uploadPreviewOwnerImg" style={{width: 120}}/>}
+                {state.fields.logo.length !== 0 && PreviewImage("uploadImageownerImg", "uploadPreviewowner", state.fields.imgs)}
+                {state.fields.logo.length !== 0 && (<img alt="img" id="uploadPreviewowner" style={{width: 130}}/>)}  
               </div>
 
             </div>
+            
           
           <div className="row justify-content-center action-button">
             <button type="submit">Registrarse</button>

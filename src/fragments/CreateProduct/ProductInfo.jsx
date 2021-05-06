@@ -9,13 +9,18 @@ const ProductInfo = () => {
   const [ products, setProducts ] = useState([])
   const [ loading, setLoading ] = useState(true)
 
-  useEffect(() => {
+  const getProducts = () => {
     getProductPerSupp()
     .then(res => {
       setProducts(res)
       setLoading(false)
     })
+  }
+
+  useEffect(() => {
+    getProducts()
   }, [])
+
   return (
     <div className="container p-4">
     <div className="row align-items-center mb-4">
@@ -33,8 +38,10 @@ const ProductInfo = () => {
           <div>
           {
             products.map((product) => (
-            <div className="row" key={product.id}>
+            <div className="row justify-content-between" key={product.id}>
               <p>{product.name}</p>
+              <p>{product.price / 100}€</p>
+              <p>Q - {product.stock}</p>
               {product.sales.map((sale) => <p>{sale.state}</p>)}
             </div>
           ))

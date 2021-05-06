@@ -10,6 +10,10 @@
   display:flex;
   justify-content: center;
   align-items: center;
+  
+  &:focus {
+    outline: none;
+  }
 
   > p {
     font-family: 'Fira Sans', sans-serif;

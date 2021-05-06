@@ -10,7 +10,7 @@ const Products = () => {
   const [ products, setProducts ] = useState({})
   const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage ] = useState(10) //num
+  const [ prodPerPage ] = useState(9) //num
 
   const getProducts = async () => {
     setLoading(true)
@@ -37,36 +37,38 @@ const Products = () => {
       currentProducts = allP?.slice(indexOfFirstProduct, indexOfLastProduct)
     }
   }
-
   
   const paginate = (n) => {
     setCurrentPage(n)
   }
 
   return (
-    <div className="Products container">
+    <>
      {
        loading
        ? <p>Loading...</p> 
        : (
-         <>
-         {
-          currentProducts?.map((product) => (
-            <ProductCard
-            key={product.id}
-            product= {product}
-            />
-          ))
-         }
+        <div className="container text-center p-4">
+          <div class="row">
+          {
+            currentProducts?.map((product) => (
+              <div key={product.id} className="col-lg-4 mb-4 d-flex align-items-stretch">
+                <ProductCard
+                product= {product}
+                />
+              </div>
+            ))
+          }
+         </div>
           <Pagination 
             prodPerPage={prodPerPage}
             totalProd={productsLenght} 
             paginate={paginate}
           />
-          </>
+          </div>
        )
       }
-    </div>
+    </>
   )
 }
 

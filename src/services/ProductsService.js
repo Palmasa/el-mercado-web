@@ -43,12 +43,12 @@ export const updateProducts = (productId, body) => {
   return http.patch(`/product/update/${productId}`, body)
 }
 
-export const desactivateProducts = (productId, body) => {
-  return http.patch(`/product/desactivate/${productId}`, body)
+export const desactivateProducts = (productId) => {
+  return http.patch(`/product/desactivate/${productId}`)
 }
 
 export const reactivateProducts = (productId, body) => {
-  return http.patch(`/product/reactivate/${productId}`, body)
+  return http.post(`/product/reactivate/${productId}`, body)
 }
 
 export const boostProduct = (productId, body) => {

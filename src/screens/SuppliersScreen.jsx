@@ -1,9 +1,12 @@
 import React from 'react'
+import AllSupp from '../fragments/AllSupp/AllSupp'
+import Navbar from '../fragments/Navbar/Navbar'
 
 const Suppliers = () => {
   return (
     <div className="Suppliers">
-      <h1>suppliers all</h1>
+      <Navbar />
+      <AllSupp />
     </div>
   )
 }

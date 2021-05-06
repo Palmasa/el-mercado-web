@@ -1,4 +1,4 @@
-import { useContext, useEffect, useCallback } from 'react'
+import { useContext, useEffect, useCallback, useRef } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { MdClose } from 'react-icons/md'
 import useWindowDimensions from '../../hooks/useWindow'
@@ -9,8 +9,14 @@ import { Link } from 'react-router-dom'
 
 const CartPopUp = ({ closeCart, productsQuantity }) => {
   const { stateCart } = useContext(CartContext)
+  const modal = useRef(null);
   const { width } = useWindowDimensions()
 
+  window.onclick = (event) => {
+    if (event.target === modal.current) {
+      closeCart()
+    }
+  }
   /* --- ORDENAR CARRITO --------------------------- */
   const paintCarts = useCallback(
     () => {
@@ -36,7 +42,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
 
   return (
-    <button className="overlay">
+    <button ref={modal} className="overlay">
       <div className="popUp">
         <div className="buttonContainerCart">
           <button onClick={() => closeCart()}> <MdClose /></button>

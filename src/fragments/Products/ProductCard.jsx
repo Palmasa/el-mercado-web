@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { createAddCart } from '../../services/CartService'
-import { getCart, setCart } from '../../store/cartStore'
+import { setCart } from '../../store/cartStore'
 
 import toast, { Toaster } from 'react-hot-toast';
 import './ProductCard.scss'
@@ -27,9 +27,10 @@ const ProductDetail = ({ product }) => {
   }
 
   return (
-    <div>
-      <img src={product.img[0]} alt={product.name} className={`${product.noSend ? "bw" : ''}`}/>
+    <div className="container card-product p-3">
+      <img src={product.img[0]} alt={product.name} style={{width: 180}} className={`${product.noSend ? "bw" : ''}`}/>
       <p>{product.name}</p>
+      <p>{product.price / 100}€ / {product.measure}</p>
       {
         product.noSend
         ? <button disabled={true}>Añadir al carrito</button>
