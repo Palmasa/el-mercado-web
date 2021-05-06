@@ -16,7 +16,7 @@ function PreviewImage(uploadImage, imgsArr) {
   }
 }
 
-const MEASURES = ["Kg", "Unidad", "Pack", "L"];
+const MEASURES = ["Kg", "Unidad", "Pack", "L", "ml"];
 
 const CreateProduct = () => {
   const { push } = useHistory();
@@ -110,16 +110,6 @@ const CreateProduct = () => {
               />
             </div>
   
-            <div className="row mt-3">
-              <Input 
-                label="Precio del producto* (millares)" name="price" type="number"
-                min='0'
-                value={state.fields.price}
-                onChange={onChange}
-                autoComplete="off"
-              />
-            </div>
-  
             <div className="container mt-1">
               <div className="row">
                 <label htmlFor="bio">Descripción de producto*</label>
@@ -159,6 +149,16 @@ const CreateProduct = () => {
                   ))}
                 </select>
               </div>
+            </div>
+
+            <div className="row mt-3">
+              <Input 
+                label={`Precio / ${state.fields.measure} * (millares)`} name="price" type="number"
+                min='0'
+                value={state.fields.price}
+                onChange={onChange}
+                autoComplete="off"
+              />
             </div>
   
             <div className="row mt-3">

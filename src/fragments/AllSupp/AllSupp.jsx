@@ -51,7 +51,6 @@ const AllSupp = () => {
         paginate={paginate}
       />
       </div>
-      <Map lon="42.234145" lat="-8.717849" />
     </div>
   )
 }

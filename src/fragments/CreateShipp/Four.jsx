@@ -123,7 +123,7 @@ function Four() {
 
             <div className="row">
               <div className='col'>
-                <label htmlFor="price">Precio de envío*</label>
+                <label htmlFor="price">Precio de envío* (base 1000)</label>
               </div>
               <div className='col'>
                 <input

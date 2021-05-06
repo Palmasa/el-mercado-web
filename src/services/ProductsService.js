@@ -20,6 +20,16 @@ export const getMainCategs = () => {
 export const getAllProducts = () => {
   return http.get('/products')
 }
+/* BY CATEG */
+export const getProductsbyCateg = (category) => {
+  return http.get("/products", { params: { category: category } });
+};
+
+/*  by search */
+export const getProductsBySearch = (search) => {
+  return http.get("/products", { params: { search } });
+};
+
 /*  ONE */
 export const getOneProduct = (productId) => {
   return http.get(`/products/${productId}`)

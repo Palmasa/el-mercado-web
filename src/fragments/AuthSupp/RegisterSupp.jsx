@@ -5,6 +5,7 @@ import { CATEGS, TYPES } from './validatorsRegister'
 import { useHistory } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import './RegisterSupp.scss'
+import SearchableMap from './Geocode';
 
 const notify = (value) => toast(value);
 
@@ -37,13 +38,23 @@ const RegisterSupp = () => {
       ownerName: '', ownerBio: '', ownerImg: '',
     }
   })
+  const [ lon, setLon ] = useState(0)
+  const [ lat, setLat ] = useState(0)
+
+  const lift = (lon, lat) => {
+    setLon(lon)
+    setLat(lat)
+  }
 
   const onSubmit = (e) => {
     e.preventDefault()
+    console.log(lon, lat)
     const formData = new FormData()
     Object.entries(state.fields).forEach(([key, value]) => {
       formData.append(key, value)
     })
+    formData.append('lon', lon)
+    formData.append('lat', lat)
     
     suppRegister(formData)
       .then(() => {
@@ -185,33 +196,43 @@ const RegisterSupp = () => {
             </div>
             
             <h4>3. Dirección</h4>
-            <div className="partRegisterSupp">
-              <Input 
-                label="Ciudad" name="city" type="text"
-                value={state.fields.city}
-                onChange={onChange}
-                autoComplete="off"
-              />
+            <div className="row">
+              <div className="col">
+                <div className="partRegisterSupp">
+                  <Input 
+                    label="Ciudad" name="city" type="text"
+                    value={state.fields.city}
+                    onChange={onChange}
+                    autoComplete="off"
+                  />
 
-              <Input 
-                label="Calle / Vía" name="street" type="text"
-                value={state.fields.street}
-                onChange={onChange} 
-                autoComplete="off"
-              />
+                  <Input 
+                    label="Calle / Vía" name="street" type="text"
+                    value={state.fields.street}
+                    onChange={onChange} 
+                    autoComplete="off"
+                  />
 
-              <Input 
-                label="Número de la vía" name="number" type="number"
-                value={state.fields.number}
-                onChange={onChange} 
-                autoComplete="off"
-              />
+                  <Input 
+                    label="Número de la vía" name="number" type="number"
+                    value={state.fields.number}
+                    onChange={onChange} 
+                    autoComplete="off"
+                  />
 
-              <Input 
-                label="Código postal" name="zip" type="number"
-                value={state.fields.zip}
-                onChange={onChange} 
-              />
+                  <Input 
+                    label="Código postal" name="zip" type="number"
+                    value={state.fields.zip}
+                    onChange={onChange} 
+                  />
+                </div>
+
+              </div>
+              <div className="col">
+                <div className="mapContainerRegister">
+                  <SearchableMap lift={lift}/>
+                </div>
+              </div>
             </div>
 
             <h4>4. Responsable</h4>
