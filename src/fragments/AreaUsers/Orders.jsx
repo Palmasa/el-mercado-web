@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getUserSales } from '../../services/UsersService'
+import { userCancelSale } from '../../services/SaleService'
 
 const Orders = () => {
   const [ sales, setSales ] = useState([])
@@ -11,6 +12,13 @@ const Orders = () => {
     } catch(e) { console.log(e.response.data)}
   }
 
+  const cancelSale = (id) => {
+    userCancelSale(id)
+    .then((res) => {
+      console.log(res)
+    })
+  }
+
   useEffect(() => {
     getSales()
   }, [])
@@ -20,18 +28,19 @@ const Orders = () => {
       {
         sales?.map((sale) => (
           <div key={sale.id} className="row border">
-            <p>{sale.state}</p>
+            <h1>{sale.state}</h1>
             <p>{sale.address.city}, {sale.address.street} {sale.address.number}, {sale.address.block}</p>
             {
               sale.products.map((p) => (
-                <div className={p.id}>
+                <div key={p.id}>
                   <p>{p.name}</p>
                   <p>{p.supplier}</p>
                   <p>x0{p.quantity}</p>
-                  <p>{p.price}</p>
+                  <p>{(p.price) / 100}€</p>
                 </div>
               ))
             }
+            <button onClick={() => cancelSale(sale.id)}>Cancelar</button>
           </div>
         ))
       }

@@ -21,7 +21,8 @@ const SaleCreate = () => {
       street: user?.address.street || '',
       number: user?.address.number || '',
       block: user?.address.block || '',
-      zip: user?.address.zip || '28000'
+      zip: user?.address.zip || '28000',
+      promo: ''
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
@@ -50,11 +51,13 @@ const SaleCreate = () => {
       street: state.fields.street,
       number: state.fields.number,
       block: state.fields.block,
-      zip: 28000
+      zip: 28000,
+      promo: state.fields.promo
     })
 
     .then((res) => {
       let total = (res.toPay) / 100
+      console.log(res)
       setToPay(total)
       setStepOne(false)
     })
@@ -169,6 +172,21 @@ const SaleCreate = () => {
                   <input
                     name="block"
                     value={state.fields.block}
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
+
+              <div className="">
+                <div className="">
+                  <label htmlFor="promo">
+                    ¿Dispone de un códigio de promoción?
+                  </label>
+                </div>
+                <div className="">
+                  <input
+                    name="promo"
+                    value={state.fields.promo}
                     onChange={onChange}
                   />
                 </div>
