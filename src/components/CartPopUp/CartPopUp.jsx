@@ -31,7 +31,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
       }
 
-      return <>{carts}<p>Total: {stateCart.total}€</p></>
+      return <>{carts}<p>Total: {(stateCart.total)/100}€</p></>
 
     }, [stateCart],
   )

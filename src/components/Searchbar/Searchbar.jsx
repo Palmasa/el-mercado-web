@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
 import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 import { getAllProducts } from '../../services/ProductsService'
 import './Searchbar.scss'
 
@@ -34,7 +35,6 @@ const Searchbar = () => {
     setProducts(filters)
     setLoading(false)
   }
-
 
   // Get the typing and call the filter function
   const handleChange = (event) => {
@@ -83,7 +83,7 @@ const Searchbar = () => {
         value={search}
         />
       { closeCross && <button className="cross" onClick={clearInput}><VscClose/></button> }
-      { searchResult && products.map((p) => (p.name))}
+      { searchResult && products.map((p) => (<Link to={`/productos/${p.slug}`}> {p.name}</Link>))}
       { redirect && (<Redirect to={`/productos?filter=${param}`}/>)}
     </div>
     </>

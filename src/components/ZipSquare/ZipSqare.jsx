@@ -2,7 +2,6 @@ import { useState, useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import { sendZipBack } from '../../services/ZipService';
-import { setCart } from '../../store/cartStore';
 import { setZip } from '../../store/zipStore';
 import toast, { Toaster } from 'react-hot-toast';
 import { useHistory } from 'react-router';
@@ -52,9 +51,8 @@ const ZipSqare = ({ closeSquare }) => {
         if (response.cartUpdated) {
           // JFK -> CUANDO TENGAS PRODUCTOS PROBAR - NOT TESTED
           // MIRAR EN EL BACK EN ZIP CONTROLER LINEA 20 y 50
-          setCart(response.cartUpdated)
           getCurrentCart()
-          console.log(response.deletedItems)
+          notify(`Se han eliminado de ${response.deletedItems?.length} productos de su bolsa`)
         } else if (response.message) {
           if (response.message === "Su cesta ha sido eliminada") {
             removeAllCart()

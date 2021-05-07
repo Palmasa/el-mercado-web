@@ -9,3 +9,7 @@ export const createRealSale = (body) => {
 export const payRealSale = (body) => {
   return http.post('/checkout', body)
 }
+
+export const sendEmailSale = (body) => {
+  return http.post('/send-sale-email', body)
+}

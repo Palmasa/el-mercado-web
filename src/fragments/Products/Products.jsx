@@ -19,10 +19,15 @@ const Products = () => {
   const [ prodPerPage ] = useState(9) //num
   const [ mainCateg, setMain ] = useState([])
   const [ notFound, setNotFound ] = useState(false)
+  const [ allProductsPage, setallProductsPage ] = useState(false)
 
   let query = useQuery()
   let filter = query.get('filter')
   let categ = query.get('categoria')
+  let sub = query.get('subcategoria')
+  let n = query.get('n')
+  let main = Object.keys(allCategs)
+  const subs = Object.values(allCategs)
 
   const scenarios = (res) => {
     if (!res.listProducts) {
@@ -50,30 +55,37 @@ const Products = () => {
       getProductsBySearch(filter)
       .then((res) => {
         scenarios(res)
+        setallProductsPage(false)
       })
 
-    } else if (categ) { // ------------------------------------ from MenuHover
-      const main = Object.keys(allCategs)
+    } else if (categ) { // ------------------------------------ from MenuHover && main categs
       const selec = main[categ]
       setMain(selec)
-
-      const subs = Object.values(allCategs)
       const select = subs[categ]
       getProductsbyCateg(select)
       .then((res) =>{
         scenarios(res)
+        setallProductsPage(false)
       })
 
-    } else { // -------------------------------------------- normal
+    } else if (sub) { // ----------------------------------------- subcategorias filter
+      getProductsbyCateg(sub)
+      .then((res) =>{
+        scenarios(res)
+        setallProductsPage(false)
+      })
+
+    } else { // -------------------------------------------------- ALL PRODUCTS
       const allProducts = await getAllProducts()
       setProducts(allProducts)
       setLoading(false)
+      setallProductsPage(true)
     }
   }
 
   useEffect(() => {
     getProducts()
-  }, [stateZip, filter, categ])
+  }, [stateZip, filter, categ, sub])
 
   // Get current
   const indexOfLastProduct = currentPage * prodPerPage
@@ -104,22 +116,20 @@ const Products = () => {
        loading
        ? <p>Loading...</p> 
        : (
-        <div className="container p-4">
+         <>
         <div className="row">
+          { allProductsPage && <h4>Todos los productos</h4>}
           { filter && <h4>Resultados de <i>{filter}</i></h4>}
-          { categ && <h4>Categoría: {mainCateg} </h4>}
+          { categ && <h3>{mainCateg} </h3>}
+          { sub && <h3>{main[n]} icon-react {sub}</h3>}
         </div>
-        <div className="row">
-          <div className="col-2">
-            <p>FILTROS</p>
-          </div>
-          <div className="col">
+        <div className="row justify-content-center w-100">
           { 
             notFound
             ? <p>NOT FOUND</p>
             : (
               <>
-              <div className="row justify-content-center text-center">
+              <div className="row">
                 {
                   currentProducts?.map((product) => (
                     <div key={product.id} className="col-lg-4 mb-4 d-flex align-items-stretch">
@@ -130,7 +140,7 @@ const Products = () => {
                   ))
                 }
                 </div>
-                <div className="row justify-content-center">
+                <div className="justify-content-center">
                 <Pagination 
                   prodPerPage={prodPerPage}
                   totalProd={productsLenght} 
@@ -140,9 +150,8 @@ const Products = () => {
               </>
             )
           }
-            </div>
           </div>
-        </div>
+        </>
        )
       }
     </>

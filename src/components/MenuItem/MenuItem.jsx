@@ -4,7 +4,7 @@ import { BiChevronDown, BiChevronLeft } from 'react-icons/bi'
 import MenuHover from '../MenuHover/MenuHover'
 import './MenuItem.scss'
 
-const MenuItem = ({ route, categs, children}) => {
+const MenuItem = ({ route, children}) => {
   const [ hover, setHover ] = useState(false)
 
   const toggleOut = () => {
@@ -29,7 +29,7 @@ const MenuItem = ({ route, categs, children}) => {
     { hover ? <BiChevronLeft /> : <BiChevronDown /> }
     </NavLink>
 
-    { hover && <MenuHover toggle={setHover} categs={categs} /> }
+    { hover && <MenuHover toggle={setHover} /> }
     </>
   )
 }

@@ -8,4 +8,8 @@
   font-weight: 400;
   display: flex;
   align-items: center;
+
+  &:hover {
+    text-decoration: none;
+  }
 }

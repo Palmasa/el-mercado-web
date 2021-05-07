@@ -17,3 +17,7 @@ export const deleteShipping = (shippId) => {
 export const getSuppliers = () => {
   return http.get('/suppliers')
 }
+
+export const getOneSupp = (slug) => {
+  return http.get(`/suppliers/${slug}`)
+}

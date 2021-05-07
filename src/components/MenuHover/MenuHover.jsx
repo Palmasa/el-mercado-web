@@ -12,6 +12,7 @@ const MenuHover = ({ toggle }) => {
   const getProducts = (i) => {
     setParam(i)
     setRedirect(true)
+    setTimeout(() => {toggle(false)}, 10)
   }
 
   const paintCategs = () => {
@@ -41,7 +42,7 @@ const MenuHover = ({ toggle }) => {
     >
     {
       mainCategs?.map((main, i) => (
-        <button ky={i} onClick={() => getProducts(i)}>{main}</button>
+        <button key={i} onClick={() => getProducts(i)}>{main}</button>
       ))
     }
     { redirect && (<Redirect to={`/productos?categoria=${param}`}/>)}

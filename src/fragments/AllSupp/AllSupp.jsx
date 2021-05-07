@@ -3,8 +3,6 @@ import { useState, useEffect } from 'react'
 import { getSuppliers } from '../../services/SuppService.js'
 import Pagination from '../Products/Pagination'
 import CardSupp from './CardSupp.jsx'
-import Map from './Map.jsx'
-import SearchableMap from './Map.jsx'
 
 const AllSupp = () => {
   const [ suppliers, setSuppliers ] = useState([])

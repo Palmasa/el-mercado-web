@@ -42,7 +42,7 @@ const CartCart = ({ eachCart }) => {
         </div>
       ))
       }
-      <p className="sendPrice"> <FiTruck /> Precio del envío {eachCart[0].sendPrice}€</p>
+      <p className="sendPrice"> <FiTruck /> Precio del envío {(eachCart[0].sendPrice)/100}€</p>
 
     </div>
   )

@@ -82,9 +82,6 @@ const ShippingInfo = () => {
           ))
           }
             </Accordion>
-              {/*
-                
-              */}
           </div>
         )
       }

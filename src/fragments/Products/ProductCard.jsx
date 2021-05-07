@@ -5,9 +5,12 @@ import { setCart } from '../../store/cartStore'
 
 import toast, { Toaster } from 'react-hot-toast';
 import './ProductCard.scss'
+import { Link } from 'react-router-dom';
 
 const notify = (value) => toast( value + ' añadido a la bolsa');
 const negNotify =  (value) => toast( value );
+
+
 const ProductDetail = ({ product }) => {
   const { setStateCart } = useContext(CartContext)
   
@@ -28,15 +31,16 @@ const ProductDetail = ({ product }) => {
 
   return (
     <div className="container card-product p-3">
+    <Link to={`/productos/${product.slug}`}>
       <img src={product.img[0]} alt={product.name} style={{width: 180}} className={`${product.noSend ? "bw" : ''}`}/>
       <p>{product.name}</p>
       <p>{product.price / 100}€ / {product.measure}</p>
+    </Link>
       {
         product.noSend
         ? <button disabled={true}>Añadir al carrito</button>
         : <button onClick={addItem}>Añadir al carrito</button>
       }
-      <button>Vista rápida</button>
       <Toaster />
     </div>
   )

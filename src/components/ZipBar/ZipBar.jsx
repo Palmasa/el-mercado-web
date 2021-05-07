@@ -1,7 +1,7 @@
 import { GrLocation } from 'react-icons/gr'
 import { BiChevronDown } from 'react-icons/bi'
 import { ZipContext } from '../../contexts/ZipContext'
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useState } from 'react'
 import './ZipBar.scss'
 import ZipSqare from '../ZipSquare/ZipSqare'
 

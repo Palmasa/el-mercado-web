@@ -60,9 +60,7 @@ const MyProfile = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target
-
     setResError({ error: false})
-
     setState((prevState) => ({
       fields: {
         ...prevState.fields,

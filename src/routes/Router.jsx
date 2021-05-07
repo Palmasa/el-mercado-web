@@ -30,8 +30,8 @@ const Router = () => {
         <Route exact path="/productos/:slug" component={ProductDetailScreen}/>
         <Route exact path="/productos" component={ProductsScreen}/>
 
-        <Route exact path="/puestos" component={SuppliersScreen}/>
-        <Route exact path="/puestos/:slug" component={SupplierDetailScreen}/>
+        <Route exact path="/tiendas" component={SuppliersScreen}/>
+        <Route exact path="/tiendas/:slug" component={SupplierDetailScreen}/>
 
         <Route exact path="/acceso-usuarios" component={AuthScreen}/>
         <Route exact path="/activar-usuarios/:token" component={Activate}/>

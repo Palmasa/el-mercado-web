@@ -22,11 +22,32 @@
     align-items: center;
   }
 
-  .changeMe > button {
-    border: none;
-    background-color: $c-light;
-    font-family: 'Archivo Narrow', sans-serif;
-    font-size: 17px;
-    font-weight: 400;
+  .changeMe {
+
+    .login-text {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+      &:hover {
+        color: $c-orange;
+      }
+
+      .login-text-text {
+        color: $c-dark;
+        &:hover {
+          color: $c-orange;
+          text-decoration: none;
+        }
+      }
+      border: none;
+      color: $c-dark;
+      background-color: $c-light;
+      font-family: 'Archivo Narrow', sans-serif;
+      font-size: 17px;
+      font-weight: 400;
+
+
+    }
   }
 }

@@ -4,12 +4,14 @@ import { loadStripe } from '@stripe/stripe-js'
 import { Elements, CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
 import logo from '../../images/logos/DARK.png'
 import { payRealSale } from '../../services/SaleService'
+import { useHistory } from 'react-router';
 import './StripeTest.scss'
 
 const stripePromise = loadStripe('pk_test_51Ik9zhKuQKvQj70tseLpVqY4OWJwWPMGFDUvVjrJy2xgjJfA9wWzs64dAtK3M9DWT6YKHCNrv2eKYZT7bRW0QFUp00QrysCHcq')
 
 const CheckoutForm = ({ cartTotal }) => {
   const { removeAllCart } = useContext(CartContext)
+  const { push } = useHistory()
   const stripe = useStripe()
   const elements = useElements()
 
@@ -27,14 +29,13 @@ const CheckoutForm = ({ cartTotal }) => {
         const body = {}
         body.id = id
         body.amount = cartTotal * 100
-        const response = await payRealSale(body)
-        console.log(response)
+        await payRealSale(body)
         elements.getElement(CardElement).clear()
         removeAllCart()
       } catch(e) {
         console.log(e)
       }
-
+      push('/productos')
     } else {
       console.log(error)
     }
