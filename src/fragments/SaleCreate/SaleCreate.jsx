@@ -4,6 +4,7 @@ import { UserContext } from '../../contexts/UserContext'
 import { ZipContext } from '../../contexts/ZipContext'
 import { removeDuplicates } from '../../helpers/removeDuplicates'
 import { createRealSale } from '../../services/SaleService'
+import { cashConverter } from '../../helpers/priceConverter'
 import CartCart from '../../components/CartCart/CartCart'
 import Login from '../auth/Login'
 import StripeTest from './StripeTest'
@@ -39,7 +40,7 @@ const SaleCreate = () => {
         
         carts.push( <CartCart eachCart={eachCart} key={i}/> )
       }
-      return <>{carts}<p>Total: {(stateCart?.total)/100}€</p></>
+      return <>{carts}<p>Total: {cashConverter(stateCart?.total)}€</p></>
     }, [stateCart],
   )
 

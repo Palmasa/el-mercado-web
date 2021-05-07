@@ -1,23 +1,33 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef} from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
 import { VscClose } from 'react-icons/vsc'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
 import { getAllProducts } from '../../services/ProductsService'
+import ResultsSearch from './ResultsSearch'
 import './Searchbar.scss'
 
 const Searchbar = () => {
+  const results = useRef(null)
+
   const [ closeCross, setCloseCross ] = useState(false)
-
   const [ products, setProducts ] = useState({})
-
   const [ search, setSearch ] = useState('')
   const [ searchResult, setSearchResult ] = useState(false)
-
   const [ loading, setLoading] = useState(false)
-
   const [param, setParam] = useState('')
   const [redirect, setRedirect] = useState(false)
+  
+  const clearInput = () => {
+    setSearch('')
+    setCloseCross(false)
+    setSearchResult(false)
+  }
+
+  window.onclick = (event) => {
+    if (event.target === results.current) {
+      clearInput()
+    }
+  }
 
   // Call api and set the list of products
   const getProducts = async () => {
@@ -49,12 +59,6 @@ const Searchbar = () => {
     }
   }
 
-  const clearInput = () => {
-    setSearch('')
-    setCloseCross(false)
-    setSearchResult(false)
-  }
-
   useEffect(() => {
     getProducts()
   }, [])
@@ -63,6 +67,9 @@ const Searchbar = () => {
     if (event.key === 'Enter') {
       setParam(event.target.value)
       setRedirect(true)
+      clearInput()
+    } else if (event.key === 'Backspace' && event.target.value.length === 1) {
+      setSearchResult(false)
       clearInput()
     }
   }
@@ -83,9 +90,20 @@ const Searchbar = () => {
         value={search}
         />
       { closeCross && <button className="cross" onClick={clearInput}><VscClose/></button> }
-      { searchResult && products.map((p) => (<Link to={`/productos/${p.slug}`}> {p.name}</Link>))}
+
+
       { redirect && (<Redirect to={`/productos?filter=${param}`}/>)}
     </div>
+      { searchResult && (
+        <div ref={results} className="overlay-search">
+          <div className="popUp-search px-4">
+            {
+              products.slice(0, 10).map((p) => (<ResultsSearch key={p.slug} slug={p.slug} name={p.name} imgs={p.img[0]}/>))
+            }
+          </div>
+        </div>
+        )
+      }
     </>
   )
 }

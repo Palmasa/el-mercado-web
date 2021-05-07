@@ -1,10 +1,11 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef } from 'react'
 import { CartContext } from '../../contexts/CartContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import { sendZipBack } from '../../services/ZipService';
 import { setZip } from '../../store/zipStore';
 import toast, { Toaster } from 'react-hot-toast';
 import { useHistory } from 'react-router';
+import { MdClose } from 'react-icons/md'
 import './ZipSqare.scss'
 
 const notify = (value) => toast(value);
@@ -23,9 +24,10 @@ const validators = {
 }
 // Component ZipSquare ------------------------------------------------------
 const ZipSqare = ({ closeSquare }) => {
+  const results = useRef(null)
   const { push } = useHistory()
   const { getCurrentZip } = useContext(ZipContext)
-  const { getCurrentCart, removeAllCart } = useContext(CartContext)
+  const { stateCart, getCurrentCart, removeAllCart } = useContext(CartContext)
   const [ state, setState ] = useState ({
     fields: {
       zip: '',
@@ -39,6 +41,12 @@ const ZipSqare = ({ closeSquare }) => {
   const isValid = () => {
     const { errors } = state
     return !Object.keys(errors).some(e => errors[e])
+  }
+
+  window.onclick = (event) => {
+    if (event.target === results.current) {
+      closeSquare(false)
+    }
   }
 
   const onSubmit = (e) => {
@@ -85,20 +93,27 @@ const ZipSqare = ({ closeSquare }) => {
   }
 
   return (
-    <div className="ZipSquare">
-      <button onClick={() => closeSquare(false)}> x </button>
-      <form onSubmit={onSubmit} >
-        <input
-          name="zip"
-          value={state.fields.zip}
-          onChange={onChange} 
-        />
-        <div>
-          {state.errors.zip}
-          {resError.error ? resError.info : ""}
+    <div ref={results} className="overlay-zip">
+      <div className="popUp-zip">
+        <div className="ZipSquare container px-3 py-2">
+          <button onClick={() => closeSquare(false)}> <MdClose /> </button>
+          <form onSubmit={onSubmit} >
+          { stateCart && <p className="warning-zip"><small>*Si cambia el código postal su bolsa será revisada y se eliminarán los productos que no lleguen a su destino.</small></p> }
+          { !stateCart && <h6>Código postal</h6> }
+            <input
+              name="zip"
+              value={state.fields.zip}
+              onChange={onChange}
+              placeholder="xxxxx"
+            />
+            <div>
+              {state.errors.zip}
+              {resError.error ? resError.info : ""}
+            </div>
+            <button type="submit">Enviar código postal</button>
+          </form>
         </div>
-        <button type="submit">send zip</button>
-      </form>
+      </div>
       <Toaster />
     </div>
   )

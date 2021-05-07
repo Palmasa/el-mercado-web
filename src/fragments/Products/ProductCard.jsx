@@ -2,10 +2,11 @@ import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
 import { createAddCart } from '../../services/CartService'
 import { setCart } from '../../store/cartStore'
-
+import { cashConverter } from '../../helpers/priceConverter'
+import { BsPlus } from 'react-icons/bs'
 import toast, { Toaster } from 'react-hot-toast';
-import './ProductCard.scss'
 import { Link } from 'react-router-dom';
+import './ProductCard.scss'
 
 const notify = (value) => toast( value + ' añadido a la bolsa');
 const negNotify =  (value) => toast( value );
@@ -30,17 +31,31 @@ const ProductDetail = ({ product }) => {
   }
 
   return (
-    <div className="container card-product p-3">
+    <div className="container card-product pb-3">
     <Link to={`/productos/${product.slug}`}>
-      <img src={product.img[0]} alt={product.name} style={{width: 180}} className={`${product.noSend ? "bw" : ''}`}/>
-      <p>{product.name}</p>
-      <p>{product.price / 100}€ / {product.measure}</p>
+    <div className="row justify-content-center mb-2 container-img">
+        <img src={product.img[0]} alt={product.name} className={`img-card ${product.noSend ? "bw" : ''}`}/>
+    </div>
     </Link>
-      {
-        product.noSend
-        ? <button disabled={true}>Añadir al carrito</button>
-        : <button onClick={addItem}>Añadir al carrito</button>
-      }
+    <div className="row align-items-center">
+      <div className="col-9">
+    <Link to={`/productos/${product.slug}`} className="text-decoration-none">
+        <div className="row justify-content-start pl-2">
+          <p className="text-card">{product.name}</p>
+        </div>
+        <div className="row justify-content-start pl-2">
+          <p className="money-card">{cashConverter(product.price)}€ / {product.measure}</p>
+        </div>
+    </Link>
+      </div>
+      <div className="col justify-content-end text-right pr-2">
+        {
+          product.noSend
+          ? <button className="add-button-card-cart" disabled={true}><BsPlus/></button>
+          : <button className="add-button-card-cart" onClick={addItem}><BsPlus/></button>
+        }
+      </div>
+    </div>
       <Toaster />
     </div>
   )

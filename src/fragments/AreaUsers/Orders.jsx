@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { getUserSales } from '../../services/UsersService'
 import { userCancelSale } from '../../services/SaleService'
+import { cashConverter } from '../../helpers/priceConverter'
 
 const Orders = () => {
   const [ sales, setSales ] = useState([])
@@ -36,7 +37,7 @@ const Orders = () => {
                   <p>{p.name}</p>
                   <p>{p.supplier}</p>
                   <p>x0{p.quantity}</p>
-                  <p>{(p.price) / 100}€</p>
+                  <p>{cashConverter(p.price)}€</p>
                 </div>
               ))
             }

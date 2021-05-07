@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getProductPerSupp } from '../../services/ProductsService.js'
+import { getProductPerSupp, reactivateProducts, desactivateProducts } from '../../services/ProductsService.js'
 import toast, { Toaster } from "react-hot-toast";
+import { cashConverter } from '../../helpers/priceConverter'
 
 const notify = (value) => toast(value);
 
@@ -9,11 +10,25 @@ const ProductInfo = () => {
   const [ products, setProducts ] = useState([])
   const [ loading, setLoading ] = useState(true)
 
-  const getProducts = () => {
-    getProductPerSupp()
+  const getProducts = (id) => {
+    getProductPerSupp(id)
     .then(res => {
       setProducts(res)
       setLoading(false)
+    })
+  }
+
+  const desactivate = (id) => {
+    desactivateProducts(id)
+    .then(() => {
+      getProducts()
+    })
+  }
+
+  const activate = (id) => {
+    reactivateProducts(id)
+    .then(() => {
+      getProducts()
     })
   }
 
@@ -40,9 +55,13 @@ const ProductInfo = () => {
             products.map((product) => (
             <div className="row justify-content-between" key={product.id}>
               <p>{product.name}</p>
-              <p>{product.price / 100}€</p>
+              <p>{cashConverter(product.price)}€</p>
               <p>Q - {product.stock}</p>
-              {product.sales.map((sale) => <p>{sale.state}</p>)}
+              {
+                product.active
+                ? <button onClick={() => desactivate(product.id)}>Desactivar</button>
+                : <button onClick={() => activate(product.id)}>Activate</button>
+              }
             </div>
           ))
           }

@@ -13,13 +13,11 @@ const Menu = () => {
   return (
     <div className="Menu">
       <div className="Navlinks">
-
-        <MenuItem route="/productos">
-          Productos
+        <NavLink className="navlink" activeClassName="navselect" to="/productos">Productos</NavLink>
+        <MenuItem route="/categorias">
+          Categorías
         </MenuItem>
-
         <NavLink className="navlink" activeClassName="navselect" to="/tiendas">Tiendas</NavLink>
-        <NavLink className="navlink" activeClassName="navselect" to="/mas-vendidos">Los más vendidos</NavLink>
       </div>
       <div className="changeMe">
         {

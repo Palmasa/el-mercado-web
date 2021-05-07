@@ -21,8 +21,21 @@
     justify-content: space-between;
     align-items: center;
   }
+  .navlink {
+    color: $c-dark;
+    &:hover {
+      color: $c-orange;
+      text-decoration: none;
+    }
+  }
+
+  .navselect {
+    color: $c-orange;
+    text-decoration: none;
+  }
 
   .changeMe {
+
 
     .login-text {
       display: flex;

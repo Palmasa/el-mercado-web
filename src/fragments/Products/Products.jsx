@@ -1,11 +1,17 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useEffect, useContext, useCallback } from 'react'
 import { ZipContext } from '../../contexts/ZipContext';
 import { getAllProducts, getProductsBySearch, getProductsbyCateg } from '../../services/ProductsService'
 import ProductCard from './ProductCard'
 import Pagination from './Pagination'
 import { allCategs } from '../../helpers/allCategs.js'
-import './Products.scss'
 import { useLocation } from 'react-router';
+import { BsChevronRight } from 'react-icons/bs'
+import { IconContext } from "react-icons"
+import ClipLoader from "react-spinners/ClipLoader";
+import './Products.scss'
+
+let main = Object.keys(allCategs)
+const subs = Object.values(allCategs)
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
@@ -26,8 +32,6 @@ const Products = () => {
   let categ = query.get('categoria')
   let sub = query.get('subcategoria')
   let n = query.get('n')
-  let main = Object.keys(allCategs)
-  const subs = Object.values(allCategs)
 
   const scenarios = (res) => {
     if (!res.listProducts) {
@@ -49,43 +53,47 @@ const Products = () => {
     }
   }
 
-  const getProducts = async () => {
-    setLoading(true)
-    if (filter) { // ------------------------------ From searchbar
-      getProductsBySearch(filter)
-      .then((res) => {
-        scenarios(res)
-        setallProductsPage(false)
-      })
+  const getProducts = useCallback(
+    async () => {
+        setLoading(true)
+        if (filter) { // ------------------------------ From searchbar
+          getProductsBySearch(filter)
+          .then((res) => {
+            scenarios(res)
+            setallProductsPage(false)
+          })
+    
+        } else if (categ) { // ------------------------------------ from MenuHover && main categs
+          const selec = main[categ]
+          setMain(selec)
+          const select = subs[categ]
+          getProductsbyCateg(select)
+          .then((res) =>{
+            scenarios(res)
+            setallProductsPage(false)
+          })
+    
+        } else if (sub) { // ----------------------------------------- subcategorias filter
+          getProductsbyCateg(sub)
+          .then((res) =>{
+            scenarios(res)
+            setallProductsPage(false)
+          })
+    
+        } else { // --------------------------------------------------- ALL PRODUCTS
+          const allProducts = await getAllProducts()
+          setNotFound(false)
+          setProducts(allProducts)
+          setLoading(false)
+          setallProductsPage(true)
+        }
+      }, [ categ, filter, sub ]
 
-    } else if (categ) { // ------------------------------------ from MenuHover && main categs
-      const selec = main[categ]
-      setMain(selec)
-      const select = subs[categ]
-      getProductsbyCateg(select)
-      .then((res) =>{
-        scenarios(res)
-        setallProductsPage(false)
-      })
-
-    } else if (sub) { // ----------------------------------------- subcategorias filter
-      getProductsbyCateg(sub)
-      .then((res) =>{
-        scenarios(res)
-        setallProductsPage(false)
-      })
-
-    } else { // -------------------------------------------------- ALL PRODUCTS
-      const allProducts = await getAllProducts()
-      setProducts(allProducts)
-      setLoading(false)
-      setallProductsPage(true)
-    }
-  }
+  )
 
   useEffect(() => {
     getProducts()
-  }, [stateZip, filter, categ, sub])
+  }, [ getProducts, stateZip ])
 
   // Get current
   const indexOfLastProduct = currentPage * prodPerPage
@@ -111,18 +119,20 @@ const Products = () => {
   }
 
   return (
-    <>
+    <div className="container">
      {
        loading
-       ? <p>Loading...</p> 
+       ? (<div className="spinner-style"><ClipLoader color="#E15D45" /></div>)
        : (
          <>
-        <div className="row">
-          { allProductsPage && <h4>Todos los productos</h4>}
-          { filter && <h4>Resultados de <i>{filter}</i></h4>}
-          { categ && <h3>{mainCateg} </h3>}
-          { sub && <h3>{main[n]} icon-react {sub}</h3>}
-        </div>
+         <IconContext.Provider value={{ size: "0.5em"}}>
+          <div className="row mb-3">
+            { allProductsPage && <h6>Todos los productos</h6>}
+            { filter && <h6>Resultados de <i>{filter}</i></h6>}
+            { categ && <h6>{mainCateg} </h6>}
+            { sub && <h6>{main[n]} <BsChevronRight /> {sub}</h6>}
+          </div>
+         </IconContext.Provider>
         <div className="row justify-content-center w-100">
           { 
             notFound
@@ -132,7 +142,7 @@ const Products = () => {
               <div className="row">
                 {
                   currentProducts?.map((product) => (
-                    <div key={product.id} className="col-lg-4 mb-4 d-flex align-items-stretch">
+                    <div key={product.id} className="col-lg-4 mb-5">
                       <ProductCard
                       product= {product}
                       />
@@ -154,7 +164,7 @@ const Products = () => {
         </>
        )
       }
-    </>
+    </div>
   )
 }
 

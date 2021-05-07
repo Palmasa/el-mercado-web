@@ -6,3 +6,11 @@ export const priceConverter = (price) => {
     return `${price / 100} €`
   }
 }
+
+export const cashConverter = (num) => {
+  return (num/100).toFixed(2).replace('.', ',')
+}
+
+export const converterCash = (num) => {
+  Number((num).toString().replace('.', ''))
+}

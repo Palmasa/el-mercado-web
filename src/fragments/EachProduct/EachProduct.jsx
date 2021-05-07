@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneProduct } from '../../services/ProductsService'
+import { cashConverter } from '../../helpers/priceConverter'
 import './EachProduct.scss'
 
 const EachProduct = () => {
   const [product, setProduct] = useState();
+  const [supplier, setSupplier] = useState();
   const [ okTosend, setOkSend ] = useState();
   const { slug } = useParams()
 
@@ -12,6 +14,7 @@ const EachProduct = () => {
     getOneProduct(slug).then((prod) => {
       setProduct(prod.product)
       setOkSend(prod.okToSend)
+      setSupplier(prod.supplier)
     });
   }, [slug]);
 
@@ -26,10 +29,14 @@ const EachProduct = () => {
         <p className="card-text">
           {product.description}
           <br />
-          {product.price / 100} €
+          {cashConverter(product.price)} €
         </p>
       </div>
       { okTosend ? <p>SI AL ENVIÓ</p> : <p>NO LLEGA</p>}
+        {supplier?.name}
+        {supplier?.ownerName}
+        {supplier?.name}
+        {supplier?.name}
     </div>
   );
 }

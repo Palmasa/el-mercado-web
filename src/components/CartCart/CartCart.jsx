@@ -4,7 +4,7 @@ import { FiTruck } from 'react-icons/fi'
 import { BsPlus } from 'react-icons/bs'
 import { VscDash } from 'react-icons/vsc'
 import { MdClose } from 'react-icons/md'
-import { priceConverter } from '../../helpers/priceConverter'
+import { cashConverter } from '../../helpers/priceConverter'
 import './CartCart.scss'
 
 const CartCart = ({ eachCart }) => {
@@ -36,13 +36,13 @@ const CartCart = ({ eachCart }) => {
           <p>x0{product.quantity} </p>
           <button onClick={() => plus(product.product)}><BsPlus /></button>
 
-          <p>{priceConverter(product.price)}</p>
+          <p>{cashConverter(product.price)}€</p>
 
           <button onClick={() => deleteItem(product.product)}><MdClose /></button>
         </div>
       ))
-      }
-      <p className="sendPrice"> <FiTruck /> Precio del envío {(eachCart[0].sendPrice)/100}€</p>
+      } 
+      <p className="sendPrice"> <FiTruck /> Precio del envío {cashConverter(eachCart[0].sendPrice)}€</p>
 
     </div>
   )

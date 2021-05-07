@@ -1,0 +1,16 @@
+@use "src/styles/utils" as *;
+
+.text-search-result {
+  color: $c-dark;
+  border-bottom: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.135);
+  } ;
+  &:hover {
+    background-color: $c-primary;
+    border-radius: 3px;
+    color: $c-dark;
+    text-decoration: none;
+  }
+}

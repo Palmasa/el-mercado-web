@@ -3,13 +3,13 @@ import './Footer.scss'
 
 const Footer = () => {
   return (
-    <div className="Footer">
+    <div className="container-fluid p-0 justify-content-center align-items-center">
+    <div className="Footer row justify-content-around align-items-center p-4">
       <p>Atención al cliente</p>
       <p>Devoluciones</p>
       <Link to="/area-tiendas">¿Eres un vendedor?</Link>
-      <p>Política de privacidad</p>
-      <p>Cookies</p>
       <small>Copyright 2021 El Mercado</small>
+    </div>
     </div>
   )
 }

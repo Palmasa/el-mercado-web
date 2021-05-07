@@ -3,6 +3,7 @@ import { CartContext } from '../../contexts/CartContext'
 import { MdClose } from 'react-icons/md'
 import useWindowDimensions from '../../hooks/useWindow'
 import { removeDuplicates } from '../../helpers/removeDuplicates'
+import { cashConverter } from '../../helpers/priceConverter'
 import './CartPopUp.scss'
 import CartCart from '../CartCart/CartCart'
 import { Link } from 'react-router-dom'
@@ -31,9 +32,9 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
       }
 
-      return <>{carts}<p>Total: {(stateCart.total)/100}€</p></>
+      return <>{carts}<p>Total: {cashConverter(stateCart.total)}€</p></>
 
-    }, [stateCart],
+    }, [stateCart]
   )
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { allCategs } from '../../helpers/allCategs.js'
 import { Redirect } from 'react-router'
+import './CategFilter.scss'
 
 const CategFilter = () => {
   const [ mainCategs, setMain ] = useState([])
@@ -35,15 +36,15 @@ const CategFilter = () => {
   }, [])
 
   return (
-    <div>
+    <div className="categories mt-5">
       {
         subCategs?.map((sub, i) => (
-        <div key={i}>
-        <button onClick={() => getMain(i)}><h4>{mainCategs[i]}</h4></button>
+        <div key={i} className="all-categs">
+        <button className="main-categ text-left" onClick={() => getMain(i)}><b>{mainCategs[i]}</b></button>
           {
             sub.length === 1
             ? ""
-            : sub.map((s) => <button onClick={() => getSub(s, i)}>{s}</button>)
+            : sub.map((s) => <button key={s} className="sub-categ text-left" onClick={() => getSub(s, i)}>{s}</button>)
           }
         </div>
       ))

@@ -4,6 +4,7 @@ import FadeLoader from "react-spinners/FadeLoader";
 import { Link } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-accessible-accordion/dist/fancy-example.css';
+import { cashConverter } from '../../helpers/priceConverter'
 import './ShippingInfo.scss'
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
 
@@ -58,9 +59,9 @@ const ShippingInfo = () => {
                   <AccordionItemHeading>
                     <AccordionItemButton>
                       <b>{shipping.name}</b>
-                      <p className="ml-5 mb-1 mt-2">Precio base: {shipping.shipping[0].sendPrice}€</p>
+                      <p className="ml-5 mb-1 mt-2">Precio base: {cashConverter(shipping.shipping[0].sendPrice)}€</p>
                       <p className="ml-5 mb-1">Tiempo estimado de entrega base: {shipping.shipping[0].sendTime}</p>
-                      <p className="ml-5 mb-1">Descuento base a partir de: {shipping.shipping[0].sendDisccount}€</p>
+                      <p className="ml-5 mb-1">Descuento base a partir de: {cashConverter (shipping.shipping[0].sendDisccount)}€</p>
                       <button className="ml-5 mt-2 acco-but" onClick={() => deleteOneShipp(shipping.id, shipping.name)}>Eliminar</button>
                     </AccordionItemButton>
                   </AccordionItemHeading>
@@ -69,9 +70,9 @@ const ShippingInfo = () => {
                       <div key={p.province} className="container">
                         <div className="row justify-content-between">
                           <p className="col">{p.province}</p>
-                          <p className="col">{p.sendPrice}€</p>
+                          <p className="col">{cashConverter(p.sendPrice)}€</p>
                           <p className="col">{p.sendTime}</p>
-                          <p className="col">{p.sendDisccount}€</p>
+                          <p className="col">{cashConverter(p.sendDisccount)}€</p>
                         </div>
                       </div>
                     ))}

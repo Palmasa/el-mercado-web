@@ -24,14 +24,20 @@ const Navbar = () => {
     {
       width < 640
       ? (
-        <>
+        <div className="container w-100">
         <div className="Navbar-xs">
-          <div className="Navbar-top-xs">
+          <div className="row w-100 justify-content-between align-items-center px-3 py-3">
+          <div className="col justify-content-center">
             <HamburgerMenu isOpen={openHam} menuClicked={handleHamClick.bind(this)}
               width={16} height={12}
             />
-            <Link to="/"><img className="logo" src={logo} alt="El Mercado"/></Link>
+          </div>
+          <div className="col d-flex justify-content-center">
+            <Link to="/"><img className="logo" style={{width: 80} }src={logo} alt="El Mercado"/></Link>
+          </div>
+          <div className="col d-flex justify-content-end">
             <CartButton />
+          </div>
           </div>
           <div className="Navbar-bot-xs">
             <Searchbar/>
@@ -39,7 +45,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className="ghostMenu-xs"></div>
-        </>
+        </div>
       ) : (
         <div>
           <div className="Navbar-fixed">

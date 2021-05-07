@@ -5,11 +5,11 @@ import Products from '../fragments/Products/Products'
 
 const ProductsScreen = () => {
   return (
-    <div className="Products">
+    <>
       <Navbar />
-      <div className="container">
+      <div className="container px-2 py-4">
         <div className="row">
-          <div className="col-2">
+          <div className="col-2 mr-5 p-0">
             <CategFilter />
           </div>
           <div className="col">
@@ -17,7 +17,7 @@ const ProductsScreen = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -1,13 +1,56 @@
 @use "src/styles/utils" as *;
 
-
 .card-product {
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: $c-light;
+  height: 300px;
+  width: 220px;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
-  
+
+  .container-img{
+    height: 82%;
+    box-shadow: rgba(0, 0, 0, 0.050) 0px 1px 15px;
+    .img-card {
+      width:100%;
+      height:100%;
+      object-fit: cover;
+    }
+  }
+
+  .text-decoration-none {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .text-card {
+    color: $c-dark;
+    margin-bottom: 0;
+    
+  }
+  .money-card {
+    color: $c-dark;
+    margin-bottom: 0;
+  }
+
+  .add-button-card-cart {
+    border: none;
+    background-color: $c-light;
+    padding: 5px 8px 8px 8px;
+    border-radius: 3px;
+    &:hover {
+      cursor: pointer;
+      background-color: $c-primary;
+    }
+    &:focus {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-color: $c-primary;
+    }
+  }
+
   .bw {
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
     filter: grayscale(100%)

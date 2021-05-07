@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { changeSaleSupp, doneSales, onGoingSales } from '../../services/SaleService'
+import { cashConverter } from '../../helpers/priceConverter'
 
 const STATES = [ 'Procesando', 'Cancelado', 'Preparando', 'Enviado', 'Entregado' ]
 
@@ -45,7 +46,7 @@ const SuppSales = () => {
                 <div key={p.id}>
                   <p>{p.name}</p>
                   <p>x0{p.quantity}</p>
-                  <p>{(p.price) / 100}€</p>
+                  <p>{cashConverter(p.price)}€</p>
                 </div>
               ))
             }
@@ -66,7 +67,7 @@ const SuppSales = () => {
                 <div key={p.id}>
                   <p>{p.name}</p>
                   <p>x0{p.quantity}</p>
-                  <p>{(p.price) / 100}€</p>
+                  <p>{cashConverter(p.price)}€</p>
                 </div>
               ))
             }
