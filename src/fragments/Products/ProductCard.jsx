@@ -38,6 +38,7 @@ const ProductDetail = ({ product }) => {
     </div>
     </Link>
     <div className="row align-items-center">
+      <Toaster />
       <div className="col-9">
     <Link to={`/productos/${product.slug}`} className="text-decoration-none">
         <div className="row justify-content-start pl-2">
@@ -56,7 +57,6 @@ const ProductDetail = ({ product }) => {
         }
       </div>
     </div>
-      <Toaster />
     </div>
   )
 }

@@ -33,15 +33,15 @@ const MenuHover = ({ toggle }) => {
 
   return (
     <div 
-    className="Categs"
-    onMouseEnter={toggleIn}
-    onMouseLeave={toggleOut}
+      className="Categs container"
+      onMouseEnter={toggleIn}
+      onMouseLeave={toggleOut}
     >
-    {
-      mainCategs?.map((main, i) => (
-        <button key={i} onClick={() => getProducts(i)}>{main}</button>
-      ))
-    }
+        {
+          mainCategs?.map((main, i) => (
+            <button className="hover-categs" key={i} onClick={() => getProducts(i)}>{main}</button>
+          ))
+        }
     { redirect && (<Redirect to={`/productos?categoria=${param}`}/>)}
     </div>
   )

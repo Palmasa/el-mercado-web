@@ -3,7 +3,7 @@ import { BiChevronDown } from 'react-icons/bi'
 import { ZipContext } from '../../contexts/ZipContext'
 import { useContext, useState } from 'react'
 import './ZipBar.scss'
-import ZipSqare from '../ZipSquare/ZipSqare'
+import ZipPopUp from '../ZipPopUp/ZipPopUp'
 
 const ZipBar = () => {
   const { stateZip } = useContext(ZipContext)
@@ -23,7 +23,7 @@ const ZipBar = () => {
       <BiChevronDown />
     </button>
     {
-      zipSquare && <ZipSqare closeSquare={setZipSquare}/>
+      zipSquare && <ZipPopUp closeSquare={setZipSquare}/>
     }
     </>
   )

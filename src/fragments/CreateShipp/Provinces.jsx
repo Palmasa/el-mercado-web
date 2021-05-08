@@ -3,7 +3,6 @@ import { createShipping } from '../../services/ShippService';
 import Select from 'react-select'
 import SuppNavbar from '../SuppNavbar/SuppNavbar';
 import SelectCustom from './SelectCustom';
-import MultiSelect from './MultiSelect'
 import { optionsTime, optionProvinces } from './Data'
 
 const Provinces = () => {
@@ -21,8 +20,8 @@ const Provinces = () => {
   const onSubmit = (e) => {
     e.preventDefault()
     console.log(state.fields)
-    /* createShipping(state.fields)
-    .then(res => console.log(res)) */
+    createShipping(state.fields)
+    .then(res => console.log(res)) 
   }
 
   const handleChange = (e) => {

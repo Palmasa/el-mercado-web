@@ -2,11 +2,11 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { getSuppliers } from '../../services/SuppService.js'
 import Pagination from '../Products/Pagination'
+import ClipLoader from "react-spinners/ClipLoader";
 import CardSupp from './CardSupp.jsx'
 
 const AllSupp = () => {
   const [ suppliers, setSuppliers ] = useState([])
-  const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
   const [ suppPerPage ] = useState(5) //num
 
@@ -14,7 +14,6 @@ const AllSupp = () => {
     getSuppliers()
     .then((res) => {
       setSuppliers(res)
-      setLoading(false)
     })
   }
 
@@ -30,7 +29,13 @@ const AllSupp = () => {
   const paginate = (n) => {
     setCurrentPage(n)
   }
-
+  if (!suppliers) {
+    return (
+    <div style={{height: 700}}>
+    <div className="spinner-style"><ClipLoader color="#E15D45" />
+    </div>
+    </div>)
+  }
   return (
     <div className="py-5">
     <div className="container">

@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getProductPerSupp, reactivateProducts, desactivateProducts } from '../../services/ProductsService.js'
-import toast, { Toaster } from "react-hot-toast";
 import { cashConverter } from '../../helpers/priceConverter'
-
-const notify = (value) => toast(value);
 
 const ProductInfo = () => {
   const [ products, setProducts ] = useState([])
@@ -68,7 +65,6 @@ const ProductInfo = () => {
           </div>
         )
       }
-      <Toaster />
     </div>
   )
 }

@@ -1,1 +1,28 @@
 @use "src/styles/utils" as *;
+
+.EachProduct {
+  h4 {
+    color: $c-orange;
+  }
+
+  .link-to-supp {
+    color: $c-orange;
+    &:hover {
+      color: #ff2600;
+      text-decoration: none;
+    }
+  }
+  .box-info-product {
+    /* el nombre y descipcion de producto */
+  }
+  
+  .box-send-info {
+    box-shadow: rgba(0, 0, 0, 0.050) 0px 1px 15px;
+    border-radius: 3px;
+    border: {
+      style: solid;
+      width: 1px;
+      color: rgba(0, 0, 0, 0.135);
+    }
+  }
+}

@@ -10,4 +10,21 @@
   border-radius: 3px;
   height: 300px;
   width: 700px;
+  padding: 30px 40px;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: flex-start;
+  object-fit: fill;
+
+  .hover-categs {
+    border: none;
+    background-color: $c-light;
+
+    &:focus {
+      outline: none;
+      border: none;
+    }
+
+  }
 }
