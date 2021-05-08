@@ -1,27 +1,34 @@
 import { useState } from 'react'
-import Input from '../../components/Input/Input';
+import InputReg from '../../components/Input/InputReg';
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { register } from '../../services/AuthService';
-import './AuthForm.scss'
 
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const validators = {
+  name: (value) => {
+    let message
+    if (!value) {
+      message = '¿Seguro que no quiere introducir su nombre?'
+    }
+    return message
+  },
   email: (value) => {
     let message
     if (!value) {
-      message = 'Es necesario introducir el email'
+      message = '*Es necesario introducir el email'
     } else if (!EMAIL_PATTERN.test(value)) {
-      message = 'Es necesario introducir un email válido'
+      message = '*Es necesario introducir un email válido'
     }
     return message
   },
   password: (value) => {
     let message
     if (!value) {
-      message = 'Es necesario introducir la contraseña'
+      message = '*Es necesario introducir la contraseña'
     } else if (value.length < 6) {
-      message = 'La contraseña introducida debete tener mínimo 6 caracteres'
+      message = '*La contraseña introducida debete tener mínimo 6 caracteres'
     }
     return message
   }
@@ -37,6 +44,7 @@ const Register = () => {
       name: ''
     },
     errors: {
+      name: validators.name,
       email: validators.email,
       password: validators.password,
     }
@@ -102,29 +110,31 @@ const Register = () => {
       {
         done
         ? (
-          <p>Mira tu email</p>
+          <p>
+            <AiOutlineInfoCircle /> Revise su correo electrónico para confirmar su identidad, su bolsa le estará esperando cuando vuelva.
+          </p>
         ) : (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} className="login-register-form">
 
-          <Input 
+          <InputReg
             label="Nombre" name="name" type="text"
             value={state.fields.name}
             onChange={onChange} onBlur={onBlur} onFocus={onFocus}
             error={false}
           />
           
-          <Input 
+          <InputReg
             label="Email" name="email" type="email"
             value={state.fields.email}
             onChange={onChange} onBlur={onBlur} onFocus={onFocus}
             error={state.errors.email && touched.email ? state.errors.email : ""}
           />
 
-          <Input 
+          <InputReg
             label="Contraseña" name="password" type="password"
             value={state.fields.password}
             onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-            error={state.errors.password  && touched.password ? state.errors.password : ""}
+            error={state.errors.password && touched.password ? state.errors.password : ""}
           />
 
         <div>

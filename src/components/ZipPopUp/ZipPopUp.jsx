@@ -72,6 +72,8 @@ const ZipPopUp = ({ closeSquare }) => {
             setMessage('Todos los productos de su bolsa llegan a su destino')
             setResponse(true)
           }
+        } else {
+          closeSquare(false)
         }
         
       })

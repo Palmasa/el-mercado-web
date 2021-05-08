@@ -4,6 +4,7 @@ import Orders from './Orders'
 import { logout } from '../../store/AccessTokenStore.js'
 import { removeZip } from '../../store/zipStore'
 import { GrLogout } from 'react-icons/gr'
+import './AreaUsers.scss'
 
 const AreaUsers = () => {
   const [opt, setOpt] = useState(true)
@@ -28,21 +29,25 @@ const AreaUsers = () => {
           onClick={goLogin}
           className={`${opt ? "optTrue" : "" }` }
         >
-        Mi cuenta
+        Mis pedidos
         </button>
         <button 
           onClick={goRegister}
           className={`${opt ? "" : "optTrue" }` }
         >
-        Mis pedidos
+        Mis datos
         </button>
       </div>
       {
         opt
-        ? <MyProfile />
-        : <Orders /> 
+        ? <Orders /> 
+        : <MyProfile />
       }
-      <button onClick={eraseUser}><GrLogout /> Cerrar sesión</button>
+      <div className="container my-5">
+        <div className="d-flex flex-row-reverse mt-5">
+          <button className="logout-users" onClick={eraseUser}><small><GrLogout /> Cerrar sesión</small></button>
+        </div>
+      </div>
     </div>
   )
 }

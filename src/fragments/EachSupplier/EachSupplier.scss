@@ -1,1 +1,40 @@
 @use "src/styles/utils" as *;
+
+.spinner-style {
+  position: fixed;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%)
+}
+
+.img-owner {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  .circular-portrait {
+    width: 180px;
+    object-fit: cover;
+    height: auto;
+  }
+}
+
+.box-send-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: rgba(0, 0, 0, 0.050) 0px 1px 15px;
+  border-radius: 3px;
+  border: {
+    style: solid;
+    width: 1px;
+    color: rgba(0, 0, 0, 0.135)
+  }
+
+}

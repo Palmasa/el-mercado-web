@@ -20,6 +20,7 @@ import Four from '../fragments/CreateShipp/Four';
 import Provinces from '../fragments/CreateShipp/Provinces';
 import { CreateSaleScreen } from '../screens/CreateSaleScreen';
 import StripeTest from '../fragments/SaleCreate/StripeTest';
+import CategsScreen from '../screens/CategsScreen';
 
 const Router = () => {
   return (
@@ -32,7 +33,8 @@ const Router = () => {
 
         <Route exact path="/tiendas" component={SuppliersScreen}/>
         <Route exact path="/tiendas/:slug" component={SupplierDetailScreen}/>
-          {/* CREAR CATEGORIA */}
+        <Route exact path="/categorias" component={CategsScreen}/>
+
         <Route exact path="/acceso-usuarios" component={AuthScreen}/>
         <Route exact path="/activar-usuarios/:token" component={Activate}/>
         <Route exact path="/area-privada-usuarios" component={AreaUsersScreen}/>

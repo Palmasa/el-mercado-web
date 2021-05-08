@@ -5,6 +5,7 @@ import SelectCustom from './SelectCustom';
 import { useHistory } from 'react-router';
 import { optionsTime, optionProvinces } from './Data'
 import { useParams } from "react-router";
+import { toBackPrice, cashConverter } from '../../helpers/priceConverter'
 import './Four.scss'
 
 function Four() {
@@ -32,7 +33,7 @@ function Four() {
     fields: {
       name: '',
       selected: selec,
-      price: 0,
+      price: '',
       sendTime: '',
       sendDisccount: ''
     }
@@ -45,6 +46,9 @@ function Four() {
 
   const onSubmit = (e) => {
     e.preventDefault()
+    state.fields.price = toBackPrice(state.fields.price)
+    state.fields.sendDisccount = toBackPrice(state.fields.sendDisccount)
+
     const send = { ...state.fields, different: inputList }
     console.log(send)
     createShipping(send)
@@ -123,17 +127,19 @@ function Four() {
 
             <div className="row">
               <div className='col'>
-                <label htmlFor="price">Precio de envío* (base 1000)</label>
+                <label htmlFor="price">Precio de envío*</label>
               </div>
               <div className='col'>
                 <input
                   name="price"
                   type="number"
                   min="0"
+                  autoComplete="off"
                   onChange={handleChange}
                   value={state.fields.price}
                   className="puttIn"
                 />
+                { state.fields.price && <p>¿Es este el pecio correcto? <b>{cashConverter(toBackPrice(state.fields.price))} €</b></p>}
               </div>
             </div>
 
@@ -149,6 +155,7 @@ function Four() {
                   value={state.fields.sendDisccount}
                   className="puttIn"
                 />
+                { state.fields.sendDisccount && <p>¿Es esta la cantidad correcta? <b>{cashConverter(toBackPrice(state.fields.sendDisccount))} €</b></p>}
               </div>
             </div>
 

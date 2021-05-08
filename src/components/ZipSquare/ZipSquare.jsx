@@ -3,7 +3,7 @@ import { CartContext } from '../../contexts/CartContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import { sendZipBack } from '../../services/ZipService';
 import { setZip } from '../../store/zipStore';
-
+import './ZipSquare.scss'
 const NUMBERS_MATCH = /^[0-9]*$/
 
 const validators = {
@@ -89,7 +89,7 @@ const ZipSquare = () => {
   }
 
   return (
-    <div className="ZipSquare container px-3 py-2">
+    <div className="ZipSquare container justify-content-center px-3 py-2">
     {
       response
             ? (

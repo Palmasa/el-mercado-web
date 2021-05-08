@@ -1,7 +1,8 @@
 
 @use "src/styles/utils" as *;
+
 .ZipSquare {
-  animation: openZip 0.20s;
+
   > button {
     border: none;
     background-color: #fff;
@@ -12,11 +13,20 @@
     }
   }
   > form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 100%;
     padding: 15px;
+
     >.warning-zip {
       line-height: 14px;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    >h6 {
       margin-bottom: 0;
       padding-bottom: 0;
     }
@@ -27,6 +37,7 @@
     }
     > button {
       @include buttonAction;
+      width: 60%;
     }
   }
   

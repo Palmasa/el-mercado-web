@@ -1,9 +1,9 @@
 import React from "react"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
-import "./Magnify.scss"
+import "./ImgSlider.scss"
 
-const Magnify = ({ imgs }) => {
+const ImgSlider = ({ imgs }) => {
   const [currentSlide, setCurrentSlide] = React.useState(0)
   const [sliderRef, slider] = useKeenSlider({
     initial: 0,
@@ -20,7 +20,7 @@ const Magnify = ({ imgs }) => {
           imgs.map((img) => (<img  
             className="keen-slider__slide number-slide1" 
             key={img} src={img} alt='Producto' 
-            style={{objectFit: 'cover'}}/>
+            style={{objectFit: 'contain'}}/>
           ))
         }           
         </div>
@@ -84,4 +84,4 @@ function ArrowRight(props) {
   )
 }
 
-export default Magnify
+export default ImgSlider

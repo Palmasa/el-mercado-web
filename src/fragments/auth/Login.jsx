@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react'
-import Input from '../../components/Input/Input'
+import InputReg from '../../components/Input/InputReg'
 import { login } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
 import { setZip } from '../../store/zipStore'
@@ -7,7 +7,7 @@ import { setCart } from '../../store/cartStore'
 import { UserContext } from '../../contexts/UserContext';
 import { ZipContext } from '../../contexts/ZipContext';
 import { CartContext } from '../../contexts/CartContext';
-import './AuthForm.scss'
+import { useHistory } from 'react-router';
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -15,28 +15,29 @@ const validators = {
   email: (value) => {
     let message
     if (!value) {
-      message = 'Es necesario introducir el email'
+      message = '*Es necesario introducir el email'
     } else if (!EMAIL_PATTERN.test(value)) {
-      message = 'Es necesario introducir un email válido'
+      message = '*Es necesario introducir un email válido'
     }
     return message
   },
   password: (value) => {
     let message
     if (!value) {
-      message = 'Es necesario introducir la contraseña'
+      message = '*Es necesario introducir la contraseña'
     } else if (value.length < 6) {
-      message = 'La contraseña introducida es demasiado corta'
+      message = '*La contraseña introducida es demasiado corta'
     }
     return message
   }
 }
 
 /* Component Login ------------------------------------------------------- */
-const Login = () => {
+const Login = ({shoppingBag}) => {
   const { getUser } = useContext(UserContext)
   const { getCurrentZip } = useContext(ZipContext)
   const { getCurrentCart } = useContext(CartContext)
+  const { push } = useHistory();
   const [ state, setState ] = useState ({
     fields: {
       email: '',
@@ -70,7 +71,11 @@ const Login = () => {
           }
           getUser().then(() => {
             console.log('loged in')
-            // no push para cuando pagas
+            if (shoppingBag) {
+              console.log('Loged in')
+            } else {
+              push('/productos')
+            }
           })
   
           getCurrentZip()
@@ -118,17 +123,17 @@ const Login = () => {
   }
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div >
+      <form onSubmit={onSubmit} className="login-register-form">
 
-        <Input 
+        <InputReg 
           label="Email" name="email" type="email"
           value={state.fields.email}
           onChange={onChange} onBlur={onBlur} onFocus={onFocus}
           error={state.errors.email && touched.email ? state.errors.email : ""}
         />
 
-        <Input 
+        <InputReg 
           label="Contraseña" name="password" type="password"
           value={state.fields.password}
           onChange={onChange} onBlur={onBlur} onFocus={onFocus}

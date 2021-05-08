@@ -2,23 +2,17 @@
 
 [class^="number-slide"],
 [class*=" number-slide"] {
-  background: grey;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 50px;
   color: #fff;
   font-weight: 500;
-  height: 400px;
+  height: 500px;
 }
 
 .number-slide1 {
-  background: rgb(64, 175, 255);
-  background: linear-gradient(
-    128deg,
-    rgba(64, 175, 255, 1) 0%,
-    rgba(63, 97, 255, 1) 100%
-  );
+  background: #fff;
 }
 
 .number-slide2 {
@@ -120,5 +114,5 @@
 }
 
 .arrow--disabled {
-  fill: rgba(255, 255, 255, 0.5);
+  fill: rgba(255, 255, 255, 0.512);
 }

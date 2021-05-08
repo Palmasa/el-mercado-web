@@ -15,6 +15,14 @@
   .box-info-product {
     /* el nombre y descipcion de producto */
   }
+
+  .add-button-card-cart {
+    @include buttonAction;
+    &:hover {
+      background-color: $c-primary;
+      cursor: pointer;
+    }
+  }
   
   .box-send-info {
     box-shadow: rgba(0, 0, 0, 0.050) 0px 1px 15px;

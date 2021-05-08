@@ -8,6 +8,7 @@ import { useLocation } from 'react-router';
 import { BsChevronRight } from 'react-icons/bs'
 import { IconContext } from "react-icons"
 import ClipLoader from "react-spinners/ClipLoader";
+import notFoundImg from '../../images/errors/undraw_page_not_found_su7k.png'
 import './Products.scss'
 
 let main = Object.keys(allCategs)
@@ -22,7 +23,7 @@ const Products = () => {
   const [ products, setProducts ] = useState({})
   const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage ] = useState(9) //num
+  const [ prodPerPage ] = useState(18) //num
   const [ mainCateg, setMain ] = useState([])
   const [ notFound, setNotFound ] = useState(false)
   const [ allProductsPage, setallProductsPage ] = useState(false)
@@ -136,7 +137,7 @@ const Products = () => {
         <div className="row justify-content-center w-100">
           { 
             notFound
-            ? <p>NOT FOUND</p>
+            ? <img src={notFoundImg} alt="404" className="img-fluid mr-4" style={{width: 280, marginTop: 100}}/>
             : (
               <>
               <div className="row">

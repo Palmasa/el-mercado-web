@@ -1,0 +1,16 @@
+@use "src/styles/utils" as *;
+
+.tiendas-card-bott {
+  .card-title {
+    color: $c-dark;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+.text-decoration-none {
+  &:hover {
+    text-decoration: none;
+  }
+}

@@ -3,7 +3,7 @@ import Login from './Login'
 import Register from './Register'
 import './Auth.scss'
 
-const Auth = () => {
+const Auth = ({shoppingBag}) => {
   const [opt, setOpt] = useState(true)
 
   const goRegister = () => {
@@ -15,7 +15,7 @@ const Auth = () => {
   }
 
   return (
-    <div className="Auth container">
+    <div className="Auth container mb-5">
       <div className="authMenu">
         <button 
           onClick={goLogin}
@@ -32,7 +32,7 @@ const Auth = () => {
       </div>
       {
         opt
-        ? <Login />
+        ? <Login shoppingBag={shoppingBag}/>
         : <Register /> 
       }
     </div>

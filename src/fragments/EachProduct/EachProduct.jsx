@@ -7,9 +7,9 @@ import { CartContext } from '../../contexts/CartContext'
 import { createAddCart } from '../../services/CartService'
 import { ZipContext } from '../../contexts/ZipContext';
 import { setCart } from '../../store/cartStore'
+import { AiOutlineInfoCircle } from 'react-icons/ai'
 import toast, { Toaster } from 'react-hot-toast';
-import ToRecomend from '../../components/ToRecommend/ToRecomend'
-import Magnify from "./Magnify";
+import ImgSlider from "./ImgSlider";
 import ClipLoader from "react-spinners/ClipLoader";
 import ZipSquare from "../../components/ZipSquare/ZipSquare";
 import './EachProduct.scss'
@@ -61,7 +61,7 @@ const EachProduct = () => {
     <div className="container mt-2 EachProduct">
       <div className="row mb-5">
         <div className="col-md">
-            <Magnify imgs={product.img}/>
+            <ImgSlider imgs={product.img}/>
         </div>
         <div className="col-md ml-4 mt-3">
           <div className="card-body box-info-product">
@@ -82,23 +82,22 @@ const EachProduct = () => {
           {
             okTosend
             ? (
-              <div className="box-send-info p-4 m-3">
-                <h4>{cashConverter(product.price)} €</h4>
-                {cashConverter(shippModel?.sendPrice)} €
-                {shippModel?.sendTime}
+              <div className="box-send-info p-4 mx-5">
+                <h4>{cashConverter(product.price)} € / {product.measure}</h4>
+                <p style={{marginBottom: 0}}>Precio de envío: {cashConverter(shippModel?.sendPrice)} €</p>
+                <p>Entrega en {shippModel?.sendTime}</p>
                 <button className="add-button-card-cart" onClick={addItem}>Añadir al carrito</button>
               </div>
             ) : (
-              <div className="box-send-info p-2 m-3">
+              <div className="box-send-info p-2 mx-5 justify-content-center">
                 {
                   stateZip
-                  ? <p>Este producto no se envía a su provincia</p>
+                  ? <p style={{marginBottom: 0}}><AiOutlineInfoCircle /> Este producto no se envía a su provincia</p>
                   : (
-                    <>
-                    <h4>{cashConverter(product.price)} €</h4>
+                    <div className="row justify-content-center pt-2">
+                    <h4 style={{marginBottom: 0}}>{cashConverter(product.price)} € / {product.measure}</h4>
                       <ZipSquare />
-                    <button className="add-button-card-cart" disabled={true}>Añadir al carrito</button>
-                    </>
+                    </div>
                   )
                 }
               </div>
@@ -106,24 +105,6 @@ const EachProduct = () => {
           }
         </div>
       </div>
-
-      <div className="row mb-3">
-        <div className="col">
-          
-          {supplier?.name}
-          {supplier?.name}
-        </div>
-
-        <div className="col">
-          {supplier?.ownerName}
-        </div>
-      </div>
-
-      <div className="row justify-content-center">
-        <h6>TO RECOMMEND</h6>
-        <ToRecomend />
-      </div>
-
       <Toaster />
     </div>
   );

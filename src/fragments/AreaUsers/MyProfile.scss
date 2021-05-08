@@ -1,0 +1,17 @@
+@use "src/styles/utils" as *;
+
+.myProfile-address-form {
+  input {
+    @include regular-input;
+    width: 100%;
+  }
+  button {
+    @include buttonAction;
+    width: 100%;
+    margin-top: 15px;
+  }
+  small {
+    margin-bottom: 30px;
+  }
+
+}

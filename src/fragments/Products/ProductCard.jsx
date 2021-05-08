@@ -37,12 +37,12 @@ const ProductDetail = ({ product }) => {
         <img src={product.img[0]} alt={product.name} className={`img-card ${product.noSend ? "bw" : ''}`}/>
     </div>
     </Link>
-    <div className="row align-items-center">
+    <div className="row info-card-product-mini">
       <Toaster />
-      <div className="col-9">
-    <Link to={`/productos/${product.slug}`} className="text-decoration-none">
+      <div className="col-9 align-items-center">
+    <Link to={`/productos/${product.slug}`} className="text-decoration-none align-items-center">
         <div className="row justify-content-start pl-2">
-          <p className="text-card">{product.name}</p>
+          <p className="text-card name-of-product">{product.name}</p>
         </div>
         <div className="row justify-content-start pl-2">
           <p className="money-card">{cashConverter(product.price)}€ / {product.measure}</p>

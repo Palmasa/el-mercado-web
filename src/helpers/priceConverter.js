@@ -7,10 +7,29 @@ export const priceConverter = (price) => {
   }
 }
 
-export const cashConverter = (num) => {
-  return (num/100).toFixed(2).replace('.', ',')
+
+export const toBackPrice = (num) => {
+  let result = num
+  let eur, cent
+  if (num.toString().includes(',') || num.toString().includes('.')) {
+    result = (result).toString().replace(',', '.')
+    result = result.split('.')
+    eur = result[0]
+    cent = result[1]
+    if (result[0].toString().length === 1) {
+      eur = `0${result[0]}`
+    }
+    if (result[1]?.toString().length === 1) {
+      cent = `${result[1]}0`
+    }
+    result = `${eur}${cent}`
+    result = Number(result)
+  } else {
+    result = Number(result) * 100
+  }
+  return result
 }
 
-export const converterCash = (num) => {
-  Number((num).toString().replace('.', ''))
+export const cashConverter = (num) => {
+  return Number(num/100).toFixed(2)
 }

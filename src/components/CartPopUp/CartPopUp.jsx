@@ -32,7 +32,13 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
       }
 
-      return <>{carts}<p>Total: {cashConverter(stateCart.total)}€</p></>
+      return (
+      <>
+       <p>Total: {cashConverter(stateCart.total)}€</p>
+       {carts}
+      </>
+      
+      )
 
     }, [stateCart]
   )
@@ -45,7 +51,10 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
   return (
     <button ref={modal} className="overlay">
       <div className="popUp">
-        <div className="buttonContainerCart">
+        <div className="buttonContainerCart container-fluid">
+        <div>
+          {/* JFK, AQUIIIIII */}
+        </div>
           <button onClick={() => closeCart()}> <MdClose /></button>
           <p>Bolsa ({productsQuantity})</p>
         </div>
@@ -60,7 +69,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
           )
           }
         </>
-        <Link to="/tramitar-pedido">Tramitar pedido</Link>
+        <Link to="/tramitar-pedido" className="button-tramitar-pedido">Tramitar pedido</Link>
       </div>
     </button>
   )

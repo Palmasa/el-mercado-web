@@ -1,7 +1,7 @@
 import { useContext, useState} from 'react'
 import { UserContext } from '../../contexts/UserContext'
-import Input from '../../components/Input/Input'
-
+import Input from '../../components/Input/InputReg'
+import './MyProfile.scss'
 const validators = {
   street: (value) => {
     let message
@@ -90,9 +90,8 @@ const MyProfile = () => {
   }
 
   return (
-    <div className="w-100">
-     {user?.name}
-        <form onSubmit={onSubmit} className="w-100">
+    <div className="px-5">
+        <form onSubmit={onSubmit} className="myProfile-address-form px-5">
 
         <Input 
           label="Ciudad" name="city" type="text"
@@ -119,11 +118,6 @@ const MyProfile = () => {
           value={state.fields.block}
           onChange={onChange} onBlur={onBlur} onFocus={onFocus}
         />
-        <p>
-        *Si cambia el código postal puede que haya productos en su bolsa que
-        no lleguen a la nueva dirección proporcionada. Se realizará una revisión de
-        la bolsa y se eliminarán aquellos que no dispongan de envío.
-        </p>
         <Input 
           label="Código postal" name="zip" type="text"
           value={state.fields.zip}
@@ -133,7 +127,7 @@ const MyProfile = () => {
           {resError.error ? resError.info : ""}
         </div>
 
-      <button type="submit">Editar dirección de entrega</button>
+      <button type="submit">Enviar</button>
     </form>
     </div>
   )

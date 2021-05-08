@@ -4,14 +4,24 @@
   background-color: $c-light;
   height: 300px;
   width: 220px;
+  border-radius: 2px;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
+  .info-card-product-mini {
+    margin-bottom: auto;
 
+  }
+  .name-of-product {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 15px;
+  }
   .container-img{
     height: 82%;
     box-shadow: rgba(0, 0, 0, 0.050) 0px 1px 15px;
     .img-card {
+      border-radius: 2px 2px 0px 0px;
       width:100%;
       height:100%;
       object-fit: cover;
@@ -32,6 +42,7 @@
   .money-card {
     color: $c-dark;
     margin-bottom: 0;
+    font-size: 15px;
   }
 
   .add-button-card-cart {

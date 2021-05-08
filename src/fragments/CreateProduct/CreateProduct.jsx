@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { createProduct } from "../../services/ProductsService";
 import { getAllShippings } from "../../services/SuppService.js";
+import { toBackPrice, cashConverter } from '../../helpers/priceConverter'
 import Input from "../../components/Input/Input";
 import { useHistory } from "react-router";
 import { productCategs } from './data'
@@ -27,7 +28,7 @@ const CreateProduct = () => {
       name: "",
       bio: "",
       categ: "",
-      price: 0,
+      price: '',
       measure: "",
       img: [],
       ifPack: 0,
@@ -37,7 +38,7 @@ const CreateProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
-
+    state.fields.price = toBackPrice(state.fields.price)
     console.log(state.fields)
     let formData = new FormData();
     Object.entries(state.fields).forEach(([key, value]) => {
@@ -153,14 +154,26 @@ const CreateProduct = () => {
 
             <div className="row mt-3">
               <Input 
-                label={`Precio / ${state.fields.measure} * (millares)`} name="price" type="number"
+                label={`Precio / ${state.fields.measure} *`} name="price"
                 min='0'
                 value={state.fields.price}
                 onChange={onChange}
                 autoComplete="off"
               />
+            {
+              state.fields.price && (
+                <>
+                <div className="col-4 mb-0">
+                  <small>¿Es este el pecio correcto? </small>
+                </div>
+                <div className="col justify-content-start mb-0">
+                <small>{cashConverter(toBackPrice(state.fields.price))} €</small>
+                </div> 
+                </> 
+                )
+                
+            }
             </div>
-  
             <div className="row mt-3">
               <Input 
                 label="¿Está paquetizado? Indique cantidad/pack" name="ifPack" type="number"

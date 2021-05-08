@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import { getSuppliers } from '../../services/SuppService.js'
 import Pagination from '../Products/Pagination'
@@ -8,7 +7,7 @@ import CardSupp from './CardSupp.jsx'
 const AllSupp = () => {
   const [ suppliers, setSuppliers ] = useState([])
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ suppPerPage ] = useState(5) //num
+  const [ suppPerPage ] = useState(10) //num
 
   const getAllSupp = () => {
     getSuppliers()

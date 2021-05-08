@@ -1,1 +1,7 @@
 @use "src/styles/utils" as *;
+
+.logout-users {
+    @include buttonAction;
+    margin-top: 15px;
+    padding-bottom: 8px;
+}
