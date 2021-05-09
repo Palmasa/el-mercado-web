@@ -85,8 +85,8 @@ const RegisterSupp = () => {
   }
 
   return (
-    <div className="container">
-      <div className="AuthSuppliers">
+    <div className="container px-5">
+      <div className="AuthSuppliers px-5">
         <div className="partRegisterSupp text-center">
           <h2>Registra tu tienda</h2>
         </div>
@@ -228,7 +228,9 @@ const RegisterSupp = () => {
                 </div>
 
               </div>
-              <div className="col">
+            </div>
+            <div className="partRegisterSupp">
+              <div className="row justify-content-center mb-5">
                 <div className="mapContainerRegister">
                   <SearchableMap lift={lift}/>
                 </div>

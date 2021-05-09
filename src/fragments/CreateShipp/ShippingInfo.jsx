@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getAllShippings, deleteShipping } from '../../services/SuppService.js'
-import FadeLoader from "react-spinners/FadeLoader";
+import ClipLoader from "react-spinners/ClipLoader";
 import { Link } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast';
 import 'react-accessible-accordion/dist/fancy-example.css';
@@ -48,7 +48,9 @@ const ShippingInfo = () => {
     </div>
       {
         loading
-        ? <FadeLoader color="#f1ebe4" width="3" height="14" radius="0"/>
+        ? (<div style={{ height: 700}}>
+            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
+          </div>)
         : (
           <div className="mb-5">
             <Accordion allowZeroExpanded="true">

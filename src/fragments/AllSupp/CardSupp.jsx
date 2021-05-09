@@ -5,9 +5,11 @@ import './CardSupp.scss'
 
 const CardSupp = ({ supplier }) => {
   return (
-    <Link to={`/tiendas/${supplier.slug}`} className="text-decoration-none">
-      <div className="card text-decoration-none">
-        <img src={supplier.imgs} alt={supplier.name}/>
+    <Link to={`/tiendas/${supplier.slug}`} className="text-decoration-none complete-card">
+      <div className="container text-decoration-none h-100 complete-card">
+        <div className="container-img complete-card">
+          <img src={supplier.imgs} alt={supplier.name} className={`img-card`}/>
+        </div>
         <div className="card-block tiendas-card-bott text-decoration-none p-2">
           <h4 className="card-title"><AiOutlineShop />{supplier.name}</h4>
           <h6 className="card-subtitle text-muted">{supplier.categ}</h6>

@@ -1,5 +1,5 @@
 import { Route, Switch, Redirect} from 'react-router-dom';
-/* import Error from '../screens/Error' */
+import Error from '../screens/Error'
 import HomeScreen from '../screens/HomeScreen';
 import ProductsScreen from '../screens/ProductsScreen';
 import ProductDetailScreen from '../screens/ProductDetailScreen';
@@ -59,8 +59,8 @@ const Router = () => {
         <Route exact path="/productos-tiendas" component={ProductScreen} />
 
 {/* Errores ---------------------------------------------------------------------------------------- */}
-        {/* <Route exact path="/404" component={() => <Error code={404} />} />
-        <Route exact path="/403" component={() => <Error code={403} />} /> */}
+        <Route exact path="/404" component={() => <Error code={404} />} />
+        <Route exact path="/403" component={() => <Error code={403} />} /> 
 
         <Redirect to="/" />
       </Switch>

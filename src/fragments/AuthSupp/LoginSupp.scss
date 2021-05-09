@@ -1,5 +1,23 @@
 @use "src/styles/utils" as *;
 
-.errorsRegister {
-  
+.box-login-supp {
+  background-color: $c-light;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.login-registerSupp-form {
+  input {
+    @include regular-input;
+  }
+  button {
+    @include buttonAction;
+    margin-top: 15px;
+    background-color: $c-dark;
+    color: $c-light;
+  }
+  small {
+    color: $c-orange;
+  }
+
 }

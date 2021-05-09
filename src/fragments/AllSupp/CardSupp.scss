@@ -5,12 +5,30 @@
     color: $c-dark;
     &:hover {
       text-decoration: none;
+      color: $c-orange;
     }
   }
 }
+.complete-card {
+  &:hover {
+    color: $c-orange;
+  }
+}
+.container-img{
+  height: 82%;
+  box-shadow: rgba(0, 0, 0, 0.334) 0px 1px 15px;
+  .img-card {
+    border-radius: 2px 2px 0px 0px;
+    width:100%;
+    height:100%;
+    object-fit: cover;
+  }
+}
+
 
 .text-decoration-none {
   &:hover {
     text-decoration: none;
+    color: $c-orange;
   }
 }

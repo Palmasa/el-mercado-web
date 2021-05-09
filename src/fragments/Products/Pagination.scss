@@ -1,0 +1,21 @@
+@use "src/styles/utils" as *;
+
+.number-page {
+  color: $c-dark;
+  border: none;
+  background-color: #fff;
+  margin-right: 4px;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  &:active {
+    outline: none;
+    text-decoration: underline;
+  }
+  &:hover {
+    background-color: $c-primary;
+  }
+  &:focus {
+    text-decoration: underline;
+    outline: none;
+  }
+}

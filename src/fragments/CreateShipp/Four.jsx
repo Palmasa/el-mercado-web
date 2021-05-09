@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import SuppNavbar from '../SuppNavbar/SuppNavbar';
 import { createShipping } from '../../services/ShippService';
 import SelectCustom from './SelectCustom';
+import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory } from 'react-router';
 import { optionsTime, optionProvinces } from './Data'
 import { useParams } from "react-router";
@@ -99,7 +100,7 @@ function Four() {
     <>
     <SuppNavbar />
     <div className="container d-flex justify-content-center">
-      <div className="AuthSuppliers" style={{width: 600}}>
+      <div className="CreateShipp" style={{width: 600}}>
         <div className="row justify-content-center border-bottom">
           <h1>Crear modelo de envío </h1>
         </div>

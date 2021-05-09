@@ -1,5 +1,13 @@
 @use "src/styles/utils" as *;
 
+.CreateProduct {
+  margin-top: 20px;
+  padding: 20px 15px;
+  background-color: $c-light;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .putIn {
   border: none;
   border-radius: 3px;
@@ -42,5 +50,8 @@
 }
 
 .ButtonCreateP {
-  @include buttonAction
+  @include buttonAction;
+  width: 100%;
+  background-color: $c-dark;
+  color: $c-light;
 }

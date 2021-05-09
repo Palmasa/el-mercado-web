@@ -1,16 +1,23 @@
 @use "src/styles/utils" as *;
 
 .Footer {
-  background-color: $c-light;
+  background: linear-gradient(to bottom, $c-light 0%,#fff 100%);
   color: $c-dark;
   margin-top: 50px;
-  height: 150px;
+  height: 80px;
   border-top: {
     color: $c-primary;
     width: 1px;
     style: solid;
   };
 
+  .footer-link {
+    color: $c-dark;
+    &:hover {
+      text-decoration: none;
+      color: $c-orange;
+    }
+  }
   > p {
     margin: 0px;
   }

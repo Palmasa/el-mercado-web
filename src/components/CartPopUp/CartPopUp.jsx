@@ -34,10 +34,12 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
       return (
       <>
-       <p>Total: {cashConverter(stateCart.total)}€</p>
        {carts}
+      <div className="text-right w-100 pr-3 my-4">
+        <h5>Total: {cashConverter(stateCart.total)}€</h5>
+      </div>
+      <Link to="/tramitar-pedido" className="button-tramitar-pedido text-center">Tramitar pedido</Link>
       </>
-      
       )
 
     }, [stateCart]
@@ -49,14 +51,17 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
 
   return (
-    <button ref={modal} className="overlay">
+    <div ref={modal} className="overlay">
       <div className="popUp">
-        <div className="buttonContainerCart container-fluid">
-        <div>
-          {/* JFK, AQUIIIIII */}
+        <div className="container-fluid pr-0 mb-3">
+        <div className="buttonContainerCart row">
+          <div className="close-popup">
+            <button onClick={() => closeCart()}> <MdClose /></button>
+          </div>
+          <div className="text-right">
+            <p style={{marginBottom: 0, paddingTop: 3}}>Bolsa ({productsQuantity})</p>
+          </div>
         </div>
-          <button onClick={() => closeCart()}> <MdClose /></button>
-          <p>Bolsa ({productsQuantity})</p>
         </div>
         <>
           {width < 640
@@ -69,9 +74,8 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
           )
           }
         </>
-        <Link to="/tramitar-pedido" className="button-tramitar-pedido">Tramitar pedido</Link>
       </div>
-    </button>
+    </div>
   )
 }
 

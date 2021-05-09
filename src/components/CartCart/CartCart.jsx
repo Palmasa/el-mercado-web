@@ -23,27 +23,51 @@ const CartCart = ({ eachCart }) => {
   }
 
   return (
-    <div className="CartCart">
-    <p>{eachCart[0].supplier}</p>
-      {
+    <div className="CartCart container p-3">
+    <div className="row mb-4 justify-content-center align-items-center">
+      <div className="col">
+        <h5>{eachCart[0].supplier}</h5>
+      </div>
+      <div className="col">
+      <div className="container">
+        <div className="row justify-content-end">
+          <p className="sendPrice"> <FiTruck /> {cashConverter(eachCart[0].sendPrice)}€</p>
+        </div>
+        <div className="row justify-content-end">
+          <p style={{marginBottom: 0}}><small>{eachCart[0].sendTime}</small></p>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div className="container  w-100">
+    {
         eachCart.map((product) => (
-        <div className="eachProduct" key={product.id}>
-          <img src={product.img} alt={product.name} />
-          <small>{product.sendTime}</small>
-          <p>{product.name}</p>
-
-          <button onClick={() => less(product.product)}><VscDash /></button>
-          <p>x0{product.quantity} </p>
-          <button onClick={() => plus(product.product)}><BsPlus /></button>
-
-          <p>{cashConverter(product.price)}€</p>
-
-          <button onClick={() => deleteItem(product.product)}><MdClose /></button>
+        <div className="row justify-content-between" key={product.id}>
+          <div className="col-2 p-0">
+            <img src={product.img} alt={product.name} style={{width: 45}}/>
+          </div>
+          <div className="col-4 p-0">
+            <p>{product.name}</p>
+          </div>
+          <div className="col- p-0">
+            <button className="button-cart-mini" onClick={() => less(product.product)}><VscDash /></button>
+          </div>
+          <div className="col- p-0">
+            <p>x0{product.quantity} </p>
+          </div>
+          <div className="col- p-0">
+            <button className="button-cart-mini" onClick={() => plus(product.product)}><BsPlus /></button>
+          </div>
+          <div className="col- p-0">
+            <p>{cashConverter(product.price)} €</p>
+          </div>
+          <div className="col- p-0">
+            <button className="button-cart-mini" onClick={() => deleteItem(product.product)}><MdClose /></button>
+          </div>
         </div>
       ))
-      } 
-      <p className="sendPrice"> <FiTruck /> Precio del envío {cashConverter(eachCart[0].sendPrice)}€</p>
-
+    } 
+    </div>
     </div>
   )
 }

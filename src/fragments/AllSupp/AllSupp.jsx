@@ -8,11 +8,13 @@ const AllSupp = () => {
   const [ suppliers, setSuppliers ] = useState([])
   const [ currentPage, setCurrentPage] = useState(1)
   const [ suppPerPage ] = useState(10) //num
+  const [loader, setLoader] = useState(true);
 
   const getAllSupp = () => {
     getSuppliers()
     .then((res) => {
       setSuppliers(res)
+      setLoader(false)
     })
   }
 
@@ -28,32 +30,39 @@ const AllSupp = () => {
   const paginate = (n) => {
     setCurrentPage(n)
   }
-  if (!suppliers) {
-    return (
-    <div style={{height: 700}}>
-    <div className="spinner-style"><ClipLoader color="#E15D45" />
-    </div>
-    </div>)
-  }
+
   return (
-    <div className="py-5">
-    <div className="container">
-      <div className="row hidden-md-up">
+    <>
     {
-      currentSupp.map((supp) => (
-        <div key={supp.id} className="col-md-4  mb-3">
-            <CardSupp supplier={supp} />
+      loader
+      ? (
+        <div style={{ height: 800}}>
+            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
         </div>
-      ))
+      ) : (
+        <div className="py-5">
+        <div className="container">
+          <div className="row hidden-md-up">
+        {
+          currentSupp.map((supp) => (
+            <div key={supp.id} className="col-md-4 mb-5">
+                <CardSupp supplier={supp} />
+            </div>
+          ))
+        }
+          </div>
+          <div className=" row justify-content-center">
+            <Pagination 
+              prodPerPage={suppPerPage}
+              totalProd={suppLength} 
+              paginate={paginate}
+            />
+          </div>
+          </div>
+        </div>
+      )
     }
-      </div>
-      <Pagination 
-        prodPerPage={suppPerPage}
-        totalProd={suppLength} 
-        paginate={paginate}
-      />
-      </div>
-    </div>
+   </>
   )
 }
 

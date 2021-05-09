@@ -26,7 +26,15 @@ const SaleCreate = () => {
         
         carts.push( <CartCart eachCart={eachCart} key={i}/> )
       }
-      return <>{carts}<p>Total: {cashConverter(stateCart?.total)}€</p></>
+      return (
+        <>
+        <h4 className="mb-4 pl-2">Bolsa de la compra</h4>
+         {carts}
+        <div className="text-right w-100 pr-1 my-4">
+          <h5>Total: {cashConverter(stateCart?.total)}€</h5>
+        </div>
+        </>
+        )
     }, [stateCart],
   )
 
@@ -40,7 +48,7 @@ const SaleCreate = () => {
       stepOne
       ? (
       <div className="row">
-      <div className="col">
+      <div className="col mt-4 mr-2">
         {paintCarts()}
       </div>
       <div className="col">

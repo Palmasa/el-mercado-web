@@ -4,13 +4,16 @@
   position: relative;
   border: none;
   background-color: $c-light;
-
+  &:hover {
+    cursor: pointer;
+  }
   &:focus {
     border: none;
     outline: none;
   }
 
 }
+
 .numOfItems {
 
   .circleCart {
@@ -22,6 +25,9 @@
     border-radius: 50%;
     height: 17px;
     width: 17px;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   .numCart {
@@ -31,5 +37,8 @@
     right: 81px;
     z-index: 9999;
     font-weight: 500;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

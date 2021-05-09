@@ -1,4 +1,4 @@
-import React from 'react'
+import './Pagination.scss'
 
 const Pagination = ({ prodPerPage, totalProd, paginate }) => {
   const pageNumbers = []
@@ -12,7 +12,7 @@ const Pagination = ({ prodPerPage, totalProd, paginate }) => {
       <ul className="pagination">
     {pageNumbers.map((n) => (
       <li key={n} className='page-item'>
-        <button onClick={()=> paginate(n)} href="!#" className="page-link">{n}</button>
+        <button onClick={()=> paginate(n)} href="!#" className="number-page">{n}</button>
       </li>
     ))}
       </ul>

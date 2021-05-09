@@ -1,0 +1,21 @@
+@use "src/styles/utils" as *;
+
+.products-butttons-suppliers {
+  > button {
+    @include buttonAction;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+}
+
+.activate {
+
+}
+.desactivate {
+
+}
+.delete-supps {
+  background-color: $c-grey-light;
+}

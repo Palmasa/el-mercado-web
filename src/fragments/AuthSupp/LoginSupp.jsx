@@ -1,9 +1,10 @@
 import { useState, useContext } from 'react'
-import Input from '../../components/Input/Input'
+import InputReg from '../../components/Input/InputReg'
 import { SuppContext } from '../../contexts/SuppContext';
 import { suppLogin } from '../../services/AuthService';
 import { setAccessToken } from '../../store/AccessTokenStore.js'
 import { useHistory } from 'react-router';
+import image from '../../images/vecteezy_healthy-food-in-paper-bag-vegetables-and-fruits_2150555.jpg'
 import './LoginSupp.scss'
 
 const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -98,35 +99,41 @@ const LoginSupp = () => {
     }))
   }
   return (
-    <>
-        <div className="container">
-          <div className="AuthSuppliers">
-            <div className="row justify-content-center">
+    <div className="container p-4">
+      <div className="row align-items-center">
+        <div className="col py-2">
+          <img src={image} className="img-fluid" alt="Vendor"/>
+        </div>
+        <div className="col">
+        <div className="container box-login-supp py-5">
+            <div className="row justify-content-center mb-3">
               <h2>Acceso a tu tienda</h2>
             </div>
             <div className="row justify-content-center">
-              <form onSubmit={onSubmit}>
-                <Input 
-                  label="Email" name="email" type="email"
-                  value={state.fields.email}
-                  onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-                  error={state.errors.email && touched.email ? state.errors.email : ""}
-                />
-                <Input 
-                  label="Contraseña" name="password" type="password"
-                  value={state.fields.password}
-                  onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-                  error={state.errors.password  && touched.password ? state.errors.password : ""}
-                />
-                <div className="errorsRegister">
-                  <small>{resError.error ? resError.info : ""}</small>
+              <form onSubmit={onSubmit} className="login-registerSupp-form">
+              <InputReg 
+                label="Email" name="email" type="email"
+                value={state.fields.email}
+                onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+                error={state.errors.email && touched.email ? state.errors.email : ""}
+              />
+
+              <InputReg 
+                label="Contraseña" name="password" type="password"
+                value={state.fields.password}
+                onChange={onChange} onBlur={onBlur} onFocus={onFocus}
+                error={state.errors.password && touched.password ? state.errors.password : ""}
+              />    
+              <p><small>{resError.error ? resError.info : ""}</small></p>
+                <div className="row justify-content-center">
+                  <button type="submit">Acceder</button>
                 </div>
-                <button type="submit">Acceder</button>
               </form>
             </div>
           </div>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,45 @@
+@use "src/styles/utils" as *;
+
+.states-suppliers {
+   border: none;
+   border-radius: 3px;
+   padding: 5px 8px;
+
+   &:hover {
+    cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+   }
+
+   &:active {
+    outline: none;
+    border: none;
+  }
+
+  &:focus {
+    outline: none;
+    border: none;
+  }
+}
+
+.highlight {
+  border: red 2px solid;
+}
+
+.Procesando{
+  background-color: rgba(70, 161, 70, 0.396);
+}
+.Cancelado {
+  background-color: rgba(255, 0, 0, 0.327);
+}
+
+.Preparando {
+  background-color: rgba(197, 203, 13, 0.396);
+}
+
+.Enviado {
+  background-color: rgba(34, 148, 193, 0.396);
+}
+
+.Entregado {
+  background-color: rgba(0, 117, 35, 0.738);
+}

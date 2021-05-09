@@ -1,5 +1,13 @@
 @use "src/styles/utils" as *;
 
+.CreateShipp {
+  margin-top: 20px;
+  padding: 20px 15px;
+  background-color: $c-light;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .buttonShipping {
     font-size: 1.2rem;
     background-color: $c-dark;
@@ -7,6 +15,7 @@
     padding: 5px 15px;
     border-radius: 3px;
     border: none;
+    width: 100%;
 
     &:focus {
       outline: none;

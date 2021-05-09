@@ -1,18 +1,18 @@
 @use "src/styles/utils" as *;
 
-
 .AuthSuppliers {
-  margin: 20px;
-  padding: 20px;
+  margin: 80px;
   background-color: $c-light;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   > form {
+    padding: 20px 40px 20px 40px;
       @include inputFile;
+    
 
     .select-input {
       > select {
-        @include regular-input
+        @include regular-input;
       }
     }
 
@@ -48,6 +48,7 @@
     justify-content: space-around;
     margin-bottom: 25px;
     padding: 20px;
+    padding: 20px 40px 20px 40px;
     border-bottom: {
       style: solid;
       width: 1px;
@@ -62,8 +63,7 @@
   }
 
   .mapContainerRegister {
-    border: 1px solid black;
-    width: 260px;
+    width: 460px;
     height: 200px;
 
   }

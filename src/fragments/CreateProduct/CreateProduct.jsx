@@ -5,6 +5,7 @@ import { toBackPrice, cashConverter } from '../../helpers/priceConverter'
 import Input from "../../components/Input/Input";
 import { useHistory } from "react-router";
 import { productCategs } from './data'
+import ClipLoader from "react-spinners/ClipLoader";
 import "./CreateProduct.scss";
 
 function PreviewImage(uploadImage, imgsArr) {
@@ -22,6 +23,7 @@ const MEASURES = ["Kg", "Unidad", "Pack", "L", "ml"];
 const CreateProduct = () => {
   const { push } = useHistory();
   const [ shippings, setShippings ] = useState([])
+  const [loader, setLoader] = useState(true);
   const [state, setState] = useState({
     fields: {
       shippingName: '',
@@ -38,6 +40,7 @@ const CreateProduct = () => {
 
   const onSubmit = (e) => {
     e.preventDefault()
+    setLoader(true)
     state.fields.price = toBackPrice(state.fields.price)
     console.log(state.fields)
     let formData = new FormData();
@@ -53,7 +56,10 @@ const CreateProduct = () => {
         console.log(product);
         push("/productos-tiendas")
       })
-      .catch((e) => console.log(e.response.data));
+      .catch((e) => {
+        console.log(e.response.data)
+        setLoader(false)
+      });
   };
 
   const onChange = (e) => {
@@ -81,6 +87,7 @@ const CreateProduct = () => {
     .then((res) => {
       res.map((ship) => nameShippings.push(ship.name))
       setShippings(nameShippings)
+      setLoader(false)
     })
   }
   
@@ -92,11 +99,16 @@ const CreateProduct = () => {
   return (
     <>
       { 
-      shippings 
+      loader 
       ? (
+        <div style={{ height: 700}}>
+            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
+        </div>
+      )
+      : (
       <div className="container d-flex justify-content-center">
-        <div className="AuthSuppliers" style={{width: 600}}>
-        <div className="text-center mb-5 mt-2 border-bottom">
+        <div className="CreateProduct" style={{width: 600}}>
+        <div className="text-center mb-4 mt-2 border-bottom">
           <h2>Crear producto</h2>
         </div>
           <div className="container"> 
@@ -236,7 +248,7 @@ const CreateProduct = () => {
         </div>
       </div>
   
-    ) : <p>Loading</p>
+    )
   
     }
 

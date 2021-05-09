@@ -98,7 +98,7 @@ const Searchbar = () => {
         <div ref={results} className="overlay-search">
           <div className="popUp-search px-4">
             {
-              products.slice(0, 10).map((p) => (<ResultsSearch key={p.slug} slug={p.slug} name={p.name} imgs={p.img[0]}/>))
+              products.slice(0, 4).map((p) => (<ResultsSearch key={p.slug} slug={p.slug} name={p.name} imgs={p.img[0]}/>))
             }
           </div>
         </div>

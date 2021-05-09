@@ -7,7 +7,7 @@ const Footer = () => {
     <div className="Footer row justify-content-around align-items-center p-4">
       <p>Atención al cliente</p>
       <p>Devoluciones</p>
-      <Link to="/area-tiendas">¿Eres un vendedor?</Link>
+      <Link className="footer-link" to="/area-tiendas">¿Eres un vendedor?</Link>
       <small>Copyright 2021 El Mercado</small>
     </div>
     </div>
