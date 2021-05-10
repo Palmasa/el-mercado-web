@@ -1,70 +1,61 @@
-# Getting Started with Create React App
+<p align="center">
+  <img align="center" src="https://github.com/Palmasa/el-mercado-web/blob/main/src/images/logos/DARK.png" width="50%" />
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# El Mercado
+<p><a href="https://m.el-mercado.es">El Mercado</a> is an ecommerce thought as a national food market for local suppliers.</p>
 
-## Available Scripts
+## Technologies
 
-In the project directory, you can run:
+* This project has been develop with React as a Javascript front-end framework using hooks.
+* Node.js for the server with express, creating an <a href="https://github.com/Palmasa/el-mercado-api">API RESTful</a> with JWT authentication.
+* Used SASS as a CSS preprocessor compiled with webpack.
+* External APIS: Multer combined with Cloudinary, Formik, Stripe, Mapbox among others.
 
-### `npm start`
+## Front for clients
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Find what you are looking for
+Searchbar with different types iof search on different events:
+1. Search fron any place in the web app
+<img src="https://res.cloudinary.com/el-mercado/image/upload/v1620677531/express/Screenshot_2021-05-10_at_22.04.50_unpv7s.png" width="60%" />
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+2. Type and click to the product
+<img src="https://res.cloudinary.com/el-mercado/image/upload/v1620677522/express/Screenshot_2021-05-10_at_22.02.10_jikos5.png" width="60%" />
 
-### `npm test`
+3. Type and enter for all results
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620677494/express/Screenshot_2021-05-10_at_22.05.20_vfobgn.png" width="60%" />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Only find the products that reach you
+In a national market maybe not all the suppliers sending models reach you, so why get hooked with a product for nothing?
+1. Insert your zip
+2. The products get sorted: first the ones that reach you and then, in black and white the ones that dont.
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620677884/express/Screenshot_2021-05-10_at_22.17.16_n6udlj.png" width="60%" />
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678677/express/Screenshot_2021-05-10_at_22.29.58_ksu4rr.png" width="60%" />
 
-### `npm run build`
+#### Friendly shopping
+Shop from all the stores you want in only one shopping bag!
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678238/express/Screenshot_2021-05-10_at_22.23.24_ndp1l3.png" width="60%" />
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### And only one payment!
+Even though several orders are created (each for one shop), you only go through one asy and friendly experience. 
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678433/express/Screenshot_2021-05-10_at_22.27.03_duajcs.png" width="80%" />
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Get your bill in a nice and ordered PDF via email
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678757/express/Screenshot_2021-05-10_at_22.31.45_xaghp8.png" width="60%" />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Manage or cancel your orders
+See the current state of your order... if its on its way, if it is beeing processed or even cancel it if you are not sure! You will get your money back in a discount code!!
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678433/express/Screenshot_2021-05-10_at_22.27.03_duajcs.png" width="60%" />
 
-### `npm run eject`
+### See also the information on the suppliers with their own detailed page
+You are not buying form a huge company, you are buying directly to Manolo or to Sara... you can even see their location!
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620678685/express/Screenshot_2021-05-10_at_22.30.59_glitsm.png" width="60%" />
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Front for suppliers / vendors
+Vendors have a different front for them to create shipping models in Spain, create products and manage their order state in one click!
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620679083/express/Screenshot_2021-05-10_at_22.37.59_ocrop8.png" width="60%" />
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620679020/express/Screenshot_2021-05-10_at_22.36.14_jzc1zm.png" width="60%" />
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620679023/express/Screenshot_2021-05-10_at_22.36.23_i8ffsb.png" width="60%" />
+<img align="center" src="https://res.cloudinary.com/el-mercado/image/upload/v1620679022/express/Screenshot_2021-05-10_at_22.36.31_eqgzkt.png" width="60%" />
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Thank you for reading, see you in El Mercado!!
