@@ -10,17 +10,19 @@
   top: 0;
   z-index: 9998;
   width: 100%;
+  max-width: 100%;
+  overflow: hidden;
   background-color: $c-light;
 
   .Navbar-top-xs {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 15px;
-    
     .logo {
       width: 80px;
     }
+  }
+
+  .Navbar-bot-xs {
+    margin: 0px;
+    width: 100%;
   }
 }
 

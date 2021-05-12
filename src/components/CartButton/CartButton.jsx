@@ -21,7 +21,7 @@ const CartButton = () => {
     <IconContext.Provider value={{ size: "1.2em" }}>
     <>
       <button onClick={openCart} className="CartButton">
-        <p><BsBag style={{sixe: '2em'}}/></p>
+        <p><BsBag style={{sixe: '2em', padding: 0}}/></p>
       </button>
         <div className="numOfItems">
           { stateCart && (
