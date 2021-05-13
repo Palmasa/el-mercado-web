@@ -1,7 +1,6 @@
 import { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { BsPerson } from 'react-icons/bs'
-
 import { UserContext } from '../../contexts/UserContext'
 import MenuItem from '../MenuItem/MenuItem'
 import AreaItem from '../AreaItem/AreaItem'

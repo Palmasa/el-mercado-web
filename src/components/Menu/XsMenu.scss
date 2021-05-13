@@ -1,0 +1,74 @@
+@use "src/styles/utils" as *;
+
+@keyframes openMenu {
+  0%   {
+    width: 0;
+  }
+  100% {
+    width: 47%;
+  }
+}
+
+.overlayMenu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  padding: 0px;
+  background: rgba(0, 0, 0, 0.252);
+  transition: opacity 500ms;
+  visibility: visible;
+  z-index: 9999;
+  opacity: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.popUpMenu {
+  width: 47%;
+  position: relative;
+  z-index: 9999;
+  height: 100%;
+  padding: 10px;
+  margin: 0px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  animation: openMenu 0.25s;
+  overflow-y: scroll;
+
+  .close-menu {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+
+    button {
+      border: none;
+      background-color: #fff;
+
+      &:focus {
+        outline: none;
+        border: none;
+      }
+    }
+  }
+
+  .navlink {
+    animation: openMenu 0.25s;
+    color: $c-dark;
+    &:hover {
+      color: $c-orange;
+      text-decoration: none;
+    }
+  }
+
+  .navselect {
+    color: $c-orange;
+    text-decoration: none;
+  }
+}
