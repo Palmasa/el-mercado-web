@@ -28,7 +28,7 @@ const Menu = () => {
           ) : (
             <div className="login-text">
             <BsPerson />
-            <Link className="login-text-text" to="/acceso-usuarios">Login</Link>
+            <Link className="login-text-text" to="/acceso-usuarios">Iniciar sesión</Link>
             </div>
           )
         }

@@ -1,5 +1,17 @@
 @use "src/styles/utils" as *;
 
+.floatCategButton {
+  position: fixed;
+  bottom: 25px;
+  right: 20px;
+  z-index: 9998;
+  background-color: $c-light;
+  border: none;
+  padding: 10px 13px;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
 .categories {
   display: flex;
   flex-direction: column;

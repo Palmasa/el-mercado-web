@@ -1,5 +1,6 @@
 import { useContext } from 'react'
 import { CartContext } from '../../contexts/CartContext'
+import useWindowDimensions from '../../hooks/useWindow'
 import { FiTruck } from 'react-icons/fi'
 import { BsPlus } from 'react-icons/bs'
 import { VscDash } from 'react-icons/vsc'
@@ -9,6 +10,7 @@ import './CartCart.scss'
 
 const CartCart = ({ eachCart }) => {
   const { removeItem, sumQ, substractQ } = useContext(CartContext)
+  const { width } = useWindowDimensions()
 
   const deleteItem = (productId) => {
     removeItem(productId)
@@ -23,7 +25,7 @@ const CartCart = ({ eachCart }) => {
   }
 
   return (
-    <div className="CartCart container p-3">
+    <div className={`CartCart container p-3 ${ width < 640 && "CartCart-xs"}`}>
     <div className="row mb-4 justify-content-center align-items-center">
       <div className="col">
         <h5>{eachCart[0].supplier}</h5>
@@ -39,7 +41,7 @@ const CartCart = ({ eachCart }) => {
       </div>
       </div>
     </div>
-    <div className="container  w-100">
+    <div className="container w-100">
     {
         eachCart.map((product) => (
         <div className="row justify-content-between" key={product.id}>

@@ -9,7 +9,6 @@ const XsMenu = ({ closeMenu }) => {
   const { user } = useContext(UserContext)
 
   document.onclick = (event) => {
-    console.log(event)
     if (event.target === modalMenu.current) {
       closeMenu()
     }
@@ -30,7 +29,7 @@ const XsMenu = ({ closeMenu }) => {
             <NavLink to="/area-privada-usuarios" className="navlink" activeClassName="navselect">Mi área</NavLink>
             </>
           ) : (
-            <NavLink className="navlink" activeClassName="navselect" to="/acceso-usuarios">Login</NavLink>
+            <NavLink className="navlink" activeClassName="navselect" to="/acceso-usuarios">Iniciar sesión</NavLink>
           )
         }
       </div>

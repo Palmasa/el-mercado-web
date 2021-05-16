@@ -18,8 +18,6 @@
 
   .circleCart {
     position: fixed;
-    top: 37px;
-    right: 75px;
     background-color: $c-orange;
     text-align: center;
     border-radius: 50%;
@@ -30,15 +28,33 @@
     }
   }
 
+  .position-circle {
+    top: 37px;
+    right: 75px;
+  }
+
+  .xs-position-circle {
+    top: 30px;
+    right: 45px;
+  }
+
   .numCart {
     position: fixed;
     color: $c-light;
-    top: 36px;
-    right: 81px;
     z-index: 9999;
     font-weight: 500;
     &:hover {
       cursor: pointer;
     }
+  }
+
+  .position-num {
+    top: 36px;
+    right: 81px;
+  }
+
+  .xs-position-num {
+    top: 29px;
+    right: 51px;
   }
 }

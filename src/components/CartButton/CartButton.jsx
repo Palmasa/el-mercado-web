@@ -2,11 +2,13 @@ import { useContext, useState } from 'react'
 import { BsBag } from 'react-icons/bs'
 import { IconContext } from "react-icons"
 import { CartContext } from '../../contexts/CartContext'
+import useWindowDimensions from '../../hooks/useWindow'
 import './CartButton.scss'
 import CartPopUp from '../CartPopUp/CartPopUp'
 
 const CartButton = () => {
   const { stateCart } = useContext(CartContext)
+  const { width } = useWindowDimensions()
   const [ showCart, setShowCart ] = useState(false)
 
   const openCart = () => {
@@ -26,8 +28,8 @@ const CartButton = () => {
         <div className="numOfItems">
           { stateCart && (
             <>
-            <small className="circleCart" onClick={openCart}></small>
-            <small className="numCart" onClick={openCart}>{stateCart.products?.length}</small>
+            <small className={`circleCart ${ width > 640 ? "position-circle" : "xs-position-circle"}`} onClick={openCart}></small>
+            <small className={`numCart ${ width > 640 ? "position-num" : "xs-position-num"}`} onClick={openCart}>{stateCart.products?.length}</small>
             {
               showCart && (<CartPopUp closeCart={closeCart} productsQuantity={stateCart.products?.length}/>)
             }

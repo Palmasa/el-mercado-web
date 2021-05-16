@@ -9,6 +9,15 @@
   }
 }
 
+@keyframes openCartXS {
+  0%   {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
 .overlay {
   position: fixed;
   top: 0;
@@ -74,5 +83,13 @@
       text-decoration: none;
     }
 
+  }
+}
+
+.popUp-xs {
+  width: 100%;
+  animation: openCartXS 0.25s;
+  .button-tramitar-pedido {
+    margin-left: auto;
   }
 }

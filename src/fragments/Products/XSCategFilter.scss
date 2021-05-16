@@ -1,0 +1,45 @@
+@use "src/styles/utils" as *;
+
+@keyframes openCategs {
+  0%   {
+    height: 0;
+  }
+  100% {
+    height: 45%;
+  }
+}
+
+.overlayCategs {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  z-index: 9999;
+  padding: 0px;
+  background: rgba(0, 0, 0, 0.423);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.popUpCategs {
+  height: 45%;
+  width: 100%;
+  z-index: 9999;
+  position: relative;
+  padding: 20px;
+  margin: 0px;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  animation: openCategs 0.25s;
+  overflow-x: scroll;
+}

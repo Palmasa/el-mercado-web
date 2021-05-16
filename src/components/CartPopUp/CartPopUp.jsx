@@ -52,7 +52,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
 
   return (
     <div ref={modal} className="overlay">
-      <div className="popUp">
+      <div className={`popUp ${ width < 640 && "popUp-xs"}`}>
         <div className="container-fluid pr-0 mb-3">
         <div className="buttonContainerCart row">
           <div className="close-popup">
@@ -64,15 +64,7 @@ const CartPopUp = ({ closeCart, productsQuantity }) => {
         </div>
         </div>
         <>
-          {width < 640
-          ? (
-            <p>xs</p>
-          ) : (
-            <>
-              {paintCarts()}
-            </>
-          )
-          }
+          {paintCarts()}
         </>
       </div>
     </div>
