@@ -57,7 +57,7 @@ const Products = () => {
   const getProducts = useCallback(
     async () => {
         setLoading(true)
-        if (filter) { // ------------------------------ From searchbar
+        if (filter) { // ---------------------------------------- From searchbar
           getProductsBySearch(filter)
           .then((res) => {
             scenarios(res)
@@ -69,14 +69,14 @@ const Products = () => {
           setMain(selec)
           const select = subs[categ]
           getProductsbyCateg(select)
-          .then((res) =>{
+          .then((res) => {
             scenarios(res)
             setallProductsPage(false)
           })
     
         } else if (sub) { // ----------------------------------------- subcategorias filter
           getProductsbyCateg(sub)
-          .then((res) =>{
+          .then((res) => {
             scenarios(res)
             setallProductsPage(false)
           })
@@ -93,8 +93,14 @@ const Products = () => {
   )
 
   useEffect(() => {
-    getProducts()
-  }, [ getProducts, stateZip ])
+    setCurrentPage(1)
+  }, [ categ, filter, sub, stateZip ])
+
+  useEffect(() => {
+    if ( currentPage === 1) {
+      getProducts()
+    }
+  }, [ getProducts, stateZip, currentPage ])
 
   // Get current
   const indexOfLastProduct = currentPage * prodPerPage
@@ -111,7 +117,7 @@ const Products = () => {
     }
   }
 
-  if (currentProducts?.length === 0) {
+ if (currentProducts?.length === 0) {
     setNotFound(true)
   }
   
@@ -147,7 +153,7 @@ const Products = () => {
               <div className="row">
                 {
                   currentProducts?.map((product) => (
-                    <div key={product.id} className="col-lg-4 mb-5">
+                    <div key={product.id} className="col-lg-4 col-md-6 mb-5 justify-content-center">
                       <ProductCard
                       product= {product}
                       />

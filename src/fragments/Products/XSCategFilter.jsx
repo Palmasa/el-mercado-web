@@ -38,20 +38,25 @@ const XSCategFilter = ({closeCategs, sub, main}) => {
   return (
     <div ref={modalCateg} className="overlayCategs">
       <div className="popUpCategs">
-      <button onClick={() => closeCategs()}> <MdClose /></button>
-      {
-            sub?.map((sub, i) => (
-            <div key={i} className="all-categs">
-            <button className="main-categ text-left" onClick={() => getMain(i)}><b>{main[i]}</b></button>
-              {
-                sub.length === 1
-                ? ""
-                : sub.map((s) => <button key={s} className="sub-categ text-left" onClick={() => getSub(s, i)}>{s}</button>)
-              }
-            </div>
-          ))
-      }
-        <p>TBC...</p>
+        <div className="container">
+          <button onClick={() => closeCategs()} className="closeCategs"> <MdClose /></button>
+        </div>
+        <div>
+        <div className="categs-scroll strech">
+          {
+                sub?.map((sub, i) => (
+                <div key={i} className="card-categ">
+                <button className="text-left" onClick={() => getMain(i)}><b>{main[i]}</b></button>
+                  {
+                    sub.length === 1
+                    ? ""
+                    : sub.map((s) => <button key={s} className="text-left" onClick={() => getSub(s, i)}>{s}</button>)
+                  }
+                </div>
+              ))
+          }
+        </div>
+        </div>
       </div>
       { redirect && (<Redirect to={`/productos?categoria=${param}`}/>)}
       { redirect2 && (<Redirect to={`/productos?subcategoria=${param}&n=${from}`}/>)}
