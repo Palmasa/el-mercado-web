@@ -11,7 +11,8 @@ const Orders = () => {
   const getSales = async () => {
     try {
       const allSales = await getUserSales()
-      setSales(allSales)
+      const salesInvert = allSales.reverse()
+      setSales(salesInvert)
       setLoader(false)
     } catch(e) { console.log(e.response.data)}
   }
@@ -19,7 +20,7 @@ const Orders = () => {
   const cancelSale = (id) => {
     setLoader(true)
     userCancelSale(id)
-    .then((res) => {
+    .then(() => {
       setLoader(false)
     })
   }
@@ -35,8 +36,10 @@ const Orders = () => {
   }
 
   useEffect(() => {
-    getSales()
-  }, [])
+    if (loader === true) {
+      getSales()
+    }
+  }, [loader])
 
   return (
     <>
@@ -52,13 +55,15 @@ const Orders = () => {
             {
               sales?.map((sale) => (
                 <div key={sale.id} className="col-md-6 mb-3 ml-3 box-pay-info p-4">
-                <div className="row justify-content-center border-bottom mb-2">
+                <div className="row justify-content-between align-items-center border-bottom mb-2 px-1">
                   <h4><b>{sale.products[0].supplier}</b></h4>
+                  {sale.createdAt.slice(0, 10)}
                 </div>
                 <div className="">
                   {
                     sale.products.map((p) => (
-                      <div key={p.id} className="row">
+                      <div key={p._id} className="row align-items-center justify-content-between">
+                        <div className="col-2"><img src={p.img} alt={p.name} style={{width: 50}}/></div>
                         <div className="col-6"><p>{p.name}</p></div>
                         <div className="col"><p> x0{p.quantity}</p></div>
                         <div className="col"><p>{cashConverter(p.price)} €</p></div>
