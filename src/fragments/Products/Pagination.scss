@@ -13,6 +13,7 @@
   }
   &:hover {
     background-color: $c-primary;
+    cursor: pointer;
   }
   &:focus {
     text-decoration: underline;

@@ -38,6 +38,12 @@
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   animation: openMicro 0.20s;
 }
+.popUpMicro-xs {
+  width: 70%;
+  .redo {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+}
 
 .cross {
   padding-right: 10px;
@@ -56,7 +62,7 @@
 .redo {
   @include buttonAction;
   color: $c-dark;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-left: 10px;
   margin-bottom: 50px;
 

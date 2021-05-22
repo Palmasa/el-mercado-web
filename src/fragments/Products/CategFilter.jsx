@@ -20,6 +20,7 @@ const CategFilter = () => {
     setParam(i)
     setRedirect(true)
     setRedirect2(false)
+    window.scrollTo({top: 0, behavior: 'smooth'})
   }
 
   const getSub = (categ, i) => {
@@ -27,6 +28,7 @@ const CategFilter = () => {
     setFrom(i)
     setRedirect2(true)
     setRedirect(false)
+    window.scrollTo({top: 0, behavior: 'smooth'})
   }
 
   const paintCategs = () => {

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { Redirect } from 'react-router'
 import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
+import { BiMicrophone } from 'react-icons/bi'
 import PuffLoader from "react-spinners/PuffLoader";
 import { MdClose } from 'react-icons/md'
+import useWindowDimensions from '../../hooks/useWindow'
 import "./Speech.scss";
 
 const Speech = ({ closeMicro }) => {
@@ -24,6 +26,7 @@ const Speech = ({ closeMicro }) => {
       },
     },
   ];
+  const { width } = useWindowDimensions()
   const { transcript } = useSpeechRecognition({ commands })
   const [param, setParam] = useState('')
   const [isListening, setIsListening] = useState(false);
@@ -64,7 +67,7 @@ const Speech = ({ closeMicro }) => {
 
   return (
     <div className="overlayMicro">
-    <div className="popUpMicro container">
+    <div className={`container popUpMicro ${ width < 640 && "popUpMicro-xs"}`}>
       <div className="row justify-content-end p-1">
         <button onClick={() => closeMicro()} className="cross"> <MdClose /></button>
       </div>
@@ -90,7 +93,7 @@ const Speech = ({ closeMicro }) => {
             <p>Lo sentimos, no te hemos entendio</p>
           </div>
           <div className="row justify-content-center">
-            <button onClick={handleListing} className="redo">Reintentar</button>
+            <button onClick={handleListing} className="redo">Reintentar <BiMicrophone /></button>
           </div>
           </>
         )

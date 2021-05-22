@@ -4,6 +4,8 @@ import { ZipContext } from '../../contexts/ZipContext';
 import { sendZipBack } from '../../services/ZipService';
 import { setZip } from '../../store/zipStore';
 import { MdClose } from 'react-icons/md'
+import useWindowDimensions from '../../hooks/useWindow'
+import cart_image from '../../images/car_empty.png'
 import './ZipPopUp.scss'
 
 const NUMBERS_MATCH = /^[0-9]*$/
@@ -22,6 +24,7 @@ const validators = {
 // Component ZipPopUp ------------------------------------------------------
 const ZipPopUp = ({ closeSquare }) => {
   const results = useRef(null)
+  const { width } = useWindowDimensions()
   const { getCurrentZip } = useContext(ZipContext)
   const { stateCart, getCurrentCart, removeAllCart } = useContext(CartContext)
   const [ state, setState ] = useState ({
@@ -61,7 +64,7 @@ const ZipPopUp = ({ closeSquare }) => {
             names.push(p.name)
           ))
           setMessage(`
-          Se han eliminado de ${response.deletedItems?.length} productos de su bolsa: ${names.join(',')}`)
+          Se han eliminado ${response.deletedItems?.length} productos de su bolsa: ${names.join(',')}`)
           setResponse(true)
         } else if (response.message) {
           if (response.message === "Su cesta ha sido eliminada") {
@@ -69,7 +72,7 @@ const ZipPopUp = ({ closeSquare }) => {
             setMessage('Su bolsa se ha eliminado')
             setResponse(true)
           } else {
-            setMessage('Todos los productos de su bolsa llegan a su destino')
+            setMessage('¡Todos los productos de su bolsa llegan a su destino!')
             setResponse(true)
           }
         } else {
@@ -100,17 +103,19 @@ const ZipPopUp = ({ closeSquare }) => {
 
   return (
     <div ref={results} className="overlay-zip">
-      <div className="popUp-zip">
+      <div className={`popUp-zip ${ width < 640 && "popUp-zip-xs"}`}>
         <div className="ZipSquare container px-3 py-2">
           <button onClick={() => closeSquare(false)}> <MdClose /> </button>
           { 
             response
             ? (
-              <p>{message}</p>
+              <div className="px-5 py-4 row justify-content-center text-center">
+                <img alt="cart" src={cart_image} style={{width: 55}} className="mb-2"/>
+                <p>{message}</p>
+              </div>
             ) : (
             <form onSubmit={onSubmit} >
-            { stateCart && <p className="warning-zip"><small>*Si cambia el código postal su bolsa será revisada y se eliminarán los productos que no lleguen a su destino.</small></p> }
-            { !stateCart && <h6>Código postal</h6> }
+            <h6>Código postal</h6>
               <input
                 name="zip"
                 value={state.fields.zip}
@@ -121,7 +126,8 @@ const ZipPopUp = ({ closeSquare }) => {
                 {state.errors.zip}
                 {resError.error ? resError.info : ""}
               </div>
-              <button type="submit">Enviar código postal</button>
+              <button type="submit">Enviar</button>
+              { stateCart && <p className="warning-zip mt-2 px-3"><small>* Su bolsa será revisada: se eliminarán los productos que no lleguen a su destino.</small></p> }
             </form>
             )
           }

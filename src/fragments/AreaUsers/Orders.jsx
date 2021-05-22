@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react'
 import { getUserSales } from '../../services/UsersService'
+import Pagination from '../Products/Pagination'
 import { userCancelSale } from '../../services/SaleService'
 import { cashConverter } from '../../helpers/priceConverter'
 import ClipLoader from "react-spinners/ClipLoader";
 import './Orders.scss'
 const Orders = () => {
   const [ sales, setSales ] = useState([])
+  const [ currentPage, setCurrentPage] = useState(1)
+  const [ suppPerPage ] = useState(10) //num
   const [ loader, setLoader ] = useState(true)
 
   const getSales = async () => {
@@ -41,6 +44,16 @@ const Orders = () => {
     }
   }, [loader])
 
+  const indexOfLastSupp = currentPage * suppPerPage
+  const indexOfFirstSupp = indexOfLastSupp - suppPerPage
+  let currentSales = sales?.slice(indexOfFirstSupp, indexOfLastSupp)
+  let salesLength = sales?.length
+
+  const paginate = (n) => {
+    setCurrentPage(n)
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }
+
   return (
     <>
       {
@@ -53,7 +66,7 @@ const Orders = () => {
           <div className="container">
           <div className="row justify-content-center">
             {
-              sales?.map((sale) => (
+              currentSales?.map((sale) => (
                 <div key={sale.id} className="col-md-6 mb-3 ml-3 box-pay-info p-4">
                 <div className="row justify-content-between align-items-center border-bottom mb-2 px-1">
                   <h4><b>{sale.products[0].supplier}</b></h4>
@@ -92,6 +105,13 @@ const Orders = () => {
               </div>
               ))
             }
+          </div>
+          <div className=" row justify-content-center">
+            <Pagination 
+              prodPerPage={suppPerPage}
+              totalProd={salesLength} 
+              paginate={paginate}
+            />
           </div>
           </div>
 
