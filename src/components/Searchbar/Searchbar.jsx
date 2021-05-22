@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef} from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
+import { BiMicrophone } from 'react-icons/bi'
 import { VscClose } from 'react-icons/vsc'
 import { Redirect } from 'react-router'
 import { getAllProducts } from '../../services/ProductsService'
 import ResultsSearch from './ResultsSearch'
 import './Searchbar.scss'
+import Speech from './Speech'
 
 const Searchbar = () => {
   const results = useRef(null)
@@ -13,14 +15,22 @@ const Searchbar = () => {
   const [ products, setProducts ] = useState({})
   const [ search, setSearch ] = useState('')
   const [ searchResult, setSearchResult ] = useState(false)
-  const [ loading, setLoading] = useState(false)
-  const [param, setParam] = useState('')
-  const [redirect, setRedirect] = useState(false)
+  const [ param, setParam ] = useState('')
+  const [ redirect, setRedirect ] = useState(false)
+  const [ microPop, setMicroPop ] = useState(false)
   
   const clearInput = () => {
     setSearch('')
     setCloseCross(false)
     setSearchResult(false)
+  }
+
+  const microOpen = () => {
+    setMicroPop(true)
+  }
+
+  const microClose = () => {
+    setMicroPop(false)
   }
 
   window.onclick = (event) => {
@@ -31,19 +41,16 @@ const Searchbar = () => {
 
   // Call api and set the list of products
   const getProducts = async () => {
-    setLoading(true)
     const allProducts = await getAllProducts()
     allProducts.listProducts
     ? setProducts(allProducts.listProducts)
     : setProducts(allProducts.yesSend)
-    setLoading(false)
   }
 
   // Filter the products that you have
   const filterProducts = async (value) => {
     const filters = products.filter((p) => p.name.toLowerCase().includes(value))
     setProducts(filters)
-    setLoading(false)
   }
 
   // Get the typing and call the filter function
@@ -89,9 +96,13 @@ const Searchbar = () => {
         onKeyDown={onSearch}
         value={search}
         />
-      { closeCross && <button className="cross" onClick={clearInput}><VscClose/></button> }
-
-
+      { closeCross 
+        ? (
+          <button className="cross" onClick={clearInput}><VscClose/></button>
+        ) : (
+          <button className="cross" onClick={microOpen}><BiMicrophone /></button>
+        )
+      }
       { redirect && (<Redirect to={`/productos?filter=${param}`}/>)}
     </div>
       { searchResult && (
@@ -102,6 +113,11 @@ const Searchbar = () => {
             }
           </div>
         </div>
+        )
+      }
+      {
+        microPop && (
+          <Speech closeMicro={microClose}/>
         )
       }
     </>
