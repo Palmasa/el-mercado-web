@@ -1,13 +1,12 @@
 import React from 'react'
 import Navbar from '../fragments/Navbar/Navbar'
-import Categories from '../fragments/Categories/Categories'
 import { Redirect } from 'react-router'
 
 const CategsScreen = () => {
   return (
     <div>
       <Navbar />
-      <Categories />
+      {/* NO USO ESTA SCREEN (YET) */}
       <Redirect to="/productos" />
     </div>
   )

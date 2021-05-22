@@ -21,7 +21,6 @@ import Provinces from '../fragments/CreateShipp/Provinces';
 import { CreateSaleScreen } from '../screens/CreateSaleScreen';
 import StripeTest from '../fragments/SaleCreate/StripeTest';
 import CategsScreen from '../screens/CategsScreen';
-import Speech from '../components/Searchbar/Speech'
 
 const Router = () => {
   return (
@@ -41,8 +40,6 @@ const Router = () => {
         <Route exact path="/area-privada-usuarios" component={AreaUsersScreen}/>
         <Route exact path="/tramitar-pedido" component={CreateSaleScreen}/>
         <Route exact path="/text-stripe" component={StripeTest}/>
-
-        <Route exact path="/speech-text" component={Speech}/>
 
 {/* Suppliers ---------------------------------------------------------------------------------------- */}
         <Route exact path="/area-tiendas" component={HomeSuppScreen} />
