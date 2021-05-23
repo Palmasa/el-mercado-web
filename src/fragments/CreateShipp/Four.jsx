@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import SuppNavbar from '../SuppNavbar/SuppNavbar';
 import { createShipping } from '../../services/ShippService';
 import SelectCustom from './SelectCustom';
-import ClipLoader from "react-spinners/ClipLoader";
 import { useHistory } from 'react-router';
 import { optionsTime, optionProvinces } from './Data'
 import { useParams } from "react-router";
@@ -140,7 +139,7 @@ function Four() {
                   value={state.fields.price}
                   className="puttIn"
                 />
-                { state.fields.price && <p>¿Es este el pecio correcto? <b>{cashConverter(toBackPrice(state.fields.price))} €</b></p>}
+                { state.fields.price && <p>¿Es este el precio correcto? <b>{cashConverter(toBackPrice(state.fields.price))} €</b></p>}
               </div>
             </div>
 

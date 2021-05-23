@@ -1,0 +1,101 @@
+@use "src/styles/utils" as *;
+@keyframes openBoost {
+  0%   {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlayBoost {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  padding: 0px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.423);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+}
+
+.popupBopost {
+  opacity: 1;
+  margin: 62px auto;
+  background: #fff;
+  border-radius: 3px;
+  height: 78%;
+  width: 80%;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  animation: openBoost 0.20s;
+}
+
+.boostOffer {
+  background-color: $c-light;
+  box-shadow: rgba(0, 0, 0, 0.218) 0px 2px 4px;
+}
+
+.buyButtonBoost {
+  @include buttonAction;
+  background-color: $c-orange;
+  color: rgb(255, 255, 255);
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.notIncluded {
+  text-decoration: line-through;
+}
+
+.closeMD {
+  > button{
+    border: none;
+    background-color: white;
+  
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      outline: none;
+    }
+  }
+}
+
+.tittle-boost {
+  background-color: $c-primary;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.boost-premium {
+  box-shadow: rgba(0, 0, 0, 0.218) 0px 2px 4px;
+}
+
+.terms {
+  background-color: $c-light;
+  border: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  color: $c-dark;
+  &:hover {
+    color: $c-orange;
+    cursor: pointer;
+  }
+  &:active {
+    outline: none;
+  }
+}

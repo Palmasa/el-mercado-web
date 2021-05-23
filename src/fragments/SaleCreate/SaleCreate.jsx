@@ -57,7 +57,7 @@ const SaleCreate = () => {
           ? (
             <div className="container mt-3">
             <h4>Dirección de entrega</h4>
-            <AddressSale nextStep={setStepOne} toPay={setToPay} />
+            <AddressSale nextStep={setStepOne} setToPay={setToPay} />
             </div>
           )
           : (

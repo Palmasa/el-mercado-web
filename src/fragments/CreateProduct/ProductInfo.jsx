@@ -3,11 +3,17 @@ import { Link } from 'react-router-dom'
 import { getProductPerSupp, reactivateProducts, desactivateProducts, deleteProduct } from '../../services/ProductsService.js'
 import { cashConverter } from '../../helpers/priceConverter'
 import ClipLoader from "react-spinners/ClipLoader";
+import { BsGraphUp } from "react-icons/bs"
+import { RiDeleteBinLine } from "react-icons/ri"
 import './ProductInfo.scss'
+import BoostPopUp from './BoostPopUp.jsx';
+import { dateConverter } from '../../helpers/dateHelper.js';
 
 const ProductInfo = () => {
   const [ products, setProducts ] = useState([])
   const [ loading, setLoading ] = useState(true)
+  const [ boostPopUp, setBoostPopUp ] = useState(false)
+  const [ selectedProduct, setSelectedProduct ] = useState()
 
   const getProducts = (id) => {
     getProductPerSupp(id)
@@ -21,6 +27,7 @@ const ProductInfo = () => {
     deleteProduct(id)
     .then(res => {
       setProducts(res)
+      getProducts()
       setLoading(false)
     })
   }
@@ -39,9 +46,24 @@ const ProductInfo = () => {
     })
   }
 
+  const goToBoost = (product) => {
+    setSelectedProduct(product)
+    setBoostPopUp(true)
+  }
+
+  const paintBoostTag = (p, price) => {
+    if (p.boostPayment === 1500) {
+      return <p className="text-center ml-1" style={{marginBottom: 0, lineHeight: 1}}><small>Premium desde el {`${price}`}</small></p>
+    } else if (p.boostPayment === 900) {
+      return <p className="text-center ml-1" style={{marginBottom: 0, lineHeight: 1}}><small>Inter desde el {`${price}`}</small></p>
+    } else {
+      return <p className="text-center ml-1" style={{marginBottom: 0, lineHeight: 1}}><small>Básica desde el {`${price}`}</small></p>
+    }
+  }
+
   useEffect(() => {
     getProducts()
-  }, [])
+  }, [boostPopUp])
 
   return (
     <div className="container p-4">
@@ -70,16 +92,18 @@ const ProductInfo = () => {
               <div className="col">
                 <h4>Precio</h4>
               </div>
-              <div className="col-2">
+              <div className="col">
                 <h4>Stock</h4>
               </div>
-              <div className="col"></div>
+              <div className="col">
+                <h4>Acciones</h4>
+              </div>
             </div>
           {
             products.map((product) => (
-            <div className="row mb-3 align-items-center" key={product.id}>
+            <div className={`row align-items-center border-bottom  ${ product.isBoosted && "boosted-product"}`} key={product.id}>
               <div className="col-2 text-center mr-1">
-                <img src={product.img[0]} alt="p" style={{height: 70}}/>
+                <img className="my-4" src={product.img[0]} alt="p" style={{height: 80}}/>
               </div>
               <div className="col-3">
               <p>{product.name}</p>
@@ -87,22 +111,36 @@ const ProductInfo = () => {
               <div className="col">
               <p>{cashConverter(product.price)}€</p>
               </div>
-              <div className="col-2">
+              <div className="col text-center">
               <p>{product.stock}</p>
               </div>
-              <div className="col-3 products-butttons-suppliers">
+              <div className="col-3 products-butttons-suppliers d-flex justify-content-center align-items-center">
               {
                 product.active
                 ? <button style={{ backgroundColor: '#fafafa'}} onClick={() => desactivate(product.id)}>Desactivar</button>
-                : <button className="activate" onClick={() => activate(product.id)}>Activate</button>
+                : <button className="activate" onClick={() => activate(product.id)}>Reactivar</button>
               }
-              <button className="ml-1" style={{ backgroundColor: '#fafafa'}} onClick={() => deleteP(product.id)}>Eliminar</button>
+              <button className="ml-1" style={{ backgroundColor: '#fafafa'}} onClick={() => deleteP(product.id) }><RiDeleteBinLine/></button>
+              {
+                !product.isBoosted ? (<button 
+                className="ml-1"
+                style={{ backgroundColor: '#f1ebe4'}}
+                onClick={() => goToBoost(product)}
+                >
+                  <BsGraphUp/>
+                </button>) : (
+                  product && paintBoostTag(product, dateConverter(product?.boostStart))
+                )
+              }
               </div>
             </div>
           ))
           }
           </div>
         )
+      }
+      {
+        boostPopUp && <BoostPopUp product={selectedProduct} setClose={setBoostPopUp}/>
       }
     </div>
   )

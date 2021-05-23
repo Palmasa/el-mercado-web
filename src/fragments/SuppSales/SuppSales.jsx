@@ -23,10 +23,8 @@ const SuppSales = () => {
  }
 
  const changeState = (state, id) => {
-   console.log(state, id)
   changeSaleSupp(id, {state, message: `El pedido ${id} ha sido ${state}.`})
-  .then((res) => {
-    console.log(res)
+  .then(() => {
     getAllsales()
   })
  }
@@ -54,7 +52,7 @@ const SuppSales = () => {
                   <div className="container card px-5 py-4 mb-4">
                   <div className="row border-bottom mb-3 justify-content-between">
                   <div className="col">
-                    <h4>Nº {sale.id}</h4>
+                    <h4>Nº {sale.id.slice(0, 4)}{sale.id.slice(22)}</h4>
                   </div>
                   <div className="col">
                     <div className="container">
@@ -105,7 +103,7 @@ const SuppSales = () => {
                   <div className="container card px-5 py-4 mb-4">
                   <div className="row border-bottom mb-3 justify-content-between">
                   <div className="col">
-                    <h4>Nº {sale.id}</h4>
+                    <h4>Nº {sale.id.slice(0, 4)}{sale.id.slice(22)}</h4>
                   </div>
                   <div className="col">
                     <div className="container">

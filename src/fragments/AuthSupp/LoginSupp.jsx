@@ -1,130 +1,148 @@
-import { useState, useContext } from 'react'
-import InputReg from '../../components/Input/InputReg'
-import { SuppContext } from '../../contexts/SuppContext';
-import { suppLogin } from '../../services/AuthService';
-import { setAccessToken } from '../../store/AccessTokenStore.js'
-import { useHistory } from 'react-router';
-import image from '../../images/vecteezy_healthy-food-in-paper-bag-vegetables-and-fruits_2150555.jpg'
-import './LoginSupp.scss'
+import { useState, useContext } from "react";
+import InputReg from "../../components/Input/InputReg";
+import { SuppContext } from "../../contexts/SuppContext";
+import { suppLogin } from "../../services/AuthService";
+import { setAccessToken } from "../../store/AccessTokenStore.js";
+import { useHistory } from "react-router";
+import image from "../../images/supp_pic.png";
+import "./LoginSupp.scss";
 
-const EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+const EMAIL_PATTERN =
+  /^(([^<>()[\]\\.,;:\s@“]+(\.[^<>()[\]\\.,;:\s@“]+)*)|(“.+“))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 const validators = {
   email: (value) => {
-    let message
+    let message;
     if (!value) {
-      message = 'Es necesario introducir el email'
+      message = "Es necesario introducir el email";
     } else if (!EMAIL_PATTERN.test(value)) {
-      message = 'Es necesario introducir un email válido'
+      message = "Es necesario introducir un email válido";
     }
-    return message
+    return message;
   },
   password: (value) => {
-    let message
+    let message;
     if (!value) {
-      message = 'Es necesario introducir la contraseña'
+      message = "Es necesario introducir la contraseña";
     } else if (value.length < 6) {
-      message = 'La contraseña introducida es demasiado corta'
+      message = "La contraseña introducida es demasiado corta";
     }
-    return message
-  }
-}
+    return message;
+  },
+};
 
 const LoginSupp = () => {
-  const { getSupp } = useContext(SuppContext)
+  const { getSupp } = useContext(SuppContext);
   const { push } = useHistory();
 
-  const [ state, setState ] = useState ({
+  const [state, setState] = useState({
     fields: {
-      email: '',
-      password: ''
+      email: "",
+      password: "",
     },
     errors: {
       email: validators.email(),
-      password: validators.password()
-    }
-  })
-  const [ resError, setResError ] = useState({ error: false, info: ''})
-  const [touched, setTouched ] = useState({})
+      password: validators.password(),
+    },
+  });
+  const [resError, setResError] = useState({ error: false, info: "" });
+  const [touched, setTouched] = useState({});
 
   const isValid = () => {
-    const { errors } = state
-    return !Object.keys(errors).some(e => errors[e])
-  }
+    const { errors } = state;
+    return !Object.keys(errors).some((e) => errors[e]);
+  };
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (isValid()) {
-      suppLogin(state.fields)
-      .then((response) => {
-        setAccessToken(response.access_token)
+      suppLogin(state.fields).then((response) => {
+        setAccessToken(response.access_token);
         getSupp().then(() => {
-          push("/area-tiendas")
-        })
-      })
+          push("/area-tiendas");
+        });
+      });
     }
-  }
+  };
 
   const onChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
 
-    setResError({ error: false})
+    setResError({ error: false });
 
     setState((prevState) => ({
       fields: {
         ...prevState.fields,
-        [name]: value
+        [name]: value,
       },
       errors: {
         ...prevState.errors,
-        [name]: validators[name] && validators[name](value)
-      }
-    }))
-  }
+        [name]: validators[name] && validators[name](value),
+      },
+    }));
+  };
   const onFocus = (e) => {
-    const { name } = e.target
+    const { name } = e.target;
 
     setTouched((prevTouch) => ({
       ...prevTouch,
-      [name]: false
-    }))
-  }
+      [name]: false,
+    }));
+  };
 
   const onBlur = (e) => {
-    const { name } = e.target
+    const { name } = e.target;
 
     setTouched((prevTouch) => ({
       ...prevTouch,
-      [name]: true
-    }))
-  }
+      [name]: true,
+    }));
+  };
   return (
     <div className="container p-4">
       <div className="row align-items-center">
         <div className="col py-2">
-          <img src={image} className="img-fluid" alt="Vendor"/>
+          <img src={image} className="img-fluid" alt="Vendor" />
         </div>
         <div className="col">
-        <div className="container box-login-supp py-5">
+          <div className="container box-login-supp py-5">
             <div className="row justify-content-center mb-3">
               <h2>Acceso a tu tienda</h2>
             </div>
             <div className="row justify-content-center">
               <form onSubmit={onSubmit} className="login-registerSupp-form">
-              <InputReg 
-                label="Email" name="email" type="email"
-                value={state.fields.email}
-                onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-                error={state.errors.email && touched.email ? state.errors.email : ""}
-              />
+                <InputReg
+                  label="Email"
+                  name="email"
+                  type="email"
+                  value={state.fields.email}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  onFocus={onFocus}
+                  error={
+                    state.errors.email && touched.email
+                      ? state.errors.email
+                      : ""
+                  }
+                />
 
-              <InputReg 
-                label="Contraseña" name="password" type="password"
-                value={state.fields.password}
-                onChange={onChange} onBlur={onBlur} onFocus={onFocus}
-                error={state.errors.password && touched.password ? state.errors.password : ""}
-              />    
-              <p><small>{resError.error ? resError.info : ""}</small></p>
+                <InputReg
+                  label="Contraseña"
+                  name="password"
+                  type="password"
+                  value={state.fields.password}
+                  onChange={onChange}
+                  onBlur={onBlur}
+                  onFocus={onFocus}
+                  error={
+                    state.errors.password && touched.password
+                      ? state.errors.password
+                      : ""
+                  }
+                />
+                <p>
+                  <small>{resError.error ? resError.info : ""}</small>
+                </p>
                 <div className="row justify-content-center">
                   <button type="submit">Acceder</button>
                 </div>
@@ -134,7 +152,7 @@ const LoginSupp = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginSupp
+export default LoginSupp;

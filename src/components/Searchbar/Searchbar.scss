@@ -80,15 +80,13 @@
   transition: opacity 500ms;
   visibility: visible;
   opacity: 1;
-  display: flex;
-  justify-content: flex-end;
 }
 
 .popUp-search {
   margin: 54px auto;
   background: #ffff;
   border-radius: 3px;
-  height: 35%;
+  height: auto;
   width: 65%;
   position: relative;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;

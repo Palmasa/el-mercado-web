@@ -5,7 +5,7 @@ import { createRealSale } from '../../services/SaleService'
 import { cashConverter } from '../../helpers/priceConverter'
 import './AddressSale.scss'
 
-const AddressSale = ({ nextStep, toPay }) => {
+const AddressSale = ({ nextStep, setToPay }) => {
   const { stateZip } = useContext(ZipContext)
   const { user } = useContext(UserContext)
 
@@ -23,7 +23,7 @@ const AddressSale = ({ nextStep, toPay }) => {
 
   const lift = (total) => {
     nextStep(false)
-    toPay(total)
+    setToPay(total)
   }
 
   const onSubmit = (e) => {

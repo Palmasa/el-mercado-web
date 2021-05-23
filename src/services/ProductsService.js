@@ -62,7 +62,7 @@ export const reactivateProducts = (productId) => {
 }
 
 export const boostProduct = (productId, body) => {
-  return http.post(`/product/boost/${productId}`, body)
+  return http.post(`/products/boost/${productId}`, body)
 }
 
 export const deleteProduct = (productId) => {

@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { SuppContext } from '../../contexts/SuppContext'
 import { AiOutlineShop, AiOutlineShopping, AiOutlineBank, AiOutlineCarryOut } from 'react-icons/ai'
 import { IconContext } from "react-icons"
@@ -7,6 +7,9 @@ import './SuppHome.scss'
 const SuppHome = () => {
   const { supp } = useContext(SuppContext)
 
+  useEffect(() => {
+    window.scrollTo({top: 0, behavior: 'smooth'})
+  }, [])
   return (
     <>
     <IconContext.Provider value={{ size: "6em", color: '#2c2728' }}>

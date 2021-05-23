@@ -8,7 +8,7 @@ import './Orders.scss'
 const Orders = () => {
   const [ sales, setSales ] = useState([])
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ suppPerPage ] = useState(10) //num
+  const [ suppPerPage ] = useState(5) //num
   const [ loader, setLoader ] = useState(true)
 
   const getSales = async () => {
@@ -21,11 +21,7 @@ const Orders = () => {
   }
 
   const cancelSale = (id) => {
-    setLoader(true)
     userCancelSale(id)
-    .then(() => {
-      setLoader(false)
-    })
   }
 
   const paintState = (state) => {
@@ -39,10 +35,8 @@ const Orders = () => {
   }
 
   useEffect(() => {
-    if (loader === true) {
-      getSales()
-    }
-  }, [loader])
+    getSales()
+  }, [sales])
 
   const indexOfLastSupp = currentPage * suppPerPage
   const indexOfFirstSupp = indexOfLastSupp - suppPerPage
@@ -67,7 +61,7 @@ const Orders = () => {
           <div className="row justify-content-center">
             {
               currentSales?.map((sale) => (
-                <div key={sale.id} className="col-md-6 mb-3 ml-3 box-pay-info p-4">
+                <div key={sale.id} className="col-md-6 mb-4 ml-3 box-pay-info p-4">
                 <div className="row justify-content-between align-items-center border-bottom mb-2 px-1">
                   <h4><b>{sale.products[0].supplier}</b></h4>
                   {sale.createdAt.slice(0, 10)}
@@ -75,9 +69,9 @@ const Orders = () => {
                 <div className="">
                   {
                     sale.products.map((p) => (
-                      <div key={p._id} className="row align-items-center justify-content-between">
-                        <div className="col-2"><img src={p.img} alt={p.name} style={{width: 50}}/></div>
-                        <div className="col-6"><p>{p.name}</p></div>
+                      <div key={p._id} className="row align-items-center justify-content-between my-3">
+                        <div className="col-4"><img src={p.img} alt={p.name} style={{width: 120}}/></div>
+                        <div className="col-4"><p>{p.name}</p></div>
                         <div className="col"><p> x0{p.quantity}</p></div>
                         <div className="col"><p>{cashConverter(p.price)} €</p></div>
                       </div>
@@ -90,7 +84,7 @@ const Orders = () => {
                 <div className="row align-items-center border-top pt-2">
                   <div className="col">
                     {
-                      sale.state !== 'Cancelado' && <button 
+                      sale.state !== 'Cancelado' && sale.state !== 'Entregado' && <button 
                         className="cancelar-users-order"
                         onClick={() => cancelSale(sale.id)}
                         >

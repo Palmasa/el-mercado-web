@@ -176,7 +176,7 @@ const CreateProduct = () => {
               state.fields.price && (
                 <>
                 <div className="col-4 mb-0">
-                  <small>¿Es este el pecio correcto? </small>
+                  <small>¿Es este el precio correcto? </small>
                 </div>
                 <div className="col justify-content-start mb-0">
                 <small>{cashConverter(toBackPrice(state.fields.price))} €</small>

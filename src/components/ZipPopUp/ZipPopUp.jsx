@@ -16,7 +16,7 @@ const validators = {
     if (!value) {
       message = 'Es necesario introducir un código postal'
     } else if (!NUMBERS_MATCH.test(value)) {
-      message = 'El código postal conriene cinco números'
+      message = 'El código postal contiene cinco números'
     }
     return message
   }
@@ -32,7 +32,7 @@ const ZipPopUp = ({ closeSquare }) => {
       zip: '',
     },
     errors: {
-      zip: validators.zip,
+      zip: '',
     }
   })
   const [ resError, setResError ] = useState({ error: false, info: ''})
@@ -105,7 +105,7 @@ const ZipPopUp = ({ closeSquare }) => {
     <div ref={results} className="overlay-zip">
       <div className={`popUp-zip ${ width < 640 && "popUp-zip-xs"}`}>
         <div className="ZipSquare container px-3 py-2">
-          <button onClick={() => closeSquare(false)}> <MdClose /> </button>
+         <button onClick={() => closeSquare(false)}> <MdClose /> </button>
           { 
             response
             ? (

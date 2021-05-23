@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { BsPerson } from 'react-icons/bs'
 import './AreaItem.scss'
 
-const AreaItem = ({ route, children, name }) => {
+const AreaItem = ({ route, children }) => {
   const [ hover, setHover ] = useState(false)
 
   const toggleOut = () => {
