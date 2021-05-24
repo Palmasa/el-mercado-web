@@ -25,7 +25,8 @@ const ProductDetail = ({ product }) => {
       notify(product.name)
     })
     .catch((error) => {
-      console.log(`productCart. error -> ${error.response?.data.errors.zip}`)
+      console.log(error.response?.data)
+      console.log(`productCart. error -> ${error.response?.data?.errors?.zip}`)
       negNotify('Se necesita introducir un código postal')
     })
   }

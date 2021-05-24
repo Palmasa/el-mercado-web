@@ -17,6 +17,7 @@ const Menu = () => {
         </MenuItem>
         <NavLink className="navlink" activeClassName="navselect" to="/productos">Productos</NavLink>
         <NavLink className="navlink" activeClassName="navselect" to="/tiendas">Tiendas</NavLink>
+        <NavLink className="navlink" activeClassName="navselect" to="/best-sellers">Los más vendidos</NavLink>
       </div>
       <div className="changeMe">
         {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { getUserSales } from '../../services/UsersService'
 import Pagination from '../Products/Pagination'
 import { userCancelSale } from '../../services/SaleService'
@@ -11,14 +11,16 @@ const Orders = () => {
   const [ suppPerPage ] = useState(5) //num
   const [ loader, setLoader ] = useState(true)
 
-  const getSales = async () => {
+  const getSales = useCallback(
+    async () => {
     try {
       const allSales = await getUserSales()
       const salesInvert = allSales.reverse()
       setSales(salesInvert)
       setLoader(false)
     } catch(e) { console.log(e.response.data)}
-  }
+  }, []
+  )
 
   const cancelSale = (id) => {
     userCancelSale(id)
@@ -36,7 +38,7 @@ const Orders = () => {
 
   useEffect(() => {
     getSales()
-  }, [sales])
+  }, [getSales])
 
   const indexOfLastSupp = currentPage * suppPerPage
   const indexOfFirstSupp = indexOfLastSupp - suppPerPage
