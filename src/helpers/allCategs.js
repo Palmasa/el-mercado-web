@@ -27,19 +27,11 @@ export const allCategs = {
     'Salchichón',
     'Salamis',
   ],
-  'Ibéricos': [ 'Ibéricos' ],
-  'Quesería': [ 'Quesería' ],
-  'Panes, cereales y harinas': [
-    'Panes',
-    'Picos, regañadas y canapés',
-    'Pan rallado',
-    'Harinas', 
-    'Cereales',
-  ],
-  'Conservas': [
+  'Conservas': ['Conservas'],
+  'De la Huerta': [
     'Verduras',
-    'Pescados y mariscos',
-    'Legumbres',
+    'Frutas',
+    'Hortalizas',
   ],
   'Dulces': [
     'Galletas',
@@ -49,10 +41,9 @@ export const allCategs = {
     'Mazapanes',
     'Ázucar',
   ],
-  'Sal y especias': [
-    'Sales',
-    'Especias',
-  ],
+  'Encurtidos': [ 'Encurtidos' ],
+  'Ibéricos': [ 'Ibéricos' ],
+  'Quesería': [ 'Quesería' ],
   'Lácteos y huevos': [
     'Leches',
     'Huevos',
@@ -63,19 +54,25 @@ export const allCategs = {
     'Mermeladas',
     'Mieles',
   ],
-  'Encurtidos': [ 'Encurtidos' ],
+  'Panes, cereales y harinas': [
+    'Panes',
+    'Picos, regañadas y canapés',
+    'Pan rallado',
+    'Harinas', 
+    'Cereales',
+  ],
   'Pastas y arroces': [
     'Pastas',
     'Arroces',
   ],
   'Pescados': [
+    'Pescado',
     'Crustáceos y moluscos',
     'Salmones y ahumados',
   ],
-  'De la Huerta': [
-    'Verduras',
-    'Frutas',
-    'Hortalizas',
+  'Sal y especias': [
+    'Sales',
+    'Especias',
   ],
   'Otros': [ 'Otros' ]
 }

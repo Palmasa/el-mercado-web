@@ -27,7 +27,9 @@ const InputReg = ({
           onFocus={onFocus}
           autoComplete={autoComplete}
         />
-        <small>{error}</small>
+      </div>
+      <div className="row">
+        <p><small>{error}</small></p>
       </div>
     </div>
   )

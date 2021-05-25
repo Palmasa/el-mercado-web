@@ -1,0 +1,18 @@
+@use "src/styles/utils" as *;
+
+.contact-home {
+  background-color: $c-light;
+  .actionAsesor {
+    @include buttonAction;
+    padding: 15px 25px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.252) 0px 1px 6px;
+    }
+    &:focus {
+      border: none;
+      outline: none;
+    }
+  }
+}

@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <>
     {
-      width < 640
+      width < 740
       ? (
         <>
         <div className="Navbar-xs">
@@ -52,7 +52,7 @@ const Navbar = () => {
         <div className="ghostMenu-xs"></div>
         </>
       ) : (
-        <div>
+        <div className="margins-navbar">
           <div className="Navbar-fixed">
             <Link to="/"><img className="logo" src={logo} alt="El Mercado"/></Link>
             <div className="bar-fixed">

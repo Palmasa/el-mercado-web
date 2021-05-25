@@ -130,7 +130,11 @@ const Products = () => {
     <div className="container">
      {
        loading
-       ? (<div className="spinner-style"><ClipLoader color="#E15D45" /></div>)
+       ? (
+        <div style={{ height: 800}}>
+            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
+        </div>
+       )
        : (
          <>
          <IconContext.Provider value={{ size: "0.5em"}}>

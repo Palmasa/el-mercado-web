@@ -15,6 +15,12 @@
     margin-top: 15px;
     background-color: $c-dark;
     color: $c-light;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      cursor: pointer;
+    }
   }
   small {
     color: $c-orange;

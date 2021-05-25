@@ -2,14 +2,15 @@
 
 .floatCategButton {
   position: fixed;
-  bottom: 25px;
+  bottom: 35px;
   right: 20px;
   z-index: 9998;
-  background-color: $c-light;
   border: none;
+  border: 2px solid $c-primary;
+  background-color: $c-light;
   padding: 10px 13px;
   border-radius: 50%;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 1px 4px;
 }
 
 .categories {

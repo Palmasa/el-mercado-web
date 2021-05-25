@@ -1,0 +1,52 @@
+@use "src/styles/utils" as *;
+@keyframes openShopper {
+  0%   {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.overlayShopper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+  padding: 0px;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.423);
+  transition: opacity 500ms;
+  visibility: visible;
+  opacity: 1;
+  display: flex;
+}
+
+.popupShoper {
+  opacity: 1;
+  margin: 62px auto;
+  background: #fff;
+  border-radius: 3px;
+  height: 60%;
+  width: 80%;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  animation: openShopper 0.20s;
+}
+
+.closeMD {
+  > button{
+    border: none;
+    background-color: white;
+  
+    &:hover {
+      cursor: pointer;
+    }
+    &:active {
+      outline: none;
+    }
+  }
+}

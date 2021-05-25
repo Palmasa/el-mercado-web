@@ -31,6 +31,10 @@
   margin: 0;
 }
 
+.margins-navbar {
+  background-color: $c-light;
+}
+
 .Navbar-moves {
   .fix {
     background-color: $c-light;
@@ -53,6 +57,8 @@
   align-items: center;
   width: 100%;
   padding-top: 20px;
+  padding-right: 50px; // aqui
+  padding-left: 40px; // aqui
 
   .bar-fixed {
     width: 75%;

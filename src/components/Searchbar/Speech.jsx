@@ -54,12 +54,16 @@ const Speech = ({ closeMicro }) => {
   if (!SpeechRecognition.browserSupportsSpeechRecognition()) {
     return (
       <div className="overlayMicro">
-        <div className="">
-          <button onClick={closeMicro}>Cerrar</button>
-          <p>
-            Este navegador no soporta el reconocimiento de voz.
-            Sentimos las molestias.
-          </p>
+        <div className={`container popUpMicro ${ width < 640 && "popUpMicro-xs"}`}>
+          <div className="row justify-content-end p-1">
+            <button onClick={() => closeMicro()} className="cross"> <MdClose /></button>
+          </div>
+          <div className="row justify-content-center">
+            <p>
+              Este navegador no soporta el reconocimiento de voz.
+              Sentimos las molestias.
+            </p>
+          </div>
         </div>
       </div>
     )
@@ -90,7 +94,7 @@ const Speech = ({ closeMicro }) => {
         ) : (
           <>
           <div className="row pt-4 justify-content-center pb-3">
-            <p>Lo sentimos, no te hemos entendio</p>
+            <p>Lo sentimos, no te hemos entendido</p>
           </div>
           <div className="row justify-content-center">
             <button onClick={handleListing} className="redo">Reintentar <BiMicrophone /></button>

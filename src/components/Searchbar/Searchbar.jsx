@@ -5,14 +5,18 @@ import { VscClose } from 'react-icons/vsc'
 import { Redirect } from 'react-router'
 import { getAllProducts } from '../../services/ProductsService'
 import ResultsSearch from './ResultsSearch'
-import './Searchbar.scss'
+import ClipLoader from "react-spinners/ClipLoader";
 import Speech from './Speech'
+import useWindowDimensions from '../../hooks/useWindow'
+import './Searchbar.scss'
 
 const Searchbar = () => {
   const results = useRef(null)
 
+  const { width } = useWindowDimensions()
   const [ closeCross, setCloseCross ] = useState(false)
   const [ products, setProducts ] = useState({})
+  const [ loader, setLoader ] = useState(false)
   const [ search, setSearch ] = useState('')
   const [ searchResult, setSearchResult ] = useState(false)
   const [ param, setParam ] = useState('')
@@ -45,16 +49,19 @@ const Searchbar = () => {
     allProducts.listProducts
     ? setProducts(allProducts.listProducts)
     : setProducts(allProducts.yesSend)
+    setLoader(false)
   }
 
   // Filter the products that you have
   const filterProducts = async (value) => {
     const filters = products.filter((p) => p.name.toLowerCase().includes(value))
     setProducts(filters)
+    setLoader(false)
   }
 
   // Get the typing and call the filter function
   const handleChange = (event) => {
+    setLoader(true)
     const { value } = event.target;
     setSearch(value);
     if (search !== '') {
@@ -85,7 +92,14 @@ const Searchbar = () => {
     <>
     <div className="Searchbar">
       <label className="Searchbar__glass" htmlFor="search">
-        <AiOutlineSearch />
+        {
+          loader
+          ? (
+            <div className=""><ClipLoader size='15' color="#E15D45" /></div>
+          ) : (
+            <AiOutlineSearch />
+          )
+        }
       </label>
       <input 
         className="Searchbar__input" 
@@ -105,15 +119,17 @@ const Searchbar = () => {
       }
       { redirect && (<Redirect to={`/productos?filter=${param}`}/>)}
     </div>
-      { searchResult && (
-        <div ref={results} className="overlay-search">
-          <div className="popUp-search px-4">
-            {
-              products.slice(0, 4).map((p) => (<ResultsSearch key={p.slug} slug={p.slug} name={p.name} imgs={p.img[0]}/>))
-            }
-          </div>
-        </div>
-        )
+      { !loader && searchResult && (
+        <>
+            <div ref={results} className="overlay-search">
+              <div className={`popUp-search px-4 ${ width < 640 && "popUp-search-xs"}`}>
+                {
+                  products.slice(0, 6).map((p) => (<ResultsSearch key={p.slug} slug={p.slug} name={p.name} imgs={p.img[0]}/>))
+                }
+              </div>
+            </div>
+        </>
+      )
       }
       {
         microPop && (

@@ -12,7 +12,7 @@ const notify = (value) => toast( value + ' añadido a la bolsa');
 const negNotify =  (value) => toast( value );
 
 
-const ProductDetail = ({ product }) => {
+const ProductDetail = ({ product, bestSeller }) => {
   const { setStateCart } = useContext(CartContext)
   
   const addItem = () => {
@@ -34,6 +34,8 @@ const ProductDetail = ({ product }) => {
   return (
     <div className="container card-product pb-3">
     <Link to={`/productos/${product.slug}`}>
+    {product.isBoosted && <p>Patrocinado</p>} {/* y una prop si es organica la busqued o no && */}
+    { bestSeller && bestSeller <= 10 && <p>Bestseller</p>}
     <div className="row justify-content-center mb-2 container-img">
         <img src={product.img[0]} alt={product.name} className={`img-card ${product.noSend ? "bw" : ''}`}/>
     </div>

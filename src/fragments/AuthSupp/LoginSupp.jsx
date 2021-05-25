@@ -140,9 +140,9 @@ const LoginSupp = () => {
                       : ""
                   }
                 />
-                <p>
-                  <small>{resError.error ? resError.info : ""}</small>
-                </p>
+                <div className="row justify-content-center">
+                  <p><small>{resError.error ? resError.info : ""}</small></p>
+                </div>
                 <div className="row justify-content-center">
                   <button type="submit">Acceder</button>
                 </div>

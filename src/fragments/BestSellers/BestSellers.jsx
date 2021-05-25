@@ -59,7 +59,11 @@ const BestSellers = () => {
     <div className="container">
      {
        loading
-       ? (<div className="spinner-style"><ClipLoader color="#E15D45" /></div>)
+       ? (
+        <div style={{ height: 650}}>
+            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
+        </div>
+       )
        : (
          <>
         <div className="row justify-content-center w-100">
@@ -70,21 +74,22 @@ const BestSellers = () => {
               <h4>LOS MÁS VENDIDOS</h4>
               <div className="row">
                 {
-                  currentProducts?.map((product) => (
+                  currentProducts?.map((product, i) => (
                     <div key={product.id} className="col-lg-4 col-md-6 mb-5 justify-content-center">
                       <ProductCard
                       product= {product}
+                      bestSeller={i + 1 }
                       />
                     </div>
                   ))
                 }
                 </div>
                 <div className=" row justify-content-center">
-                <Pagination 
+                {/* <Pagination 
                   prodPerPage={prodPerPage}
                   totalProd={productsLenght} 
                   paginate={paginate}
-                />
+                /> */}
                 </div>
               </div>
           </div>
