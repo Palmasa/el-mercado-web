@@ -1,0 +1,47 @@
+@use "src/styles/utils" as *;
+@keyframes slide {
+  0%   {
+    box-shadow: 0;
+  }
+  50% {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  }
+  100% {
+    box-shadow: 0;
+  }
+}
+
+.slider-carousel {
+  display: flex;
+  align-items: center;
+  max-width: 1050px;
+  height: 320px;
+  width: 100%;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  .items-carousel {
+    scroll-snap-align: center;
+  }
+}
+
+.button-arrow-slider {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  box-shadow: 0;
+  &:focus {
+    outline: none;
+  }
+  &:active {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
+

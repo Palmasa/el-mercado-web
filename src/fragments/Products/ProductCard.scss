@@ -2,15 +2,49 @@
 
 .card-product {
   background-color: $c-light;
+  position: relative;
   height: 300px;
   width: 220px;
   border-radius: 2px;
   &:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   }
+
+  .tag-product {
+    position: absolute;
+    text-align: center;
+    background-color: $c-primary;
+    margin-left: 170px;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    > p {
+      margin: 0;
+      padding: 5px;
+      &:hover {
+        color: $c-dark;
+        text-decoration: none;
+      }
+    }
+  }
+  
+  .boosted-product {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    text-align: center;
+    padding: 0;
+    margin-left: 135px;
+    > p {
+      color: $c-orange;
+      margin: 0;
+      padding: 5px;
+      &:hover {
+        color: $c-dark;
+        text-decoration: none;
+      }
+    }
+  }
   .info-card-product-mini {
     margin-bottom: auto;
-
   }
   .name-of-product {
     font-size: 16px;

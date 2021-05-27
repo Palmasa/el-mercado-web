@@ -41,7 +41,6 @@ export const allCategs = {
     'Mazapanes',
     'Ázucar',
   ],
-  'Encurtidos': [ 'Encurtidos' ],
   'Ibéricos': [ 'Ibéricos' ],
   'Quesería': [ 'Quesería' ],
   'Lácteos y huevos': [

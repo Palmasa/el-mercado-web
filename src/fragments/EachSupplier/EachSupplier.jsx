@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOneSupp } from '../../services/SuppService'
 import ClipLoader from "react-spinners/ClipLoader";
+import Boosted from "../Home/Boosted";
 import Map from './Map'
 import './EachSupplier.scss'
 import ProductCard from '../Products/ProductCard'
@@ -89,6 +90,9 @@ const EachSupplier = () => {
       )
       
     }
+      <div className="">
+          <Boosted color="#fff" text="También te puede interesar"/>
+      </div>
     </>
   )
 }

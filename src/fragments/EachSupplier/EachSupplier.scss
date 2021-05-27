@@ -45,6 +45,11 @@
   display: flex;
   justify-content: space-evenly;
   overflow-x: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .box-supp-img {

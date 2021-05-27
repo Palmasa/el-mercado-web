@@ -1,0 +1,33 @@
+@use "src/styles/utils" as *;
+
+.Card-categ {
+  margin-right: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  > img {
+    object-fit: cover;
+    width: 260px;
+    height: 250px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    &:hover {
+      cursor: pointer;
+      box-shadow: rgba(0, 0, 0, 0.56) 0px 2px 8px;
+    }
+  }
+
+  .each-card-categ {
+    width: 260px;
+    border: none;
+    background-color: $c-primary;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.053) 0px 2px 3px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

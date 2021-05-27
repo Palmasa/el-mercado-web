@@ -43,6 +43,9 @@ export const getProductPerSupp = () => {
 export const getProductsBoosted = () => {
   return http.get('/products/boosted')
 }
+export const getNotBoosted = () => {
+  return http.get('/products/notBoosted')
+}
 
 /*  CREATE UPDATE DELETE PRODUCTS ----------------------- */
 export const createProduct = (body) => {

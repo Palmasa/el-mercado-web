@@ -4,7 +4,9 @@ import { createAddCart } from '../../services/CartService'
 import { setCart } from '../../store/cartStore'
 import { cashConverter } from '../../helpers/priceConverter'
 import { BsPlus } from 'react-icons/bs'
+import { AiFillThunderbolt } from 'react-icons/ai'
 import toast, { Toaster } from 'react-hot-toast';
+import { IconContext } from "react-icons";
 import { Link } from 'react-router-dom';
 import './ProductCard.scss'
 
@@ -12,7 +14,7 @@ const notify = (value) => toast( value + ' añadido a la bolsa');
 const negNotify =  (value) => toast( value );
 
 
-const ProductDetail = ({ product, bestSeller }) => {
+const ProductDetail = ({ product, bestSeller, noOrganic }) => {
   const { setStateCart } = useContext(CartContext)
   
   const addItem = () => {
@@ -32,10 +34,21 @@ const ProductDetail = ({ product, bestSeller }) => {
   }
 
   return (
-    <div className="container card-product pb-3">
+    <div className="container card-product pb-3 items-carousel">
     <Link to={`/productos/${product.slug}`}>
-    {product.isBoosted && <p>Patrocinado</p>} {/* y una prop si es organica la busqued o no && */}
-    { bestSeller && bestSeller <= 10 && <p>Bestseller</p>}
+    { noOrganic && product.isBoosted && (
+      <div className="boosted-product text-center">
+        <p><small>Patrocinado</small></p>
+      </div>
+      
+      ) }
+    { bestSeller && bestSeller <= 11 && (
+      <IconContext.Provider value={{ color: "E15D45", className: "icon-thunder" }}>
+        <div className="tag-product text-center">
+          <p><AiFillThunderbolt /></p>
+        </div>
+      </IconContext.Provider>
+    )}
     <div className="row justify-content-center mb-2 container-img">
         <img src={product.img[0]} alt={product.name} className={`img-card ${product.noSend ? "bw" : ''}`}/>
     </div>

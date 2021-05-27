@@ -23,7 +23,7 @@ const Products = () => {
   const [ products, setProducts ] = useState({})
   const [ loading, setLoading] = useState(false)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage ] = useState(18) // 18 num
+  const [ prodPerPage ] = useState(15) // 18 num
   const [ mainCateg, setMain ] = useState([])
   const [ notFound, setNotFound ] = useState(false)
   const [ allProductsPage, setallProductsPage ] = useState(false)
@@ -131,7 +131,7 @@ const Products = () => {
      {
        loading
        ? (
-        <div style={{ height: 800}}>
+        <div style={{ height: 700}}>
             <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
         </div>
        )

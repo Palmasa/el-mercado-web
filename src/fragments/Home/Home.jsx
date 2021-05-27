@@ -1,47 +1,33 @@
-import { useEffect, useState } from 'react'
-import ClipLoader from "react-spinners/ClipLoader";
+import { useContext} from 'react'
 import PersonalShopper from './PersonalShopper';
+import { UserContext } from '../../contexts/UserContext'
+import MostPopular from './MostPopular';
+import BuyAgain from './BuyAgain';
+import CardCateg from './CardCateg';
 import './Home.scss'
+import Boosted from './Boosted';
 
 const Home = () => {
-  const [ loading, setLoading] = useState(false) // CAMBIAR JFJ
-
-
-  useEffect(() => {
-
-  }, [ ])
-
+  const { user } = useContext(UserContext)
+  
   return (
     <>
-     {
-       loading
-       ? (
-        <div style={{ height: 650}}>
-            <div className="spinner-style"><ClipLoader color="#E15D45" /></div>
+      <div>
+        <MostPopular />
+      </div>
+      <div className="mt-4">
+        <Boosted color="#f1ebe4" text={`${user?.name}, te recomendamos`}/>
+      </div>
+      <div className="mt-4">
+        <CardCateg />
+      </div>
+      <PersonalShopper />
+      {
+        user && (
+        <div>
+          <BuyAgain />
         </div>
-       )
-       : (
-         <>
-        <div className="container">
-          <div className="row heather-home p-5">
-              HEATHER
-          </div>
-        </div>
-        <div className="container">
-          <div className="row carouseles-home p-5">
-              LOS MÁS VENDIDOS CAROUSEL
-          </div>
-        </div>
-
-        <PersonalShopper />
-
-        <div className="container">
-          <div className="row carouseles-home p-5">
-              CAROUSEL CATEGORÍAS 
-          </div>
-        </div>
-        </>
-       )
+        )
       }
     </>
   )

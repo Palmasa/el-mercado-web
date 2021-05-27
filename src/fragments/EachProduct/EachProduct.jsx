@@ -11,6 +11,7 @@ import { AiOutlineInfoCircle } from 'react-icons/ai'
 import toast, { Toaster } from 'react-hot-toast';
 import ImgSlider from "./ImgSlider";
 import ClipLoader from "react-spinners/ClipLoader";
+import Boosted from "../Home/Boosted";
 import ZipSquare from "../../components/ZipSquare/ZipSquare";
 import './EachProduct.scss'
 
@@ -58,6 +59,7 @@ const EachProduct = () => {
     </div>)
   }
   return (
+    <>
     <div className="container mt-2 EachProduct">
       <div className="row mb-5">
         <div className="col-md">
@@ -107,6 +109,10 @@ const EachProduct = () => {
       </div>
       <Toaster />
     </div>
+    <div className="">
+        <Boosted color="#fff" text="Productos relacionados"/>
+    </div>
+    </>
   );
 }
 

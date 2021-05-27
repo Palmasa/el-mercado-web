@@ -5,7 +5,6 @@ import { UserContext } from '../../contexts/UserContext'
 
 import ClipLoader from "react-spinners/ClipLoader";
 import ProductCard from '../Products/ProductCard'
-import Pagination from '../Products/Pagination'
 import { renameKey } from '../../helpers/renameKeysObj';
 
 const BestSellers = () => {
@@ -39,20 +38,13 @@ const BestSellers = () => {
   const indexOfLastProduct = currentPage * prodPerPage
   const indexOfFirstProduct = indexOfLastProduct - prodPerPage
   let currentProducts = products?.resolveProducts?.slice(indexOfFirstProduct, indexOfLastProduct)
-  let productsLenght = products?.resolveProducts?.length
 
   if (!products?.resolveProducts) {
     if (products?.resolvedProductsZip) {
       let allP = products.resolvedProductsZip?.map((p) => ({...p._doc, noSend: p.noSend}))
       let allProducts = allP.map((p) => renameKey(p, '_id', 'id'))
       currentProducts = allProducts.slice(indexOfFirstProduct, indexOfLastProduct)
-      productsLenght = allProducts.length
     }
-  }
-
-  const paginate = (n) => {
-    setCurrentPage(n)
-    window.scrollTo({top: 0, behavior: 'smooth'})
   }
 
   return (
@@ -68,10 +60,9 @@ const BestSellers = () => {
          <>
         <div className="row justify-content-center w-100">
               <div className="container">
-              <div className="row">
-
+              <div className="row my-5 justify-content-center">
+                <h3>Los más vendidos de El Mercado</h3>
               </div>
-              <h4>LOS MÁS VENDIDOS</h4>
               <div className="row">
                 {
                   currentProducts?.map((product, i) => (
@@ -85,11 +76,6 @@ const BestSellers = () => {
                 }
                 </div>
                 <div className=" row justify-content-center">
-                {/* <Pagination 
-                  prodPerPage={prodPerPage}
-                  totalProd={productsLenght} 
-                  paginate={paginate}
-                /> */}
                 </div>
               </div>
           </div>
