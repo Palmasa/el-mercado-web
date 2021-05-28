@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import './Map.scss'
 
-mapboxgl.accessToken = 'pk.eyJ1IjoicGFsbWFzYSIsImEiOiJja2x0OHpvdDYwNmJ5MndvM2NiNGF5NWtzIn0.aVa1uyTkA0cl1WuZezJQtw'
+mapboxgl.accessToken = 'pk.eyJ1IjoicGFsbWFzYSIsImEiOiJja3A4aDZ2ODEwNmFiMnd0NzN0c3Zlamh4In0._EXP6rtTWf_P-lFcNfmIqQ'
 
 const Map = ({lon, lat}) => {
   const mapContainerRef = useRef(null);
