@@ -21,7 +21,6 @@ const XsMenu = ({ closeMenu }) => {
           <button onClick={() => closeMenu()}> <MdClose /></button>
         </div>
         { user && <p>Hola {user?.name}</p>}
-        <NavLink className="navlink" activeClassName="navselect" to="/">Inicio</NavLink>
         <NavLink className="navlink" activeClassName="navselect" to="/productos">Productos</NavLink>
         <NavLink className="navlink" activeClassName="navselect" to="/tiendas">Tiendas</NavLink>
         <NavLink className="navlink" activeClassName="navselect" to="/best-sellers">Los más vendidos</NavLink>
