@@ -11,8 +11,9 @@ import { AiOutlineInfoCircle } from 'react-icons/ai'
 import toast, { Toaster } from 'react-hot-toast';
 import ImgSlider from "./ImgSlider";
 import ClipLoader from "react-spinners/ClipLoader";
-import Boosted from "../Home/Boosted";
 import ZipSquare from "../../components/ZipSquare/ZipSquare";
+import Related from "../Home/Related";
+import BoostedAll from "../Home/BoostedAll";
 import './EachProduct.scss'
 
 const negNotify =  (value) => toast( value );
@@ -25,6 +26,7 @@ const EachProduct = () => {
   const [supplier, setSupplier] = useState();
   const [ okTosend, setOkSend ] = useState();
   const [ shippModel, setShippModel ] = useState();
+  const [ categ, setCateg] = useState()
   
   const addItem = () => {
     createAddCart(product.id) // petición al back
@@ -44,11 +46,13 @@ const EachProduct = () => {
     getOneProduct(slug).then((prod) => {
       setProduct(prod.product)
       setOkSend(prod.okToSend)
+      setCateg(prod.product.categ)
       setSupplier(prod.supplier)
       if (prod.shippModel) {
         setShippModel(prod.shippModel)
       }
     });
+    window.scrollTo({top: 0})
   }, [slug, stateZip]);
 
   if (!product) {
@@ -110,8 +114,9 @@ const EachProduct = () => {
       <Toaster />
     </div>
     <div className="">
-        <Boosted color="#fff" text="Productos relacionados"/>
     </div>
+    <BoostedAll />
+    <Related color="#fff" text="Productos relacionados" categ={categ}/>
     </>
   );
 }

@@ -42,7 +42,7 @@ const ProductDetail = ({ product, bestSeller, noOrganic }) => {
       </div>
       
       ) }
-    { bestSeller && bestSeller <= 11 && (
+    { bestSeller && bestSeller <= 12 && (
       <IconContext.Provider value={{ color: "E15D45", className: "icon-thunder" }}>
         <div className="tag-product text-center">
           <p><AiFillThunderbolt /></p>

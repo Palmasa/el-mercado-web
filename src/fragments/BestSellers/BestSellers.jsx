@@ -1,28 +1,26 @@
 import { useEffect, useState, useContext, useCallback } from 'react'
+import { IconContext } from "react-icons";
+import { AiFillThunderbolt } from 'react-icons/ai'
 import { ZipContext } from '../../contexts/ZipContext';
-import { getBestSellers, getBuyAgain } from '../../services/RecommendService'
-import { UserContext } from '../../contexts/UserContext'
+import { getBestSellers } from '../../services/RecommendService'
 
 import ClipLoader from "react-spinners/ClipLoader";
 import ProductCard from '../Products/ProductCard'
 import { renameKey } from '../../helpers/renameKeysObj';
 
 const BestSellers = () => {
-  const { user } = useContext(UserContext)
   const { stateZip } = useContext(ZipContext)
   const [ products, setProducts ] = useState()
   const [ loading, setLoading] = useState(true)
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ prodPerPage ] = useState(18) // 18 num
+  const [ prodPerPage ] = useState(12) // 18 num
 
   const getProducts = useCallback(
     async () => {
     const p = await getBestSellers()
     setProducts(p)
     setLoading(false)
-    const buy = await getBuyAgain(user?.id)
-    console.log(buy)
-  }, [user]
+  }, []
   )
 
   useEffect(() => {
@@ -61,7 +59,9 @@ const BestSellers = () => {
         <div className="row justify-content-center w-100">
               <div className="container">
               <div className="row my-5 justify-content-center">
-                <h3>Los más vendidos de El Mercado</h3>
+              <IconContext.Provider value={{ color: "E15D45", className: "icon-thunder" }}>
+                <h3> <AiFillThunderbolt /> Los más vendidos de El Mercado </h3>
+              </IconContext.Provider>
               </div>
               <div className="row">
                 {

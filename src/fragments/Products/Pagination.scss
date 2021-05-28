@@ -9,14 +9,16 @@
   line-height: 1.5;
   &:active {
     outline: none;
-    text-decoration: underline;
   }
   &:hover {
     background-color: $c-primary;
     cursor: pointer;
   }
   &:focus {
-    text-decoration: underline;
     outline: none;
   }
+}
+.activeCurrentPage{
+  color: $c-orange;
+  text-decoration: underline;
 }

@@ -39,7 +39,7 @@ const BuyAgain = () => {
               <div className="home-spinner"><ClipLoader color="#E15D45" /></div>
             </div>
             : (
-            <Carousel>
+            <Carousel id="buyAgain">
               {
                 clientBuyAgain?.map((product) => (
                   <div key={product.id} className="mr-5">

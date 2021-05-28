@@ -99,6 +99,7 @@ const Products = () => {
   useEffect(() => {
     if ( currentPage === 1) {
       getProducts()
+      window.scrollTo({top: 0})
     }
   }, [ getProducts, stateZip, currentPage ])
 
@@ -123,7 +124,7 @@ const Products = () => {
   
   const paginate = (n) => {
     setCurrentPage(n)
-    window.scrollTo({top: 0, behavior: 'smooth'})
+    window.scrollTo({top: 0})
   }
 
   return (
@@ -138,11 +139,17 @@ const Products = () => {
        : (
          <>
          <IconContext.Provider value={{ size: "0.5em"}}>
-          <div className="row mb-3">
+          <div className="row mb-3 mr-4 align-items-center justify-content-between">
             { allProductsPage && <h6>Todos los productos</h6>}
             { filter && <h6>Resultados de <i>{filter}</i></h6>}
             { categ && <h6>{mainCateg} </h6>}
             { sub && <h6>{main[n]} <BsChevronRight /> {sub}</h6>}
+            <Pagination 
+              prodPerPage={prodPerPage}
+              totalProd={productsLenght} 
+              paginate={paginate}
+              currentPage={currentPage}
+            />
           </div>
          </IconContext.Provider>
         <div className="row justify-content-center w-100">
@@ -150,7 +157,14 @@ const Products = () => {
             notFound
             ? (
               <>
-              <img src={notFoundImg} alt="404" className="img-fluid mr-4" style={{width: 340, marginTop: 100}}/>
+              <div className="container">
+              <div className="row justify-content-center w-100 mb-3">
+                <img src={notFoundImg} alt="404" className="" style={{width: 240, marginTop: 100}}/>
+              </div>
+              <div className="row justify-content-center w-100">
+                <p>Lo sentimos, aún no se ha creado ningún producto en { categ && <>{mainCateg}</>} { sub && <>{sub}</>} { filter && <i>{filter}</i>}</p>
+              </div>
+              </div>
               </>
             )
             : (
@@ -171,6 +185,7 @@ const Products = () => {
                   prodPerPage={prodPerPage}
                   totalProd={productsLenght} 
                   paginate={paginate}
+                  currentPage={currentPage}
                 />
                 </div>
               </div>

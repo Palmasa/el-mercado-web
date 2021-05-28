@@ -20,6 +20,7 @@ const AllSupp = () => {
 
   useEffect(() => {
     getAllSupp()
+    window.scrollTo({top: 0})
   }, [])
 
   const indexOfLastSupp = currentPage * suppPerPage

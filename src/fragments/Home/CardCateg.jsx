@@ -39,7 +39,7 @@ const CardCateg = () => {
             <h4 className="mx-5 px-5">Compra por categorías</h4>
           </div>
           <div className="row justify-content-center">
-            <Carousel>
+            <Carousel id="categs" larger={true}>
             {
               mainCategs?.map((main, i) => (
                 <div key={i} className="Card-categ container">

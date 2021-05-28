@@ -1,6 +1,6 @@
 import './Pagination.scss'
 
-const Pagination = ({ prodPerPage, totalProd, paginate }) => {
+const Pagination = ({ prodPerPage, totalProd, paginate, currentPage}) => {
   const pageNumbers = []
 
   for (let i = 1; i<= Math.ceil(totalProd / prodPerPage); i++) {
@@ -12,7 +12,13 @@ const Pagination = ({ prodPerPage, totalProd, paginate }) => {
       <ul className="pagination">
     {pageNumbers.map((n) => (
       <li key={n} className='page-item'>
-        <button onClick={()=> paginate(n)} href="!#" className="number-page">{n}</button>
+        <button 
+          onClick={()=> paginate(n)}
+          href="!#" 
+          className={`${currentPage === n && "activeCurrentPage"} number-page`}
+        >
+         {n}
+        </button>
       </li>
     ))}
       </ul>

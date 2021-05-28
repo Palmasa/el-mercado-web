@@ -1,18 +1,25 @@
 import { BsChevronRight, BsChevronLeft } from 'react-icons/bs'
+import useWindowDimensions from '../../hooks/useWindow'
 import './Carousel.scss'
 
-const Carousel = ({ children }) => {
-  const next = () => {
+const Carousel = ({ children, id, larger}) => {
+  const { width } = useWindowDimensions()
 
+  const prev = () => {
+    document.getElementById(`${id}789`).scrollLeft -= 250
+  }
+
+  const next = () => {
+    document.getElementById(`${id}789`).scrollLeft += 250
   }
   
   return (
     <>
-      <button className="button-arrow-slider" onClick={next()}><BsChevronLeft /></button>
-      <div className="slider-carousel mx-4">
+      { width > 670 && <button className="button-arrow-slider" onClick={prev}><BsChevronLeft /></button>}
+      <div id={`${id}789`} className="slider-carousel mx-4" style={larger && {maxWidth: 1200}}>
         {children}
       </div>
-      <button className="button-arrow-slider" onClick={next()}><BsChevronRight /></button>
+      { width > 670 && <button className="button-arrow-slider" onClick={next}><BsChevronRight /></button>}
     </>
   )
 }

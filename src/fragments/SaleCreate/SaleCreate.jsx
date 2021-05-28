@@ -40,6 +40,7 @@ const SaleCreate = () => {
 
   useEffect(() => {
     paintCarts()
+    window.scrollTo({top: 0})
   }, [paintCarts])
 
   return (

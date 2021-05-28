@@ -19,6 +19,7 @@ const EachSupplier = () => {
       setProds(supp.products)
       setLoader(false)
     });
+    window.scrollTo({top: 0})
   }, [slug]);
 
   return (

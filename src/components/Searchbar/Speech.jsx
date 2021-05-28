@@ -12,11 +12,26 @@ const Speech = ({ closeMicro }) => {
     {
       command: "ir a *",
       callback: (website) => {
-        window.open("https://m.el-mercado.es/" + website.split(" ").join("-"));
+        setRedirect(false)
+        window.location.replace("https://m.el-mercado.es/" + website.split(" ").join("-"))
       },
     },
     {
-      command: "(buscar) *",
+      command: "ir a home",
+      callback: () => {
+        setRedirect(false)
+        window.location.replace("https://m.el-mercado.es/")
+      },
+    },
+    {
+      command: "ir a inicio",
+      callback: () => {
+        setRedirect(false)
+        window.location.replace("https://m.el-mercado.es/")
+      },
+    },
+    {
+      command: "(hola) (mercado) (El Mercado) (hola) (mercado) (El Mercado) (buscar) (quiero) (búscame) (comprar) (encuéntrame) * (por favor) (y) (gracias)",
       callback: (food) => {
         if (food.length > 1) {
           setParam(food)

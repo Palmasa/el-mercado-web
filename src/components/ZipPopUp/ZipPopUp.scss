@@ -13,6 +13,9 @@
   > button {
     border: none;
     background-color: #fff;
+    &:hover {
+      cursor: pointer;
+    }
 
     &:focus {
       outline: none;
@@ -34,6 +37,9 @@
     }
     > button {
       @include buttonAction;
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
   
@@ -90,10 +96,16 @@
         @include regular-input;
         width: 80%;
         margin-top: 15px;
+        &:hover {
+          cursor: pointer;
+        }
       }
       > button {
         @include buttonAction;
         width: 80%;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
     

@@ -152,6 +152,7 @@ const AddressSale = ({ nextStep, setToPay }) => {
           </div>
           <div className="">
             <input
+              autoComplete="0ff"
               name="promo"
               value={state.fields.promo}
               onChange={onChange}

@@ -104,10 +104,10 @@ const BoostPopUp = ({ product, setClose}) => {
                   <p style={{marginBottom: 8}}>La oferta Premium te garantiza:</p>
                 </div>
                 <div className="row px-5 mb-2">
-                  <li>Visibilidad extra</li>
-                  <li>Productos relacionados</li>
-                  <li>Otrasuper chula muy muy </li>
-                  <li>Más super chula</li>
+                  <li>Visibilidad en la home</li>
+                  <li>Cross-selling en otras tiendas</li>
+                  <li>Recomendación a nuevos clientes</li>
+                  <li>Aumento de venta ya clientes</li>
                 </div>
 
                 <div className="row px-5 mb-3 mt-3 align-items-center">
@@ -129,10 +129,10 @@ const BoostPopUp = ({ product, setClose}) => {
                   <p style={{marginBottom: 8}}>La oferta Inter incluye:</p>
                 </div>
                 <div className="row px-5 mb-2">
-                  <li>Visibilidad </li>
+                  <li>Visibilidad en la home</li>
                   <li>Productos relacionados</li>
-                  <li>Otrasuper chula muy</li>
-                  <li className="notIncluded">Más super chula</li>
+                  <li>Recomendaciones</li>
+                  <li className="notIncluded">Venta a ya clientes</li>
                 </div>
 
                 <div className="row px-5 mb-3 mt-3 align-items-center">
@@ -154,10 +154,10 @@ const BoostPopUp = ({ product, setClose}) => {
                   <p style={{marginBottom: 8}}>La oferta Básica incluye:</p>
                 </div>
                 <div className="row px-5 mb-2">
-                  <li>Visibilidad </li>
+                  <li>Visibilidad en la home</li>
                   <li className="notIncluded">Productos relacionados</li>
-                  <li className="notIncluded">Otrasuper chula muy</li>
-                  <li className="notIncluded">Más super chula</li>
+                  <li className="notIncluded">Recomendaciones</li>
+                  <li className="notIncluded">Venta a ya clientes</li>
                 </div>
 
                 <div className="row px-5 mb-3 mt-3 align-items-center">

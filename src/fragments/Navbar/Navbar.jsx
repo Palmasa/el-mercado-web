@@ -8,6 +8,7 @@ import ZipBar from '../../components/ZipBar/ZipBar'
 import Menu from '../../components/Menu/Menu'
 import logo from '../../images/logos/DARK.png'
 import { Link } from 'react-router-dom'
+import { GlowHubLoader } from 'react-glowhub'
 import './Navbar.scss'
 import XsMenu from '../../components/Menu/XsMenu'
 
@@ -73,6 +74,9 @@ const Navbar = () => {
       )
     
     }
+    <GlowHubLoader 
+        clientID='GH-K2EIP8S2Z2' 
+      />
     </>
   )
 }

@@ -8,7 +8,7 @@ import './Orders.scss'
 const Orders = () => {
   const [ sales, setSales ] = useState([])
   const [ currentPage, setCurrentPage] = useState(1)
-  const [ suppPerPage ] = useState(5) //num
+  const [ suppPerPage ] = useState(3) //num
   const [ loader, setLoader ] = useState(true)
 
   const getSales = useCallback(
@@ -19,12 +19,17 @@ const Orders = () => {
       setSales(salesInvert)
       setLoader(false)
     } catch(e) { console.log(e.response.data)}
-  }, []
+  }, [ ]
   )
 
-  const cancelSale = (id) => {
-    userCancelSale(id)
-  }
+  const cancelSale = useCallback(
+    async (id) => {
+      setLoader(true)
+      await userCancelSale(id)
+      await getSales()
+      setLoader(false)
+    }, [ getSales ]
+  )
 
   const paintState = (state) => {
     if (state === 'Entregado') {
@@ -63,7 +68,7 @@ const Orders = () => {
           <div className="row justify-content-center">
             {
               currentSales?.map((sale) => (
-                <div key={sale.id} className="col-md-6 mb-4 ml-3 box-pay-info p-4">
+                <div key={sale.id} className="col-md-6 mb-4 ml-2 box-payy-info p-4">
                 <div className="row justify-content-between align-items-center border-bottom mb-2 px-1">
                   <h4><b>{sale.products[0].supplier}</b></h4>
                   {sale.createdAt.slice(0, 10)}
@@ -107,6 +112,7 @@ const Orders = () => {
               prodPerPage={suppPerPage}
               totalProd={salesLength} 
               paginate={paginate}
+              currentPage={currentPage}
             />
           </div>
           </div>

@@ -74,7 +74,7 @@ const Login = ({shoppingBag}) => {
             if (shoppingBag) {
               console.log('Loged in')
             } else {
-              push('/productos')
+              push('/')
             }
           })
   

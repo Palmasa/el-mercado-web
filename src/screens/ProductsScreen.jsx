@@ -1,4 +1,6 @@
 import React from 'react'
+import Boosted from '../fragments/Home/Boosted'
+import BoostedAll from '../fragments/Home/BoostedAll'
 import Navbar from '../fragments/Navbar/Navbar'
 import CategFilter from '../fragments/Products/CategFilter'
 import Products from '../fragments/Products/Products'
@@ -14,7 +16,7 @@ const ProductsScreen = () => {
       width > 640 
       ? (
       <>
-        <div className="container px-2 py-4">
+        <div className="container px-2 pt-4 pb-5 border-bottom">
           <div className="row">
             <div className="col-2 mr-5 p-0">
               <CategFilter />
@@ -24,6 +26,8 @@ const ProductsScreen = () => {
             </div>
           </div>
         </div>
+        <Boosted />
+        <BoostedAll />
       </>
       ) : (
         <>

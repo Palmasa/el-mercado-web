@@ -9,6 +9,9 @@
     @include buttonAction;
     width: 100%;
     margin-top: 15px;
+    &:hover {
+      cursor: pointer;
+    }
   }
   small {
     margin-bottom: 30px;

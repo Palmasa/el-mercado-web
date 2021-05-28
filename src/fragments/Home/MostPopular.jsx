@@ -41,7 +41,7 @@ const MostPopular = () => {
                 <div className="home-spinner"><ClipLoader color="#E15D45" /></div>
               </div>
             ) : (
-              <Carousel>
+              <Carousel id="bestSeller">
                 {
                   bestSellers?.map((bestSeller, i) => (
                     <div key={bestSeller.id} className="mr-5">
@@ -55,7 +55,6 @@ const MostPopular = () => {
           </div>
         </div>
       </div>
-      )
     </>
   )
 }
